@@ -18,7 +18,7 @@ export default function SpeacialOffers(props: Props) {
             initial={{ opacity: 0.0, y: 30 }}
             transition={{ duration: 2.0, type: "spring" }}
             whileInView={{ opacity: 1, y: 0 }}
-            className={`text-6xl text-center`}
+            className={`text-5xl sm:text-7xl md:text-8xl text-center pb-5`}
           >
             Special Offers
           </motion.h1>
@@ -35,7 +35,7 @@ export default function SpeacialOffers(props: Props) {
             className={`rounded-3xl drop-shadow-xl`}
           />
           <div
-            className={`absolute flex flex-col items-center justify-evenly w-[90%] h-[70%] md:w-[80%] md:h-[60%] lg:w-[65%] lg:h-[45%] bg-slate-100 rounded-[50px]`}
+            className={`absolute flex flex-col items-center justify-evenly w-[90%] h-[70%] md:w-[80%] md:h-[60%] lg:w-[65%] lg:h-[45%] bg-slate-100 rounded-[50px] opacity-90`}
           >
             <div>
               <motion.h2
@@ -61,7 +61,7 @@ export default function SpeacialOffers(props: Props) {
                 <Link href={`/contact`}>
                   <motion.p
                     initial={{ opacity: 0.0, y: 50 }}
-                    transition={{ duration: 4.0, type: "spring" }}
+                    transition={{ duration: 3.0, type: "spring" }}
                     whileInView={{ opacity: 1, y: 0 }}
                     className={`text-4xl text-center cursor-pointer text-red-500 hover:text-red-700`}
                   >

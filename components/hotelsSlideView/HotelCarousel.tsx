@@ -7,7 +7,7 @@ import { groq } from "next-sanity";
 import { sanityClient, urlFor } from "@/sanity";
 
 type Props = {
-  hotelsList: any;
+  hotelsList: any[];
 };
 
 const boxVariant = {

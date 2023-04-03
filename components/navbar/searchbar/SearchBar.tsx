@@ -57,6 +57,19 @@ export default function SearchBar(props: Props) {
     setSearchInput("");
   };
 
+  const numberOfGuestsHandler = (action: number) => {
+    if (action === 1) {
+      if (numberOfGuests <= 3) {
+        setNumberOfGuests(numberOfGuests+1);
+      }
+    }
+    else {
+      if (numberOfGuests >= 3) {
+        setNumberOfGuests(numberOfGuests-1);
+      }
+    }
+  }
+
   const searchHandler = (event: any) => {};
 
   return (
@@ -84,7 +97,7 @@ export default function SearchBar(props: Props) {
         <motion.div
           className={`${
             !searchInput ? "hidden" : "absolute"
-          } w-fit align-middle items-center justify-center mt-[490px] p-2 rounded-lg bg-slate-100`}
+          } w-fit align-middle items-center justify-center mt-[530px] p-2 rounded-lg bg-slate-100`}
           initial={{ opacity: 0.0 }}
           transition={{ duration: 4.0, type: "spring", stiffness: 200 }}
           whileInView={{ opacity: 1.0 }}
@@ -101,22 +114,29 @@ export default function SearchBar(props: Props) {
             <h2 className={`text-2xl font-semibold flex-grow`}>
               Number of Guests
             </h2>
-            <div className={`flex items-center`}>
+            <div className={`flex items-center align-middle justify-center`}>
+              <div className={`p-[6px] bg-gray-300 rounded-full mr-3 cursor-pointer`} onClick={() => numberOfGuestsHandler(-1)}>
+                <Image alt="icon" src={`/minus-icon.png`} width={'10'} height={'10'} />
+              </div>
               <UsersIcon className={`h-6`} />
               <input
                 type="number"
+                onChange={(e) => (console.log(e))}
                 value={numberOfGuests}
-                onChange={(event) =>
-                  setNumberOfGuests(Number(event.target.value))
-                }
                 min={2}
                 max={4}
-                className={`w-8 text-lg ml-2 px-1 text-right outline-none text-red-400`}
+                className={`w-6 text-lg ml-2 pr-2 text-right outline-none text-red-400`}
               />
+              <div className={`p-[6px] bg-gray-300 rounded-full ml-3 cursor-pointer`} onClick={() => numberOfGuestsHandler(1)}>
+                <Image alt="icon" src={`/plus-icon.png`} width={'10'} height={'10'} />
+              </div>
             </div>
           </div>
           <div className={`flex pt-2`}>
-            <button className={`flex-grow text-gray-500`} onClick={resetSearchTextHandler}>
+            <button
+              className={`flex-grow text-gray-500`}
+              onClick={resetSearchTextHandler}
+            >
               Cancel
             </button>
             <button className={`flex-grow text-red-400`}>Search</button>

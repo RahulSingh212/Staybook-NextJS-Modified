@@ -9,16 +9,20 @@ import { GetStaticProps } from "next/types";
 import { fetchAmenities } from "@/utils/fetchAmenities";
 import { sanityClient } from "@/sanity";
 
+import Banner from "@/components/screens/home/Banner";
 import HotelCarousel from "@/components/hotelsSlideView/HotelCarousel";
+import HotelRegions from "@/components/regions/HotelRegions";
 import ToursAndTravels from "@/components/screens/home/ToursAndTravels";
 import SpeacialOffers from "@/components/screens/home/SpecialOffers";
+import DiscoverBenefits from "@/components/screens/home/DiscoverBenefits";
+import ContactUs from "@/components/screens/home/ContactUs";
 
 type Props = {
-  hotelsList: any[],
+  hotelsList: any[];
+  hotelRegionsList: any[];
 };
 
 export default function Home(props: Props) {
-
   return (
     <React.Fragment>
       <Head>
@@ -27,10 +31,28 @@ export default function Home(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
       </Head>
-      <main>
-        <HotelCarousel hotelsList={props.hotelsList} />
-        <ToursAndTravels />
-        <SpeacialOffers />
+      <main className={`mx-auto`}>
+        {/* <div id="banner">
+          <Banner />
+        </div> */}
+        <div id="hotels">
+          <HotelCarousel hotelsList={props.hotelsList} />
+        </div>
+        <div id="regions">
+          <HotelRegions hotelRegionsList={props.hotelRegionsList} />
+        </div>
+        <div id="tnt">
+          <ToursAndTravels />
+        </div>
+        <div id="amenites">
+          <DiscoverBenefits />
+        </div>
+        <div id="offers">
+          <SpeacialOffers />
+        </div>
+        <div id="contact">
+          <ContactUs />
+        </div>
       </main>
     </React.Fragment>
   );
@@ -50,10 +72,23 @@ export const getStaticProps = async () => {
     }
   `;
 
+  const hotelRegionsListQuery = groq`
+    *[_type == "navoptions"]{
+      _id,
+      name,
+      "slug_Name": slug{current},
+      "image": image{
+        "image_Url":asset->url,
+      }
+    }
+  `;
+
   const hotelsList: any[] = await sanityClient.fetch(hotelsListQuery);
+  const hotelRegionsList: any[] = await sanityClient.fetch(hotelRegionsListQuery);
   return {
     props: {
       hotelsList,
-    }
-  }
-}
+      hotelRegionsList,
+    },
+  };
+};

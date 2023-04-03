@@ -5,10 +5,15 @@ import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 type Props = {};
 
 export default function AllHotels(props: Props) {
+  const router = useRouter();
+  console.log(router);
+  console.log(router.query);
+
   return (
     <React.Fragment>
       <Head>
@@ -17,9 +22,7 @@ export default function AllHotels(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
       </Head>
-      <main>
-        all hotels
-      </main>
+      <main>all hotels</main>
     </React.Fragment>
   );
 }

@@ -29,7 +29,7 @@ export default function ToursAndTravels(props: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           className={`relative w-[90%] flex items-center justify-center align-middle text-center py-2 md:py-4`}
         >
-          <h1 className={`text-5xl sm:text-7xl md:text-8xl`}>
+          <h1 className={`text-5xl sm:text-7xl md:text-8xl text-center`}>
             Tours and Travels
           </h1>
         </motion.div>

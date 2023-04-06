@@ -123,7 +123,7 @@ export default function HotelCard(props: Props) {
                   className={`cursor-pointer`}
                 >
                   <LocationMarkerIcon
-                    className={`relative fill-red-900 h-7 w-7 p-1 border-red-900 border-2 rounded-full`}
+                    className={`relative fill-red-900 h-7 w-7 p-1 border-2 border-red-900 rounded-full`}
                   />
                 </a>
               </div>

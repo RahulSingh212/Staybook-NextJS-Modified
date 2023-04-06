@@ -54,7 +54,7 @@ export default function HotelRegions(props: Props) {
           initial={{ opacity: 0.0, y: 30 }}
           transition={{ duration: 2.0, type: "spring" }}
           whileInView={{ opacity: 1, y: 0 }}
-          className={`relative w-[90%] h-full flex space-x-8 overflow-x-scroll my-2 scrollbar-hide`}
+          className={`relative w-[90%] flex space-x-8 overflow-x-scroll my-2 scrollbar-hide`}
         >
           {props.hotelRegionsList.map((hr) => (
             <RegionCard key={hr._id} hotelRegion={hr} />

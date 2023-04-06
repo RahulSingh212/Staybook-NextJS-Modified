@@ -14,11 +14,11 @@ export default function RegionCard(props: Props) {
   return (
     <React.Fragment>
       <motion.div
-        className={`relative w-[98%] h-[400px] md:w-[600px] md:h-[450px] flex-shrink-0 flex flex-col items-center align-middle p-4 rounded-3xl bg-red-100 hover:bg-gray-200 hover:scale-105 cursor-pointer`}
+        className={`relative w-[98%] h-[400px] md:w-[600px] md:h-[450px] flex-shrink-0 flex flex-col items-center align-middle p-4 rounded-3xl bg-red-100 hover:bg-gray-200 cursor-pointer`}
       >
         <motion.div className={`relative w-full h-full mb-8`}>
           <Image
-            src={urlFor(props.hotelRegion.image.image_Url).url()}
+            src={urlFor(props.hotelRegion.image_Url).url()}
             alt="icon"
             layout="fill"
             // objectFit="contain"

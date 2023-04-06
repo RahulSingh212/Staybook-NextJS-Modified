@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.2",
     "@heroicons/react": "^1.0.6",
     "@portabletext/react": "^2.0.2",
     "@sanity/image-url": "^1.0.2",
@@ -18,7 +19,9 @@
     "date-fns": "^2.29.3",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "format": "^0.2.2",
     "framer-motion": "^10.10.0",
+    "moment": "^2.29.4",
     "next": "13.2.4",
     "next-sanity": "^4.1.6",
     "node-sass": "^8.0.0",

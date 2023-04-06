@@ -49,7 +49,7 @@ export default function HotelCarousel(props: Props) {
             >
               <Image
                 src={urlFor(
-                  props.hotelsList[hotelIdx].images[0].image_Url
+                  props.hotelsList[hotelIdx].image_Url[0]
                 ).url()}
                 alt="icon"
                 layout="fill"
@@ -63,7 +63,7 @@ export default function HotelCarousel(props: Props) {
             >
               <Image
                 src={urlFor(
-                  props.hotelsList[hotelIdx].images[1].image_Url
+                  props.hotelsList[hotelIdx].image_Url[1]
                 ).url()}
                 alt="icon"
                 layout="fill"

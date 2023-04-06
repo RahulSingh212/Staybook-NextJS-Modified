@@ -63,12 +63,11 @@ export const getStaticProps = async () => {
     *[_type == "hotel"] | order(order asc) {
       "hotel_Name":name,
       _id,
+      id,
       "hotel_Id":id,
       description,
-      images[]{
-        "image_Url":asset->url,
-      }[0...2],
-      "slug_Name": slug{current},
+      "image_Url":images[][0...2].asset->url,
+      "slug_Name": slug.current,
     }
   `;
 
@@ -76,10 +75,8 @@ export const getStaticProps = async () => {
     *[_type == "navoptions"]{
       _id,
       name,
-      "slug_Name": slug{current},
-      "image": image{
-        "image_Url":asset->url,
-      }
+      "slug_Name": slug.current,
+      "image_Url": image.asset->url
     }
   `;
 

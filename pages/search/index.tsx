@@ -5,10 +5,18 @@ import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import moment from "moment";
+import { format } from "date-fns";
 
 type Props = {};
 
 export default function Search(props: Props) {
+  const router = useRouter();
+  console.log(router);
+  console.log(router.query);
+  // console.log(moment(router.query['checkin'], 'DD-MM-YYYY').toDate())
+
   return (
     <React.Fragment>
       <Head>
@@ -18,11 +26,20 @@ export default function Search(props: Props) {
         <link rel="icon" href="/images/favicon.png" />
       </Head>
       <main className={`flex flex-col`}>
-        <section className={``}>
-            <p className={`text-xs`}>300+ Stays for 5 number of Guests</p>
-            <h1 className={`text-3xl font-semibold`}>Stays in Delhi</h1>
+        <section className={`flex flex-col px-5 py-5`}>
+          <p className={`text-lg`}>
+            Showing results for &quot;{router.query["q"]}&quot;
+          </p>
+          <p className={`text-sm`}>
+            {format(moment(router.query['checkin'], 'DD-MM-YYYY').toDate(), "dd MMMM yy")} - {format(moment(router.query['checkout'], 'DD-MM-YYYY').toDate(), "dd MMMM yy")}, for {router.query['num_guests']} guests - {Number(router.query['num_nights'])} nights
+          </p>
+          {/* <h1 className={`text-3xl font-semibold`}>Stays in Delhi</h1> */}
         </section>
       </main>
     </React.Fragment>
   );
 }
+
+// export async function getServerSideProps() {
+
+// }

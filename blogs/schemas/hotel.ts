@@ -23,6 +23,16 @@ export default defineType({
       validation: (Rule) => Rule.required().positive().integer().max(5),
     }),
     defineField({
+      name: 'latitude',
+      title: 'Hotel Latitude',
+      type: 'number',
+    }),
+    defineField({
+      name: 'longitude',
+      title: 'Hotel Longitude',
+      type: 'number',
+    }),
+    defineField({
       name: 'card_amenities',
       title: 'Card Amenities',
       type: 'string',
@@ -70,6 +80,11 @@ export default defineType({
     defineField({
       name: 'address',
       title: 'Address',
+      type: 'string',
+    }),
+    defineField({
+      name: 'landmark',
+      title: 'Address Landmark',
       type: 'string',
     }),
     defineField({

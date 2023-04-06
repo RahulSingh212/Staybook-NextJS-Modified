@@ -6,13 +6,21 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import moment from "moment";
+import { sanityClient } from "@/sanity";
+import { groq } from "next-sanity";
 
-type Props = {};
+import HotelCard from "@/components/screens/hotel/HotelCard";
+
+type Props = {
+  hotelsList: any[];
+};
 
 export default function AllHotels(props: Props) {
   const router = useRouter();
-  console.log(router);
-  console.log(router.query);
+  // console.log(router);
+  // console.log(router.query);
+  // console.log(moment(router, 'DD-MM-YYYY').toDate())
 
   return (
     <React.Fragment>
@@ -22,7 +30,57 @@ export default function AllHotels(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
       </Head>
-      <main>all hotels</main>
+      <main className={`w-screen`}>
+        <motion.div
+          initial={{ opacity: 0.0, x: -50 }}
+          transition={{ duration: 3.0, type: "spring" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className={`flex items-center align-middle justify-center text-center py-5 px-2`}
+        >
+          <motion.h1
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center`}
+          >
+            Staybook Hotels
+          </motion.h1>
+        </motion.div>
+
+        <motion.div className={`relative flex flex-col`}>
+          {props.hotelsList.map((hotel: any, index: number) => (
+            <HotelCard key={hotel._id} hotelInfo={hotel} />
+          ))}
+        </motion.div>
+      </main>
     </React.Fragment>
   );
 }
+
+export const getStaticProps = async (context:any) => {
+  const hotelsListQuery = groq`
+    *[_type == "hotel"] | order(order asc) {
+      _id,
+      "hotel_Id": id,
+      landmark,
+      card_amenities,
+      "slug_Name": slug.current,
+      "amenities_List":card_amenities_ref[]->{
+        _id,
+        name,
+        "image_Url":image.asset->url,
+      },
+      "hotel_Img_List":images[].asset->url,
+      longitude, latitude,
+      map,
+      name,
+      rating,
+      "min_Price":rooms[][0...1].plans[][0...1].price,
+      "num_Of_Plans":count(rooms[].plans[].price),
+    }
+  `;
+
+  const hotelsList: any[] = await sanityClient.fetch(hotelsListQuery);
+  return {
+    props: {
+      hotelsList,
+    },
+  };
+};

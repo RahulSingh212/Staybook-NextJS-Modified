@@ -14,11 +14,31 @@ type Props = {
   hotelsInRegionList: any[];
 };
 
+function addDays(startDate: string | number | Date, numberOfDays: number) {
+  const result = new Date(startDate);
+  result.setDate(result.getDate() + numberOfDays);
+  return result;
+}
+
+function getDateDifference(
+  checkInDate: string | number | Date,
+  checkOutDate: string | number | Date
+) {
+  var timeDiff =
+    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
+  var dayDiff = timeDiff / (1000 * 3600 * 24);
+
+  return Math.floor(dayDiff);
+}
+
 export default function RegionHotels(props: Props) {
   const router = useRouter();
 
-  if (props.hotelsInRegionList === null || props.hotelsInRegionList.length === 0) {
-    return <p>Loading...</p>
+  if (
+    props.hotelsInRegionList === null ||
+    props.hotelsInRegionList.length === 0
+  ) {
+    return <p>Loading...</p>;
   }
 
   return (
@@ -47,7 +67,15 @@ export default function RegionHotels(props: Props) {
         <motion.div className={`relative flex flex-col`}>
           {props.hotelsInRegionList[0].hotelsList.map(
             (hotel: any, index: number) => (
-              <HotelCard key={hotel._id} hotelInfo={hotel} />
+              <HotelCard
+                key={hotel._id}
+                hotelInfo={hotel}
+                hotel_Id={hotel.hotel_Id}
+                checkin={new Date()}
+                checkout={addDays(new Date(), 1)}
+                num_nights={1}
+                num_guests={2}
+              />
             )
           )}
         </motion.div>
@@ -76,7 +104,7 @@ export async function getStaticPaths() {
       },
     ],
     // fallback: true,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }
 

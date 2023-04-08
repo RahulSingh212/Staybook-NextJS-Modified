@@ -20,16 +20,36 @@ import {
 } from "@heroicons/react/solid";
 
 type Props = {
+  hotel_Id: string;
+  checkin: Date;
+  checkout: Date;
+  num_nights: number;
+  num_guests: number;
   hotelInfo: any;
 };
 
+function addDays(startDate: string | number | Date, numberOfDays: number) {
+  const result = new Date(startDate);
+  result.setDate(result.getDate() + numberOfDays);
+  return result;
+}
+
+function getDateDifference(
+  checkInDate: string | number | Date,
+  checkOutDate: string | number | Date
+) {
+  var timeDiff =
+    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
+  var dayDiff = timeDiff / (1000 * 3600 * 24);
+
+  return Math.floor(dayDiff);
+}
+
 export default function HotelCard(props: Props) {
+  const router = useRouter();
   const [imageIndex, setImageIndex] = React.useState<number>(0);
 
   const changeImageHandler = (shifter: number) => {
-    console.log(shifter);
-    console.log(imageIndex);
-
     if (shifter === 1) {
       setImageIndex((imageIndex + 1) % props.hotelInfo.hotel_Img_List.length);
     } else {
@@ -39,6 +59,18 @@ export default function HotelCard(props: Props) {
         setImageIndex(imageIndex - 1);
       }
     }
+  };
+
+  const bookHotelHandler = () => {
+    router.push({
+      pathname: `/hotel/google/list/${props.hotel_Id}/`,
+      query: {
+        checkin: String(moment(props.checkin).format("DD-MM-YYYY")),
+        num_nights: String(props.num_nights),
+        num_guests: String(props.num_guests),
+        hotel_id: String(props.hotel_Id),
+      },
+    });
   };
 
   return (
@@ -170,7 +202,9 @@ export default function HotelCard(props: Props) {
               >{`₹. ${props.hotelInfo.min_Price}`}</p>
               <p className={`text-sm text-gray-500`}>{`per room per night`}</p>
             </div>
+
             <div
+              onClick={bookHotelHandler}
               className={`relative w-full sm:w-fit text-center px-4 py-2 rounded-lg bg-red-500 cursor-pointer hover:shadow-md`}
             >
               <p className={`text-gray-200 font-medium`}>Book Now</p>

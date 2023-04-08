@@ -41,9 +41,12 @@ export default function SearchBar(props: Props) {
   const router = useRouter();
   const [searchInput, setSearchInput] = React.useState<string>("");
   const [checkInDate, setCheckInDate] = React.useState<Date>(new Date());
-  const [checkOutDate, setCheckOutDate] = React.useState<Date>(addDays(new Date(), 1));
+  const [checkOutDate, setCheckOutDate] = React.useState<Date>(
+    addDays(new Date(), 1)
+  );
   const [numberOfGuests, setNumberOfGuests] = React.useState<number>(2);
-  const [searchBarPlaceHolder, setSearchBarPlaceHolder] = React.useState<string>("Search hotels in Delhi");
+  const [searchBarPlaceHolder, setSearchBarPlaceHolder] =
+    React.useState<string>("Search hotels in Delhi");
 
   const dateSelectionRange = {
     startDate: checkInDate,
@@ -148,7 +151,7 @@ export default function SearchBar(props: Props) {
             <div className={`flex items-center align-middle justify-center`}>
               <div
                 className={`p-[6px] bg-gray-300 rounded-full mr-3 cursor-pointer`}
-                onClick={() => guestNumberHandler.bind(null, -1)}
+                onClick={() => guestNumberHandler(-1)}
               >
                 <Image
                   alt="icon"
@@ -169,7 +172,7 @@ export default function SearchBar(props: Props) {
               />
               <div
                 className={`p-[6px] bg-gray-300 rounded-full ml-3 cursor-pointer`}
-                onClick={() => guestNumberHandler.bind(null, 1)}
+                onClick={() => guestNumberHandler(1)}
               >
                 <Image
                   alt="icon"

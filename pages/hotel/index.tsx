@@ -16,11 +16,17 @@ type Props = {
   hotelsList: any[];
 };
 
+function addDays(startDate: string | number | Date, numberOfDays: number) {
+  const result = new Date(startDate);
+  result.setDate(result.getDate() + numberOfDays);
+  return result;
+}
+
 export default function AllHotels(props: Props) {
   const router = useRouter();
   // console.log(router);
   // console.log(router.query);
-  // console.log(moment(router, 'DD-MM-YYYY').toDate())
+  // console.log(moment(router.query.checkin, 'DD-MM-YYYY').toDate())
 
   return (
     <React.Fragment>
@@ -46,7 +52,15 @@ export default function AllHotels(props: Props) {
 
         <motion.div className={`relative flex flex-col`}>
           {props.hotelsList.map((hotel: any, index: number) => (
-            <HotelCard key={hotel._id} hotelInfo={hotel} />
+            <HotelCard
+              key={hotel._id}
+              hotelInfo={hotel}
+              hotel_Id={hotel.hotel_Id}
+              checkin={new Date()}
+              checkout={addDays(new Date(), 1)}
+              num_nights={1}
+              num_guests={2}
+            />
           ))}
         </motion.div>
       </main>
@@ -54,7 +68,7 @@ export default function AllHotels(props: Props) {
   );
 }
 
-export const getStaticProps = async (context:any) => {
+export const getStaticProps = async (context: any) => {
   const hotelsListQuery = groq`
     *[_type == "hotel"] | order(order asc) {
       _id,

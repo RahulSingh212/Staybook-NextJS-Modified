@@ -32,19 +32,41 @@ export default function Search(props: Props) {
         <link rel="icon" href="/images/favicon.png" />
       </Head>
       <main className={`flex flex-col`}>
-        <section className={`flex flex-col px-5 py-5`}>
+        <section className={`flex flex-col px-2 md:px-5 xl:px-10 py-5`}>
           <p className={`text-lg`}>
             Showing results for &quot;{router.query["q"]}&quot;
           </p>
           <p className={`text-sm`}>
             {/* {String(format(moment(router.query.checkin, 'DD-MM-YYYY').toDate(), "dd MMMMM yy"))} - {String(format(moment(router.query.checkout, 'DD-MM-YYYY').toDate(), "dd MMMMM yy"))}, for{" "} */}
-            {format(moment(router.query['checkin'], 'DD-MM-YYYY').toDate(), "dd MMMM yy")} - {format(moment(router.query['checkout'], 'DD-MM-YYYY').toDate(), "dd MMMM yy")}, for {router.query['num_guests']} guests - {Number(router.query['num_nights'])} nights
+            {format(
+              moment(router.query["checkin"], "DD-MM-YYYY").toDate(),
+              "dd MMMM yy"
+            )}{" "}
+            -{" "}
+            {format(
+              moment(router.query["checkout"], "DD-MM-YYYY").toDate(),
+              "dd MMMM yy"
+            )}
+            , for {router.query["num_guests"]} guests -{" "}
+            {Number(router.query["num_nights"])} nights
           </p>
           {/* <h1 className={`text-3xl font-semibold`}>Stays in Delhi</h1> */}
         </section>
 
-        {!props.hotelsList || props.hotelsList.length === 0 ? (
-          <p>Loading...</p>
+        {!props.hotelsList ? (
+          <motion.div
+            className={`relative w-screen px-10 h-60 flex items-center justify-center`}
+          >
+            <p className={`text-center`}>Loading...</p>
+          </motion.div>
+        ) : props.hotelsList.length === 0 ? (
+          <motion.div
+            className={`relative w-screen px-10 h-60 flex items-center justify-center`}
+          >
+            <p className={`text-center`}>
+              No results available for your search
+            </p>
+          </motion.div>
         ) : (
           <motion.div className={`relative flex flex-col`}>
             {props.hotelsList.map((hotel: any, index: number) => (
@@ -52,8 +74,8 @@ export default function Search(props: Props) {
                 key={hotel._id}
                 hotelInfo={hotel}
                 hotel_Id={hotel.hotel_Id}
-                checkin={moment(router.query.checkin, 'DD-MM-YYYY').toDate()}
-                checkout={moment(router.query.checkout, 'DD-MM-YYYY').toDate()}
+                checkin={moment(router.query.checkin, "DD-MM-YYYY").toDate()}
+                checkout={moment(router.query.checkout, "DD-MM-YYYY").toDate()}
                 num_nights={Number(router.query.num_nights)}
                 num_guests={Number(router.query.num_guests)}
               />
@@ -65,18 +87,12 @@ export default function Search(props: Props) {
   );
 }
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: "blocking",
-//   };
-// }
-
 export async function getServerSideProps(context: any) {
   // context.res.setHeader(
   //   "Cache-Control",
   //   "public, s-maxage=10, stale-while-revalidate=59"
   // );
+
   const { params, query, req, res } = await context;
 
   const searchedText = await query.q;
@@ -85,8 +101,9 @@ export async function getServerSideProps(context: any) {
   const num_nights = await query.num_nights;
   const num_guests = await query.num_guests;
 
+  // (landmark match "${searchedText}" || name match "${searchedText}" || address match ${searchedText} || description match ${searchedText})
   const hotelsListQuery = groq`
-    *[_type == "hotel" && (name match "${searchedText}" || address match ${searchedText} || description match ${searchedText})] | order(order asc) {
+    *[_type == "hotel" && (address match "${searchedText}" || name match "${searchedText}")] | order(order asc) {
       _id,
       "hotel_Id": id,
       landmark,

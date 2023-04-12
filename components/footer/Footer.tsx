@@ -10,9 +10,9 @@ type Props = {};
 export default function Footer(props: Props) {
   return (
     <React.Fragment>
-      <div>
+      <motion.div className={`flex w-screen flex-col md:flex-row`}>
         
-      </div>
+      </motion.div>
     </React.Fragment>
   );
 }

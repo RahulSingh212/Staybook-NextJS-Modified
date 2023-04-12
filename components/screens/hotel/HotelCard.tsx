@@ -79,7 +79,6 @@ export default function HotelCard(props: Props) {
         className={`relative flex flex-col sm:flex-row mx-2 md:mx-4 xl:mx-8 my-2 p-3 rounded-2xl bg-slate-100 hover:shadow-md`}
       >
         <motion.div
-          //   className={`relative flex flex-row h-72 w-[100%] sm:h-60 sm:w-56 md:h-52 md:w-72 lg:h-72 lg:w-96 xl:h-80 xl:w-[480px] flex-shrink-0 mr-2 md:mr-4 xl:mr-6`}
           className={`relative flex flex-row h-72 w-[100%] sm:h-60 sm:w-[45%] md:h-60 md:w-[40%] lg:h-72 lg:w-96 xl:h-80 xl:w-[480px] flex-shrink-0 mr-2 md:mr-4 xl:mr-6`}
         >
           <motion.div
@@ -97,7 +96,7 @@ export default function HotelCard(props: Props) {
               />
             </div>
             <div
-              className={`cursor-pointer hover:bg-slate-400 rounded-full opacity-80`}
+              className={`cursor-pointer hover:bg-slate-400 rounded-full opacity-90`}
               onClick={changeImageHandler.bind(null, 1)}
             >
               <ArrowRightIcon

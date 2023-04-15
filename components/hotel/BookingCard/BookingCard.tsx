@@ -9,174 +9,131 @@ import { useRouter } from "next/router";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 import moment from "moment";
-import { addDays } from "date-fns";
+import { addDays, format } from "date-fns";
 import AmountCard from "../AmountCard/AmountCard";
 
-type Props = {
-  plan_price: number;
-  checkin: Date;
-  checkout: Date;
-  num_rooms: number;
-};
+import {
+  GlobeAltIcon,
+  MenuIcon,
+  UserCircleIcon,
+  UsersIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  MapIcon,
+  LocationMarkerIcon,
+  CalendarIcon,
+} from "@heroicons/react/solid";
+
+type Props = {};
 
 export default function BookingCard(props: Props) {
-  const navigate = useNavigate();
-  let today = new Date();
-  let tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
+  const router = useRouter();
+  const [checkin, setCheckin] = React.useState<Date>(new Date());
+  const [checkout, setCheckout] = React.useState<Date>(addDays(new Date(), 1));
+  const [num_nights, setNum_nights] = React.useState<number>(1);
+  const [num_guests, setNum_guests] = React.useState<number>(2);
 
-  const [username, setUsername] = React.useState<string>("");
-  const CheckOutDate = sessionStorage.getItem("checkOut");
-  const CheckInDate = sessionStorage.getItem("checkIn");
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  var tempDate = new Date();
-  const [checkIn, setCheckIn] = React.useState<Date | null>(
-    CheckInDate ? new Date(CheckInDate) : today
-  );
-  const [initCheckout, setinitCheckout] = React.useState<Date | null>(
-    CheckInDate ? new Date(CheckInDate) : today
-  );
-  const [checkOut, setCheckOut] = React.useState<Date | null>(
-    CheckOutDate ? new Date(CheckOutDate) : tomorrow
-  );
+  const [roomCount, setRoomCount] = React.useState<number>(0);
+  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(0);
+  const [totalTax, setTotalTax] = React.useState<number>(0);
+  const [totalPrice, setTotalPrice] = React.useState<number>(0);
 
-  const dispatch = useAppDispatch();
-  const withoutTax = useAppSelector((state) => state.price.withoutTax);
-  const price = useAppSelector((state) => state.price.value);
-  const Plans = useAppSelector((state) => state.plans.selectedPlans);
+  React.useEffect(() => {
+    setNum_nights(Number(router.query.num_guests));
+    setNum_guests(Number(router.query.num_guests));
+    setCheckin(moment(router.query.checkin, "DD-MM-YYYY").toDate());
+    setCheckout(
+      addDays(
+        moment(router.query.checkin, "DD-MM-YYYY").toDate(),
+        Number(router.query.num_nights)
+      )
+    );
+  }, [router.query.checkin, router.query.num_guests, router.query.num_nights]);
 
-  const [contact, setContact] = React.useState<any>("");
-  const [payAtHotel, setPayAtHote] = React.useState<boolean>(false);
-  const [isPaid, setIsPaid] = React.useState<boolean>(false);
-  const [noSelected, setNoSelected] = React.useState<boolean>(false);
-  const [noContact, setNoContact] = React.useState<boolean>(false);
-  const [fullname, setFullname] = React.useState<any>("");
-  const [useremail, setUserEmail] = React.useState<any>("");
+  const bookHotelHandler = () => {};
 
   return (
     <React.Fragment>
-      <div className="bookingCard" ref={cardRef}>
-      <h1>₹{withoutTax}</h1>
-      <div className="calendar">
-        <div className="input">
-          <div style={{ marginRight: "0.5rem" }}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                label="Check In"
-                value={hotelCtx.checkIn}
-                minDate={new Date()}
-                onChange={(newValue: any) => {
-                }}
-                renderInput={(params: any) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-          </div>
-          <div id="toOpen">
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                views={["day", "month"]}
-                label="Check Out"
-                value={hotelCtx.checkOut}
-                minDate={initCheckout}
-                onChange={(newValue: any) => {
-                }}
-                renderInput={(params: any) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-          </div>
-        </div>
-      </div>
-      <p>{Plans.length} rooms</p>
+      <motion.div
+        className={`sticky w-full md:w-[37.5%] h-full bg-white py-6 px-4 rounded-xl top-20 right-0 shadow-xl`}
+      >
+        <motion.div className={`w-full pb-4`}>
+          <h1 className={`text-6xl font-semibold text-gray-500`}>
+            ₹{totalRoomCost}
+          </h1>
+        </motion.div>
 
-      <div className="selectedPlans">
-        {Plans.map((item, index) => (
-          <SelectedPlan
-            maxCap={item.maxCap}
-            roomType={item.roomType}
-            title={item.title}
-            checkOut={checkOut}
-            checkIn={checkIn}
-            key={index}
-          />
-        ))}
-      </div>
+        <motion.div
+          className={`relative flex flex-col w-full mb-4 shadow-md bg-white rounded-2xl`}
+        >
+          <motion.div
+            className={`relative w-full flex justify-between border-red-950 border-[1px] rounded-t-lg`}
+          >
+            <motion.div
+              className={`relative flex flex-col w-[50%] px-4 py-2 border-r-[1px] border-red-950`}
+            >
+              <motion.div className={`text-xs font-semibold`}>
+                CHECK-IN
+              </motion.div>
+              <motion.div className={`text-xl font-medium`}>
+                {format(checkin, "dd MMMM yy")}
+              </motion.div>
+            </motion.div>
+            <motion.div className={`relative flex flex-col w-[50%] px-4 py-2`}>
+              <motion.div className={`text-xs font-semibold`}>
+                CHECK-OUT
+              </motion.div>
+              <motion.div className={`text-xl font-medium`}>
+                {format(checkout, "dd MMMM yy")}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className={`relative w-ful flex flex-col justify-between px-4 py-2 border-red-950 border-[1px] rounded-b-lg`}
+          >
+            <motion.div className={`text-xs font-semibold`}>GUESTS</motion.div>
+            <motion.div className={`text-xl font-medium`}>
+              {num_guests} guests
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
-      <AmountCard checkOut={checkOut} checkIn={checkIn} />
+        <motion.div className={`w-full mb-4 rounded-lg px-1`}>
+          <p className={`text-xl font-sans`}>{roomCount} rooms</p>
+        </motion.div>
 
-      <input
-        type="checkbox"
-        name="input"
-        style={{ marginTop: "10px" }}
-        onChange={() => setPayAtHote((prev) => !prev)}
-      />
-      <label> Pay at hotel </label>
+        <motion.div
+          className={`relative w-full flex flex-col align-middle items-center justify-between rounded-lg py-2 px-2 bg-white mb-6 shadow-lg`}
+        >
+          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pb-1`}>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>Room Price</motion.div>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalRoomCost}</motion.div>
+          </motion.div>
+          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pb-1`}>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>Tax</motion.div>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalTax}</motion.div>
+          </motion.div>
+          <motion.div className={`w-full border-2`}></motion.div>
+          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pt-1`}>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>Total Cost</motion.div>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalRoomCost}</motion.div>
+          </motion.div>
+        </motion.div>
 
-      {noSelected && (
-        <div className="unselected">Please select a plan to continue</div>
-      )}
-      {noContact && (
-        <div className="unselected">Please enter contact details</div>
-      )}
-      <div className="payAtHotel">
-        {!isPaid ? (
-          payAtHotel && (
-            <form>
-              {!username && (
-                <input
-                  className="customer-form"
-                  type="text"
-                  placeholder="Full name"
-                  required
-                  onChange={(e) => setFullname(e.target.value)}
-                  value={fullname}
-                />
-              )}
-              {!username && (
-                <input
-                  className="customer-form"
-                  type="email"
-                  placeholder="Your email address"
-                  required
-                  onChange={(e) => setUserEmail(e.target.value)}
-                  value={useremail}
-                />
-              )}
-              <PhoneInput
-                className="phone"
-                defaultCountry="IN"
-                placeholder="Phone number (eg: 917017495876)"
-                value={contact}
-                onChange={setContact}
-              />
-              {/* <div className="button" onClick={payOnHotel}>
-                Continue
-              </div> */}
-              <div className="button">
-                Continue
-              </div>
-            </form>
-          )
-        ) : (
-          <div className="Button-Loading">Booking Done</div>
-        )}
-      </div>
-
-      {/* {!payAtHotel && (
-        <button
-          checkOut={checkOut}
-          checkIn={checkIn}
-          hotel={hotelName}
-          address={address}
-        />
-      )} */}
-    </div>
+        <motion.div
+          className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
+          onClick={bookHotelHandler}
+        >
+          Book Now!
+        </motion.div>
+      </motion.div>
     </React.Fragment>
   );
 }
 
-BookingCard.defaultProps = {
-  plan_price: 0,
-  checkin: new Date(),
-  chechout: addDays(new Date(), 1),
-  num_rooms: 0,
-};
+// BookingCard.defaultProps = {
+//   plan_price: 0,
+//   checkin: new Date(),
+//   chechout: addDays(new Date(), 1),
+//   num_rooms: 0,
+// };

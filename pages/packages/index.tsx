@@ -5,8 +5,12 @@ import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import { groq } from "next-sanity";
+import { sanityClient } from "@/sanity";
 
-type Props = {};
+type Props = {
+  packagesList: any[];
+};
 
 export default function TourPackages(props: Props) {
   return (
@@ -17,7 +21,31 @@ export default function TourPackages(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
       </Head>
-      <main>Tour Packages</main>
+      <main className={`w-screen`}>
+        <motion.div className={`relative w-full mt-3 mb-6`}>
+          <h1 className={`text-center font-serif text-6xl`}>Tour Packages</h1>
+        </motion.div>
+      </main>
     </React.Fragment>
   );
 }
+
+export const getStaticProps = async (context: any) => {
+  const packageQuery = groq`
+    *[_type == "package"] {
+      _id,
+      name,
+      time,
+      description,
+      highlight,
+      "image_Url":image.asset->url,
+    }
+  `;
+
+  const packagesList: any[] = await sanityClient.fetch(packageQuery);
+  return {
+    props: {
+      packagesList,
+    },
+  };
+};

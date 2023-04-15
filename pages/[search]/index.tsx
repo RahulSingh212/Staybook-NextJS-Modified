@@ -39,12 +39,12 @@ export default function Search(props: Props) {
           <p className={`text-sm`}>
             {/* {String(format(moment(router.query.checkin, 'DD-MM-YYYY').toDate(), "dd MMMMM yy"))} - {String(format(moment(router.query.checkout, 'DD-MM-YYYY').toDate(), "dd MMMMM yy"))}, for{" "} */}
             {format(
-              moment(router.query["checkin"], "DD-MM-YYYY").toDate(),
+              moment(router.query.checkin, "DD-MM-YYYY").toDate(),
               "dd MMMM yy"
             )}{" "}
             -{" "}
             {format(
-              moment(router.query["checkout"], "DD-MM-YYYY").toDate(),
+              moment(router.query.checkout, "DD-MM-YYYY").toDate(),
               "dd MMMM yy"
             )}
             , for {router.query["num_guests"]} guests -{" "}
@@ -103,7 +103,7 @@ export async function getServerSideProps(context: any) {
 
   // (landmark match "${searchedText}" || name match "${searchedText}" || address match ${searchedText} || description match ${searchedText})
   const hotelsListQuery = groq`
-    *[_type == "hotel" && (address match "${searchedText}" || name match "${searchedText}")] | order(order asc) {
+    *[_type == "hotel" && (address match "${searchedText}" || name match "${searchedText}") && count(rooms[guests == ${num_guests}]) > 0] | order(order asc) {
       _id,
       "hotel_Id": id,
       landmark,
@@ -115,16 +115,44 @@ export async function getServerSideProps(context: any) {
         "image_Url":image.asset->url,
       },
       "hotel_Img_List":images[].asset->url,
-      longitude, latitude,
+      // longitude, latitude,
       map,
       name,
       rating,
-      "min_Price":rooms[][0...1].plans[][0...1].price,
-      "num_Of_Plans":count(rooms[].plans[].price),
+      // "min_Price":rooms[][0...1].plans[][0...1].price,
+      // "num_Of_Plans":count(rooms[].plans[].price),
+      "min_Price":rooms[guests == ${num_guests}].plans[][0...1].price | order(price asc)[0],
+      "num_Of_Plans":count(rooms[guests == ${num_guests}].plans[].price),
     }
   `;
 
-  const hotelsList: any[] = await sanityClient.fetch(hotelsListQuery);
+  let hotelsList: any[] = await sanityClient.fetch(hotelsListQuery);
+
+  // if (hotelsList.length === 0) {
+  //   const fetchAllHotelsQuery = groq`
+  //     *[_type == "hotel"] | order(order asc) {
+  //       _id,
+  //       "hotel_Id": id,
+  //       landmark,
+  //       card_amenities,
+  //       "slug_Name": slug.current,
+  //       "amenities_List":card_amenities_ref[]->{
+  //         _id,
+  //         name,
+  //         "image_Url":image.asset->url,
+  //       },
+  //       "hotel_Img_List":images[].asset->url,
+  //       longitude, latitude,
+  //       map,
+  //       name,
+  //       rating,
+  //       "min_Price":rooms[][0...1].plans[][0...1].price,
+  //       "num_Of_Plans":count(rooms[].plans[].price),
+  //     }
+  //   `;
+  //   hotelsList = await sanityClient.fetch(fetchAllHotelsQuery);
+  // }
+
   return {
     props: {
       hotelsList,

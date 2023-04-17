@@ -8,12 +8,21 @@ import Head from "next/head";
 import AuthCard from "@/components/profile/AuthCard";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/sanity";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/router";
 
 type Props = {
   imagesList: any[];
 };
 
 export default function Profile(props: Props) {
+  const router = useRouter();
+  // React.useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     router.push(`/profile/user`);
+  //   };
+  // }, []);
+
   return (
     <React.Fragment>
       <Head>
@@ -45,3 +54,6 @@ export const getStaticProps = async (context: any) => {
     },
   };
 };
+function jwt_decode(arg0: string) {
+  throw new Error("Function not implemented.");
+}

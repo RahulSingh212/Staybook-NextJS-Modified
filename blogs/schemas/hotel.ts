@@ -117,48 +117,48 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            {
+            defineField({
               name: 'type',
               title: 'Type',
               type: 'string',
-            },
-            {
+            }),
+            defineField({
               name: 'ameneties',
               title: 'Ameneties',
               type: 'string',
-            },
-            {
+            }),
+            defineField({
               name: 'info',
               title: 'Info',
               type: 'string',
-            },
-            {
+            }),
+            defineField({
               name: 'description',
               title: 'Description',
               type: 'string',
-            },
-            {
+            }),
+            defineField({
               name: 'totalRooms',
               title: 'Total Rooms',
               type: 'number',
-            },
-            {
+            }),
+            defineField({
               name: 'guests',
               title: 'Total Guests',
               type: 'number',
-            },
-            {
+            }),
+            defineField({
               name: 'image',
               title: 'Image',
               type: 'image',
-            },
-            {
+            }),
+            defineField({
               name: 'images',
               title: 'Images',
               type: 'array',
               of: [{type: 'image', options: {hotspot: true}}],
-            },
-            {
+            }),
+            defineField({
               name: 'plans',
               title: 'Plans',
               type: 'array',
@@ -166,22 +166,22 @@ export default defineType({
                 {
                   type: 'object',
                   fields: [
-                    {
+                    defineField({
                       name: 'title',
                       title: 'Title',
                       type: 'string',
-                    },
-                    {
+                    }),
+                    defineField({
                       name: 'price',
                       title: 'Price',
                       type: 'number',
-                    },
-                    {
+                    }),
+                    defineField({
                       name: 'info',
                       title: 'Info',
                       type: 'string',
-                    },
-                    {
+                    }),
+                    defineField({
                       name: 'price_planner',
                       title: 'Price Planner',
                       type: 'array',
@@ -191,27 +191,27 @@ export default defineType({
                           title: 'Date Range',
                           type: 'object',
                           fields: [
-                            {
+                            defineField({
                               name: 'starting_date',
                               title: 'Starting Date',
                               type: 'date',
-                            },
-                            {
+                            }),
+                            defineField({
                               name: 'ending_date',
                               title: 'Ending Date',
                               type: 'date',
-                            },
-                            {
+                            }),
+                            defineField({
                               name: 'price',
                               title: 'Price',
                               type: 'number',
                               validation: (Rule) => Rule.integer().positive(),
-                            },
+                            }),
                           ],
                         },
                       ],
-                    },
-                    {
+                    }),
+                    defineField({
                       name: 'features',
                       title: 'Features',
                       type: 'array',
@@ -222,11 +222,11 @@ export default defineType({
                           type: 'string',
                         },
                       ],
-                    },
+                    }),
                   ],
                 },
               ],
-            },
+            }),
           ],
         },
       ],

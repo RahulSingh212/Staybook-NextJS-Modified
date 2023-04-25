@@ -11,16 +11,11 @@ import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 
 import HotelCard from "@/components/screens/hotel/HotelCard";
+import { addDays } from "@/lib/helper";
 
 type Props = {
   hotelsList: any[];
 };
-
-function addDays(startDate: string | number | Date, numberOfDays: number) {
-  const result = new Date(startDate);
-  result.setDate(result.getDate() + numberOfDays);
-  return result;
-}
 
 export default function AllHotels(props: Props) {
   const router = useRouter();

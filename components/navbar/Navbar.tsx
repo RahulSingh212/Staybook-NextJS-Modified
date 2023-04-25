@@ -41,7 +41,7 @@ export default function Navbar(props: Props) {
         <SearchBar />
 
         {/* Right Section */}
-        <Link href={"/profile"}>
+        <Link href={"/login"}>
           <div
             className={`flex space-x-2 text-gray-400 items-center align-middle cursor-pointer p-1 border-2 rounded-full shadow-sm hover:shadow-md`}
           >

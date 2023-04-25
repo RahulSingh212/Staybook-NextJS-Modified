@@ -17,25 +17,9 @@ import { DateRangePicker } from "react-date-range";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { format } from "date-fns";
+import { addDays, getDateDifference } from "@/lib/helper";
 
 type Props = {};
-
-function addDays(startDate: string | number | Date, numberOfDays: number) {
-  const result = new Date(startDate);
-  result.setDate(result.getDate() + numberOfDays);
-  return result;
-}
-
-function getDateDifference(
-  checkInDate: string | number | Date,
-  checkOutDate: string | number | Date
-) {
-  var timeDiff =
-    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
-  var dayDiff = timeDiff / (1000 * 3600 * 24);
-
-  return Math.floor(dayDiff);
-}
 
 export default function SearchBar(props: Props) {
   const router = useRouter();

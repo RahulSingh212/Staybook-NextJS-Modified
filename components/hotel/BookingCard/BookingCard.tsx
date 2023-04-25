@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from 'node-fetch';
 import { motion, motionValue } from "framer-motion";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SocailIcon } from "react-social-icons";
@@ -26,8 +27,43 @@ import {
 
 type Props = {};
 
+export const stayflexiHandler = async (
+  hotelId: any,
+  fromDate: any,
+  toDate: any
+) => {
+  // const apiUrl = `https://cmapi.stayflexi.com/core/apiv1/cmservice/getroomrates/?pmsId=20021&hotelId=25095&roomTypeId=12353&ratePlanId=30298&fromDate=${fromDate}%2000:00:00&toDate=${toDate}%2000:00:00`;
+  // const apiKey = "mkfegijystay5u70djld9";
+
+  // const response = await fetch(apiUrl, {
+  //   method: "GET",
+  //   headers: {
+  //     "X-SF-API-KEY": apiKey,
+  //     "Content-Type": "application/json",
+  //   },
+  // });
+
+  // const data = await response.json();
+  // console.log("Stay-Flexi Data: " + data);
+  // return data;
+
+  const response = await fetch("/api/hotel/hotelPricePlanner", {
+    method: "POST",
+    body: JSON.stringify({ hotelId, fromDate, toDate }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  console.log("API Handler Function");
+  console.log(data);
+  return data;
+};
+
 export default function BookingCard(props: Props) {
   const router = useRouter();
+  const [hotel_id, setHotelId] = React.useState<String>("");
   const [checkin, setCheckin] = React.useState<Date>(new Date());
   const [checkout, setCheckout] = React.useState<Date>(addDays(new Date(), 1));
   const [num_nights, setNum_nights] = React.useState<number>(1);
@@ -39,6 +75,7 @@ export default function BookingCard(props: Props) {
   const [totalPrice, setTotalPrice] = React.useState<number>(0);
 
   React.useEffect(() => {
+    setHotelId(String(router.query.hotel_id));
     setNum_nights(Number(router.query.num_guests));
     setNum_guests(Number(router.query.num_guests));
     setCheckin(moment(router.query.checkin, "DD-MM-YYYY").toDate());
@@ -48,9 +85,14 @@ export default function BookingCard(props: Props) {
         Number(router.query.num_nights)
       )
     );
-  }, [router.query.checkin, router.query.num_guests, router.query.num_nights]);
+  }, [router.query.hotel_id, router.query.checkin, router.query.num_guests, router.query.num_nights]);
 
-  const bookHotelHandler = () => {};
+  const bookHotelHandler = async () => {
+    const fromDate = String(moment(checkin).format("DD-MM-YYYY"));
+    const toDate = String(moment(checkout).format("DD-MM-YYYY"));
+    const responseData = await stayflexiHandler(hotel_id, fromDate, toDate);
+    console.log(responseData);
+  };
 
   return (
     <React.Fragment>
@@ -109,12 +151,12 @@ export default function BookingCard(props: Props) {
             <motion.div className={`text-gray-700 font-medium font-sans`}>Room Price</motion.div>
             <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalRoomCost}</motion.div>
           </motion.div>
-          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pb-1`}>
+          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pb-3`}>
             <motion.div className={`text-gray-700 font-medium font-sans`}>Tax</motion.div>
             <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalTax}</motion.div>
           </motion.div>
           <motion.div className={`w-full border-2`}></motion.div>
-          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pt-1`}>
+          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pt-3`}>
             <motion.div className={`text-gray-700 font-medium font-sans`}>Total Cost</motion.div>
             <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalRoomCost}</motion.div>
           </motion.div>

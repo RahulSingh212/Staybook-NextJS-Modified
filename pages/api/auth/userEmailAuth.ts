@@ -1,20 +1,29 @@
 import { auth } from "@/lib/firebase";
 import { Cookie } from "next-auth/core/lib/cookie";
-import cookie from "cookie";
+// import cookie from "js-cookie"; // front end cookie which is present on the front end side
+import cookie from "cookie"; // server side cookie only https and available on the server side
 
 import {
   EMAIL_SIGNUP,
   EMAIL_LOGIN,
   GOOGLE_SIGNUP,
   GOOGLE_LOGIN,
+  USER_ACCESS_TOKEN,
+  unixToDate,
+  extractJWTValues,
+  COOKIE_EXPIRATOIN_TIME
 } from "@/lib/helper";
 
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
+import { NextResponse } from "next/server";
+import { createUserAccount } from "@/lib/firebase/userHandler";
 
 async function handler(req: any, res: any) {
+  // req.body.token
+  // const serverResponse = NextResponse.next();
   const data = req.body;
 
   const { authType, userEmail, userPassword } = data;
@@ -43,18 +52,45 @@ async function handler(req: any, res: any) {
         userPassword
       );
 
+      const userAccessToken = await response.user.getIdToken();
+      const userId = response.user.uid;
+      const displayName = userEmail.split("@")[0];
+      await createUserAccount(userAccessToken, userId, userEmail, "", "email", displayName);
+      res.setHeader(
+        "Set-Cookie",
+        cookie.serialize(USER_ACCESS_TOKEN, userAccessToken, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development",
+          maxAge: COOKIE_EXPIRATOIN_TIME,
+          sameSite: "strict",
+          path: "/",
+        })
+      );
       res.status(201).json(response);
-    } else if (authType === EMAIL_LOGIN) {
+    } 
+    // else if (authType === EMAIL_LOGIN) {
+    else {
       const response = await signInWithEmailAndPassword(
         auth,
         userEmail,
         userPassword
       );
 
+      const userAccessToken = await response.user.getIdToken();
+      res.setHeader(
+        "Set-Cookie",
+        cookie.serialize(USER_ACCESS_TOKEN, userAccessToken, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development",
+          maxAge: COOKIE_EXPIRATOIN_TIME,
+          sameSite: "strict",
+          path: "/",
+        })
+      );
       res.status(201).json(response);
-    } else {
     }
   } catch (error) {
+    console.log(error);
     res.status(422).json({
       userCredentials: null,
       error,

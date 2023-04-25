@@ -5,23 +5,21 @@ import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import AuthCard from "@/components/profile/AuthCard";
-import { groq } from "next-sanity";
-import { sanityClient } from "@/sanity";
-import { auth } from "@/lib/firebase";
+import { extractJWTValues } from "@/lib/helper";
 import { useRouter } from "next/router";
 
 type Props = {
-  imagesList: any[];
+  userDetails: any;
 };
 
-export default function Profile(props: Props) {
+export default function UserProfile(props: Props) {
   const router = useRouter();
-  // React.useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     router.push(`/profile/user`);
-  //   };
-  // }, []);
+  console.log(props.userDetails);
+  //   React.useEffect(() => {
+  //     if (!props.userDetails) {
+  //       router.push("/profile");
+  //     }
+  //   }, []);
 
   return (
     <React.Fragment>
@@ -31,29 +29,21 @@ export default function Profile(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
       </Head>
-      <main
-        className={`w-screen flex justify-center align-middle items-center`}
-      >
-        <AuthCard imagesList={props.imagesList} />
+      <main className={`w-screen`}>
+        <h1>user profile page</h1>
       </main>
     </React.Fragment>
   );
 }
 
-export const getStaticProps = async (context: any) => {
-  const hotelImageListQuery = groq`
-      *[_type == "hotel"] {
-          "url":images[0].asset->url
-      }
-  `;
+// export async function getServerSideProps(context: any) {
+//   const accessToken = await localStorage.getItem("token");
+//   const userDetails = await extractJWTValues(accessToken);
 
-  const imagesList: any[] = await sanityClient.fetch(hotelImageListQuery);
-  return {
-    props: {
-      imagesList,
-    },
-  };
-};
-function jwt_decode(arg0: string) {
-  throw new Error("Function not implemented.");
-}
+//   console.log(userDetails);
+//   return {
+//     props: {
+//       userDetails,
+//     },
+//   };
+// }

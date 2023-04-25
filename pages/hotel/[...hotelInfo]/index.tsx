@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 import moment from "moment";
+import { addDays, getDateDifference } from "@/lib/helper";
+
 import ImageGalleryCard from "@/components/imageGallery/ImageGalleryCard";
 import AmenityCard from "@/components/hotel/AmenityCard/AmenityCard";
 import DescriptionCard from "@/components/hotel/DescriptionCard/DescriptionCard";
@@ -37,26 +39,6 @@ type Props = {
   num_guests: any;
   hotel_id: any;
 };
-
-export function addDays(
-  startDate: string | number | Date,
-  numberOfDays: number
-) {
-  const result = new Date(startDate);
-  result.setDate(result.getDate() + numberOfDays);
-  return result;
-}
-
-export function getDateDifference(
-  checkInDate: string | number | Date,
-  checkOutDate: string | number | Date
-) {
-  var timeDiff =
-    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
-  var dayDiff = timeDiff / (1000 * 3600 * 24);
-
-  return Math.floor(dayDiff);
-}
 
 export default function HotelInformation(props: Props) {
   const router = useRouter();

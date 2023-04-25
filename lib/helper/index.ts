@@ -1,11 +1,46 @@
 import { hash } from "bcryptjs";
 import jwt_decode from "jwt-decode";
 
-
 export const EMAIL_SIGNUP = "email-sign-up";
 export const EMAIL_LOGIN = "email-log-in";
 export const GOOGLE_SIGNUP = "google-sign-up";
 export const GOOGLE_LOGIN = "google-log-in";
+export const HOTEL_PRICE_COLLECTION_NAME = "HOTEL-PRICE-PLANNER-INFORMATION";
+export const USER_ACCESS_TOKEN = "user-access-token";
+export const USER_COLLECTION_NAME = "USER-PERSONAL-INFORMATION";
+export const COOKIE_EXPIRATOIN_TIME = 60 * 60;
+export const GET_USER_TOKEN_OBJECT = "get-user-token-obj";
+export const USER_UPDATE_TYPE_NAME = "update-user-name";
+
+export function addDays(
+  startDate: string | number | Date,
+  numberOfDays: number
+) {
+  const result = new Date(startDate);
+  result.setDate(result.getDate() + numberOfDays);
+  return result;
+}
+
+export function getDateDifference(
+  checkInDate: string | number | Date,
+  checkOutDate: string | number | Date
+) {
+  var timeDiff =
+    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
+  var dayDiff = timeDiff / (1000 * 3600 * 24);
+
+  return Math.floor(dayDiff);
+}
+
+export async function getErrorMessage(errorValue: String) {
+  if (errorValue === "auth/wrong-password") {
+    return "Wrong combination of the credentials!";
+  } else if (errorValue === "auth/email-already-in-use") {
+    return "Email already is in use!";
+  } else {
+    return errorValue;
+  }
+}
 
 export async function hashToken(token: string) {
   const hashedToken = await hash(token, 12);
@@ -15,10 +50,14 @@ export async function hashToken(token: string) {
 
 export const extractJWTValues = async (token: any) => {
   try {
-    const decodedValue = await jwt_decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXVyaWdhY2FyZS1kcGFwcGxpY2F0aW9uIiwiYXVkIjoiYXVyaWdhY2FyZS1kcGFwcGxpY2F0aW9uIiwiYXV0aF90aW1lIjoxNjc1ODUxNDk4LCJ1c2VyX2lkIjoickt0T0h3bDFMZFFqQ0pRRG5NVkpYbEpkMW5mMSIsInN1YiI6InJLdE9Id2wxTGRRakNKUURuTVZKWGxKZDFuZjEiLCJpYXQiOjE2NzU4NTE0OTgsImV4cCI6MTY3NTg1NTA5OCwiZW1haWwiOiJyYWh1bEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsicmFodWxAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.I_PMv56es0HOhKTKNATgBA1iu7paq6gMEibLOq0d4lA77NUxYTeOz7KX_oMWygOzFEFLF-l-2VqbrKNNNQY3wlTv-acitpGm0rj-9VSHK4CPIIi7AHKN3guI9elH2c56siM-zO_KuV0YFPA33TQraGdvLWyya-OTwojPSvVNGL6dBz6J3YiPpXjVqaACfzon4ThSc5UOB3NUn3-9ugBScayAJv2jToT-kr_fgjM6e4okgwOmjI6kOg52-P3Wji1YYb2VrxUhFA6KiAzJxFBVew8tKjzyaVj0rJEUfDBTTnWZsEPoCTYwEM1w0tNdAhYFvNkJg6lhbTdbwiwWVccQCg");
-    console.log(decodedValue);
+    const decodedValue = await jwt_decode(token);
     return decodedValue;
   } catch (error) {
     return null;
   }
+};
+
+export const unixToDate = async (timeStamp: any) => {
+  const dateObj = new Date(Number(timeStamp) * 1000);
+  return dateObj;
 };

@@ -1,7 +1,5 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -10,12 +8,17 @@ import { auth } from "@/lib/firebase";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 
+import LoadingModel from "../models/Loading/LoadingModel";
+import ErrorModel from "../models/Error/ErrorModel";
+
 import {
   EMAIL_SIGNUP,
   EMAIL_LOGIN,
   GOOGLE_SIGNUP,
   GOOGLE_LOGIN,
+  getErrorMessage,
 } from "@/lib/helper";
+import { googleAuthentication } from "@/lib/firebase/userHandler";
 
 type Props = {
   imagesList: any[];
@@ -36,12 +39,6 @@ export const userEmailAuthApiHandler = async (
 
   const data = await response.json();
   console.log(data);
-
-  if (!response.ok) {
-    console.log("wrong response");
-    return;
-  }
-
   return data;
 };
 
@@ -50,6 +47,12 @@ export default function AuthCard(props: Props) {
   const emailInputRef = React.useRef<HTMLInputElement>(null);
   const passwordInputRef = React.useRef<HTMLInputElement>(null);
   const confirmPasswordInputRef = React.useRef<HTMLInputElement>(null);
+
+  const [loadingModelVisible, setLoadingModel] = React.useState<boolean>(false);
+  const [errorModelVisible, setErrorModel] = React.useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
+
+  const [googleLogin, setGoogleLogin] = React.useState<boolean>(false);
   const [isLogin, setIsLogin] = React.useState<boolean>(true);
   const [isPasswordVisible, setPasswordVisible] =
     React.useState<boolean>(false);
@@ -61,33 +64,81 @@ export default function AuthCard(props: Props) {
     const interval = setInterval(() => {
       const newIdx = (imgIdx + Number(1)) % props.imagesList.length;
       setHotelIdx(newIdx);
-    }, 8000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [imgIdx, props.imagesList.length]);
 
+  const googleLoginHandler = async () => {
+    const userResponse = await googleAuthentication();
+
+    if (!userResponse.userCredentials && !userResponse.error) {
+      setErrorMessage(String(userResponse.message));
+      setErrorModel(true);
+    } else if (userResponse.error) {
+      console.log("User error: " + userResponse.error);
+      const displayErrorMsg = await getErrorMessage("Google authentication error!");
+      setErrorMessage(String(displayErrorMsg));
+      setErrorModel(true);
+    } else {
+      setLoadingModel(true);
+      router.push("/profile");
+    }
+  };
+
   const emailLoginHandler = async (event: any) => {
     event.preventDefault();
+
+    setLoadingModel(true);
 
     const enteredEmail = emailInputRef.current?.value;
     const enteredPassword = passwordInputRef.current?.value;
     const enteredConfirmPassword = confirmPasswordInputRef.current?.value;
 
     if (!isLogin && enteredPassword !== enteredConfirmPassword) {
+      setLoadingModel(false);
+      setErrorMessage("Password does not match!");
+      setErrorModel(true);
       console.log("Entered Password does not match");
       return;
     }
 
-    const userResponse = await userEmailAuthApiHandler(
-      isLogin ? EMAIL_LOGIN : EMAIL_SIGNUP,
-      enteredEmail,
-      enteredPassword
-    );
-    console.log("UserResponse: " + userResponse);
+    try {
+      const userResponse = await userEmailAuthApiHandler(
+        isLogin ? EMAIL_LOGIN : EMAIL_SIGNUP,
+        enteredEmail,
+        enteredPassword
+      );
+      console.log("UserResponse");
+      console.log(userResponse);
+      if (userResponse.error) {
+        setLoadingModel(false);
+        setErrorModel(true);
+        const displayErrorMsg = await getErrorMessage(userResponse.error.code);
+        setErrorMessage(String(displayErrorMsg));
+      } else {
+        // setLoadingModel(false);
+        router.push("/profile");
+      }
+    } catch (error: any) {
+      setLoadingModel(false);
+      setErrorModel(true);
+      setErrorMessage("Authentication failed!");
+    }
   };
 
   return (
     <React.Fragment>
+      <LoadingModel
+        modelVisible={loadingModelVisible}
+        setLoadingModel={setLoadingModel}
+      />
+      <ErrorModel
+        errorMsg={errorMessage}
+        setErrorMessage={setErrorMessage}
+        modelVisible={errorModelVisible}
+        setErrorModel={setErrorModel}
+      />
       <motion.div
         className={`relative w-[90%] sm:w-[95%] sm:h-[600px] xl:w-[1150px] flex justify-between shadow-xl rounded-2xl mt-5 p-5 bg-gray-200`}
       >
@@ -180,7 +231,10 @@ export default function AuthCard(props: Props) {
             <p className={`text-center`}>OR</p>
             <hr className={`border-gray-400`} />
           </motion.div>
-          <motion.div className="relative flex align-middle items-center justify-center bg-white p-3 w-[82.5%] md:w-[65%] lg:w-[55%] rounded-3xl font-semibold cursor-pointer shadow-md">
+          <motion.div
+            onClick={googleLoginHandler}
+            className="relative flex align-middle items-center justify-center bg-white p-3 w-[82.5%] md:w-[65%] lg:w-[55%] rounded-3xl font-semibold cursor-pointer shadow-md"
+          >
             <Image
               src={`/google-icon.png`}
               alt="icon"

@@ -28,23 +28,6 @@ type Props = {
   hotelInfo: any;
 };
 
-function addDays(startDate: string | number | Date, numberOfDays: number) {
-  const result = new Date(startDate);
-  result.setDate(result.getDate() + numberOfDays);
-  return result;
-}
-
-function getDateDifference(
-  checkInDate: string | number | Date,
-  checkOutDate: string | number | Date
-) {
-  var timeDiff =
-    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
-  var dayDiff = timeDiff / (1000 * 3600 * 24);
-
-  return Math.floor(dayDiff);
-}
-
 export default function HotelCard(props: Props) {
   const router = useRouter();
   const [imageIndex, setImageIndex] = React.useState<number>(0);

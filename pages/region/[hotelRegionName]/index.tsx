@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -9,27 +8,11 @@ import { useRouter } from "next/router";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 import HotelCard from "@/components/screens/hotel/HotelCard";
+import { addDays } from "@/lib/helper";
 
 type Props = {
   hotelsInRegionList: any[];
 };
-
-function addDays(startDate: string | number | Date, numberOfDays: number) {
-  const result = new Date(startDate);
-  result.setDate(result.getDate() + numberOfDays);
-  return result;
-}
-
-function getDateDifference(
-  checkInDate: string | number | Date,
-  checkOutDate: string | number | Date
-) {
-  var timeDiff =
-    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
-  var dayDiff = timeDiff / (1000 * 3600 * 24);
-
-  return Math.floor(dayDiff);
-}
 
 export default function RegionHotels(props: Props) {
   const router = useRouter();

@@ -20,8 +20,8 @@ import NearbyPlacesCard from "@/components/hotel/PlacesCard/NearbyPlacesCard";
 import RoomsCard from "@/components/hotel/RoomsCard/RoomsCard";
 import BookingCard from "@/components/hotel/BookingCard/BookingCard";
 
-import { BookingDetails } from "@/widgets/bookings/bookingDetails";
-import { RoomDetails } from "@/widgets/bookings/roomDetails";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
+import { RoomDetails } from "@/classModels/bookings/roomDetails";
 
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 
@@ -43,7 +43,7 @@ export default function HotelInformation(props: Props) {
   React.useEffect(() => {
     const bookingDetails = new BookingDetails();
     bookingDetails.hotel_Firebase_Id = props.hotelInfo.hotel_Firebase_Unique_Id;
-    bookingDetails.hotel_Sanity_Id = props.hotelInfo.id;
+    bookingDetails.hotel_Sanity_Id = props.hotelInfo._id;
     bookingDetails.hotel_Owner_Id = props.hotelInfo.hotel_Owner_Unique_Id;
     setUserBooking(bookingDetails);
   }, []);
@@ -195,6 +195,7 @@ export async function getServerSideProps(context: any) {
 
   const hotelInfoQuery = groq`
     *[_type == "hotel" && (slug.current == "${slug_Name}" || id == "${hotel_id}")] {
+      _id,
       address,
       "hotel_Firebase_Unique_Id":hotel_firebase_Unique_Id,
       hotel_Owner_Unique_Id,

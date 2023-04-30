@@ -37,3 +37,17 @@ export default function HotelBookings(props: Props) {
     </React.Fragment>
   );
 }
+
+// export async function getServerSideProps(context: any) {
+//   const { req, res } = context;
+//   const cookies = parse(req.headers.cookie || "");
+//   const userAccessToken = cookies[USER_ACCESS_TOKEN];
+//   const userAccessTokenObject = await extractJWTValues(userAccessToken);
+//   const userCollectionDoc = await getUserProfileDetails(userAccessTokenObject);
+//   // console.log(userCollectionDoc);
+//   return {
+//     props: {
+//       userDetails: userCollectionDoc,
+//     },
+//   };
+// }

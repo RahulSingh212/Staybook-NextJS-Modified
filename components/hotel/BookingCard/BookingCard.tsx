@@ -23,8 +23,8 @@ import {
   CalendarIcon,
 } from "@heroicons/react/solid";
 import BookingPriceCard from "./BookingPriceCard";
-import { RoomDetails } from "@/widgets/bookings/roomDetails";
-import { BookingDetails } from "@/widgets/bookings/bookingDetails";
+import { RoomDetails } from "@/classModels/bookings/roomDetails";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 
 type Props = {
   userBooking: BookingDetails;
@@ -33,6 +33,21 @@ type Props = {
   setTotalTax: Function;
   setTotalPrice: Function;
 };
+
+const hotelBookingHandler = async (userBooking: BookingDetails) =>  {
+  const response = await fetch("/api/booking/setHotelBooking", {
+    method: "POST",
+    body: JSON.stringify({
+      userBooking: userBooking,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  console.log(data);
+}
 
 export const stayflexiHandler = async (
   hotelId: any,
@@ -54,7 +69,6 @@ export const stayflexiHandler = async (
 };
 
 export default function BookingCard(props: Props) {
-  console.log("User Booking: " + props.userBooking);
   const router = useRouter();
   const [hotel_id, setHotelId] = React.useState<String>("");
   const [checkin, setCheckin] = React.useState<Date>(new Date());
@@ -87,7 +101,10 @@ export default function BookingCard(props: Props) {
     console.log(responseData);
   };
 
-  const bookHotelHandler = async () => {};
+  const createNewHotelBooking = async () => {
+    const responseData = await hotelBookingHandler(props.userBooking);
+    console.log(responseData);
+  }
 
   return (
     <React.Fragment>
@@ -197,7 +214,7 @@ export default function BookingCard(props: Props) {
 
         <motion.div
           className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
-          // onClick={bookHotelHandler}
+          onClick={createNewHotelBooking}
         >
           Book Now!
         </motion.div>

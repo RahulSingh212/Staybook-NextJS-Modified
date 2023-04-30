@@ -3,7 +3,15 @@ import { Cookie } from "next-auth/core/lib/cookie";
 // import cookie from "js-cookie"; // front end cookie which is present on the front end side
 import cookie from "cookie"; // server side cookie only https and available on the server side
 import { serialize, parse } from "cookie";
-import { doc, getDoc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+  collection,
+  addDoc,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 import {
@@ -18,54 +26,178 @@ import {
   extractJWTValues,
   COOKIE_EXPIRATOIN_TIME,
   USER_UPDATE_TYPE_NAME,
+  USER_BOOKINGS_COLLECTION_NAME,
+  HOTEL_BOOKINGS_ROOMS_COLLECTION_NAME,
+  BOOKED_ROOMS_COLLECTION_NAME,
+  HOTEL_BOOKINGS_COLLECTION_NAME,
 } from "@/lib/helper";
+
+const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
+  const docBookingRef = doc(
+    db,
+    HOTEL_BOOKINGS_COLLECTION_NAME,
+    userBooking.hotel_Owner_Id,
+    BOOKED_ROOMS_COLLECTION_NAME,
+    userBookingId
+  );
+
+  const response = await setDoc(docBookingRef, {
+    booking_Id: userBookingId,
+    booking_Time: String(userBooking.booking_Time),
+    hotel_Firebase_Id: userBooking.hotel_Firebase_Id,
+    hotel_Sanity_Id: userBooking.hotel_Sanity_Id,
+    total_Rooms_Count: userBooking.total_Rooms_Count,
+    total_Room_Cost: userBooking.total_Room_Cost.toFixed(2),
+    total_Tax: userBooking.total_Tax.toFixed(2),
+    total_Price: userBooking.total_Price.toFixed(2),
+    payment_Made:
+      Math.floor(userBooking.amount_Paid) ===
+      Math.floor(userBooking.total_Price),
+    payment_Id: "",
+    amount_Paid: userBooking.amount_Paid,
+    booking_Status: true,
+    user_Unique_Id: userBooking.user_Unique_Id,
+    user_Name: userBooking.user_Name,
+    user_Email_Id: userBooking.user_Email_Id,
+    user_Phone_Number: userBooking.user_Phone_Number,
+  });
+
+  for (let i = 0; i < userBooking.roomsList.length; i++) {
+    const roomRef = await addDoc(
+      collection(
+        db,
+        HOTEL_BOOKINGS_COLLECTION_NAME,
+        userBooking.hotel_Owner_Id,
+        BOOKED_ROOMS_COLLECTION_NAME,
+        userBookingId,
+        HOTEL_BOOKINGS_ROOMS_COLLECTION_NAME
+      ),
+      {
+        room_Id: userBooking.roomsList[i].room_Id,
+        room_Name: userBooking.roomsList[i].room_Name,
+        room_Info: userBooking.roomsList[i].room_Info,
+        plan_Id: userBooking.roomsList[i].plan_Id,
+        plan_Name: userBooking.roomsList[i].plan_Name,
+        plan_Info: userBooking.roomsList[i].plan_Info,
+        plan_Price: userBooking.roomsList[i].plan_Price,
+        num_Guests: userBooking.roomsList[i].num_Guests,
+        num_Children: userBooking.roomsList[i].num_Children,
+        num_Infants: userBooking.roomsList[i].num_Infants,
+      }
+    );
+  }
+
+  return response;
+};
+
+const userHotelBookingListing = async (userBooking: any) => {
+  const userDocRef = await addDoc(
+    collection(
+      db,
+      USER_BOOKINGS_COLLECTION_NAME,
+      userBooking.user_Email_Id,
+      BOOKED_ROOMS_COLLECTION_NAME
+    ),
+    {
+      booking_Id: "",
+      booking_Time: String(userBooking.booking_Time),
+      hotel_Owner_Id: userBooking.hotel_Owner_Id,
+      hotel_Firebase_Id: userBooking.hotel_Firebase_Id,
+      hotel_Sanity_Id: userBooking.hotel_Sanity_Id,
+      total_Rooms_Count: userBooking.total_Rooms_Count,
+      total_Room_Cost: userBooking.total_Room_Cost.toFixed(2),
+      total_Tax: userBooking.total_Tax.toFixed(2),
+      total_Price: userBooking.total_Price.toFixed(2),
+      payment_Made:
+        userBooking.amount_Paid.toFixed(2) ===
+        userBooking.total_Price.toFixed(2),
+      payment_Id: "",
+      amount_Paid: userBooking.amount_Paid,
+      booking_Status: true,
+      user_Unique_Id: userBooking.user_Unique_Id,
+      user_Name: userBooking.user_Name,
+      user_Email_Id: userBooking.user_Email_Id,
+      user_Phone_Number: userBooking.user_Phone_Number,
+    }
+  );
+
+  const docRef = doc(
+    db,
+    USER_BOOKINGS_COLLECTION_NAME,
+    userBooking.user_Email_Id,
+    BOOKED_ROOMS_COLLECTION_NAME,
+    userDocRef.id
+  );
+  const response = await updateDoc(docRef, {
+    booking_Id: userDocRef.id,
+  });
+
+  for (let i = 0; i < userBooking.roomsList.length; i++) {
+    const roomRef = await addDoc(
+      collection(
+        db,
+        USER_BOOKINGS_COLLECTION_NAME,
+        userBooking.user_Email_Id,
+        BOOKED_ROOMS_COLLECTION_NAME,
+        userDocRef.id,
+        HOTEL_BOOKINGS_ROOMS_COLLECTION_NAME
+      ),
+      {
+        room_Id: userBooking.roomsList[i].room_Id,
+        room_Name: userBooking.roomsList[i].room_Name,
+        room_Info: userBooking.roomsList[i].room_Info,
+        plan_Id: userBooking.roomsList[i].plan_Id,
+        plan_Name: userBooking.roomsList[i].plan_Name,
+        plan_Info: userBooking.roomsList[i].plan_Info,
+        plan_Price: userBooking.roomsList[i].plan_Price,
+        num_Guests: userBooking.roomsList[i].num_Guests,
+        num_Children: userBooking.roomsList[i].num_Children,
+        num_Infants: userBooking.roomsList[i].num_Infants,
+      }
+    );
+  }
+
+  return userDocRef;
+};
 
 async function handler(req: any, res: any) {
   const receivedData = req.body;
-  const { updateType } = receivedData;
+  const { userBooking } = receivedData;
+  //   const bookingObj = JSON.parse(userBooking);
+  console.log(userBooking);
 
-//   try {
-//     const cookies = parse(req.headers.cookie || "");
-//     const userAccessToken = cookies[USER_ACCESS_TOKEN];
-//     const userObj = await extractJWTValues(userAccessToken);
-//     const userData: { user_id: string } = userObj as { user_id: string };
-//     const user_Id = userData.user_id;
-//     console.log(user_Id);
+  try {
+    const cookies = parse(req.headers.cookie || "");
+    const userAccessToken = cookies[USER_ACCESS_TOKEN];
 
-//     if (updateType === USER_UPDATE_TYPE_NAME) {
-//       const {
-//         headerValue1,
-//         textValue1,
-//         headerValue2,
-//         textValue2,
-//         headerValue3,
-//         textValue3,
-//       } = receivedData;
-      
-//       const docRef = doc(db, USER_COLLECTION_NAME, user_Id);
-//       const newVal = { headerValue1: textValue1 };
-//       const response = await updateDoc(docRef, {
-//         [headerValue1]: textValue1,
-//         [headerValue2]: textValue2,
-//         [headerValue3]: textValue3,
-//       });
-//       res.status(201).json({
-//         userCredentials: response,
-//         error: null,
-//         message: "User access token value generated!",
-//       });
-//     } else {
-//       const { headerValue1, textValue1 } = receivedData;
-//       const docRef = doc(db, USER_COLLECTION_NAME, user_Id);
-//       const newVal = { headerValue1: textValue1 };
-//       const response = await updateDoc(docRef, { [headerValue1]: textValue1 });
-//       res.status(201).json({
-//         userCredentials: response,
-//         error: null,
-//         message: "User access token value generated!",
-//       });
-//     }
-//   } catch (error) {}
+    if (userAccessToken) {
+      const cookies = parse(req.headers.cookie || "");
+      const userAccessToken = cookies[USER_ACCESS_TOKEN];
+      const userObj = await extractJWTValues(userAccessToken);
+      const userData1: { email: string } = userObj as { email: string };
+      const userData2: { user_id: string } = userObj as { user_id: string };
+      userBooking.user_Unique_Id = userData2.user_id;
+      userBooking.user_Email_Id = userData1.email;
+    }
+
+    const userDocRef = await userHotelBookingListing(userBooking);
+    const ownerDocRef = await ownerHotelBookingList(userBooking, userDocRef.id);
+
+    res.status(201).json({
+      userCredentials: userDocRef,
+      ownerCredentails: ownerDocRef,
+      error: null,
+      message: "User access token value generated!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(422).json({
+      userCredentials: null,
+      ownerCredentails: null,
+      error,
+      message: "Error occoured",
+    });
+  }
 }
 
 export default handler;

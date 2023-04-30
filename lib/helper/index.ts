@@ -1,10 +1,25 @@
 import { hash } from "bcryptjs";
 import jwt_decode from "jwt-decode";
 
+// User Authentication Constants
 export const EMAIL_SIGNUP = "email-sign-up";
 export const EMAIL_LOGIN = "email-log-in";
 export const GOOGLE_SIGNUP = "google-sign-up";
 export const GOOGLE_LOGIN = "google-log-in";
+export const USER_ACCESS_TOKEN = "user-access-token";
+export const USER_COLLECTION_NAME = "USER-PERSONAL-INFORMATION";
+export const COOKIE_EXPIRATOIN_TIME = 60 * 60;
+export const GET_USER_TOKEN_OBJECT = "get-user-token-obj";
+export const USER_UPDATE_TYPE_NAME = "update-user-name";
+
+// Booking Hotels Constants
+export const HOTEL_BOOKINGS_COLLECTION_NAME = "HOTEL-BOOKINGS-INFORMATION";
+export const BOOKED_ROOMS_COLLECTION_NAME = "HOTEL-BOOKINGS";
+export const USER_BOOKINGS_COLLECTION_NAME = "USER-BOOKINGS-INFORMATION";
+export const HOTEL_BOOKINGS_ROOMS_COLLECTION_NAME = "BOOKED-ROOMS-INFORMATION";
+
+
+// Price Planner Constants
 export const HOTEL_OWNERS_COLLECTION_NAME = "HOTEL-PRICE-PLANNER-INFORMATION";
 export const AFFILIATED_COLLECTION_NAME = "AFFLIATED-HOTELS";
 export const HOTEL_ROOMS_COLLECTION_NAME = "HOTEL-ROOMS";
@@ -25,11 +40,6 @@ export const MONTH_NAME_LIST = [
   "NOVEMBER",
   "DECEMBER",
 ];
-export const USER_ACCESS_TOKEN = "user-access-token";
-export const USER_COLLECTION_NAME = "USER-PERSONAL-INFORMATION";
-export const COOKIE_EXPIRATOIN_TIME = 60 * 60;
-export const GET_USER_TOKEN_OBJECT = "get-user-token-obj";
-export const USER_UPDATE_TYPE_NAME = "update-user-name";
 
 export function addDays(
   startDate: string | number | Date,

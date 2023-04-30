@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { RoomDetails } from "@/widgets/bookings/roomDetails";
-import { BookingDetails } from "@/widgets/bookings/bookingDetails";
+import { RoomDetails } from "@/classModels/bookings/roomDetails";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 
 type Props = {
   planInfo: RoomDetails;

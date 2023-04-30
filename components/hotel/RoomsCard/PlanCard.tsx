@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 import moment from "moment";
-import { RoomDetails } from "@/widgets/bookings/roomDetails";
-import { BookingDetails } from "@/widgets/bookings/bookingDetails";
+import { RoomDetails } from "@/classModels/bookings/roomDetails";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 
 // type Props = {
 //   planInfo: any;
@@ -37,7 +37,7 @@ type Props = {
   setTotalRoomCost: Function;
   setTotalTax: Function;
   setTotalPrice: Function;
-}
+};
 
 export default function PlanCard(props: Props) {
   const router = useRouter();
@@ -45,7 +45,6 @@ export default function PlanCard(props: Props) {
   const [num_infants, setNumInfants] = React.useState<number>(0);
 
   const roomPlanHandler = () => {
-
     const rd = new RoomDetails();
     rd.room_Name = `${props.roomName}`;
     rd.room_Info = `${props.roomInfo}`;

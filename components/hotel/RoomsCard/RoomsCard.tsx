@@ -23,7 +23,7 @@ import {
 } from "@heroicons/react/solid";
 
 import RoomInfo from "./RoomInfo";
-import { BookingDetails } from "@/widgets/bookings/bookingDetails";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 
 // type Props = {
 //   roomsList: any[];

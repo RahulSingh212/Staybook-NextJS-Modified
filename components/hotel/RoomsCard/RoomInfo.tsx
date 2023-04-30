@@ -32,8 +32,8 @@ type Props = {
 };
 
 import PlanCard from "./PlanCard";
-import { RoomDetails } from "@/widgets/bookings/roomDetails";
-import { BookingDetails } from "@/widgets/bookings/bookingDetails";
+import { RoomDetails } from "@/classModels/bookings/roomDetails";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 
 export default function RoomInfo(props: Props) {
   return (

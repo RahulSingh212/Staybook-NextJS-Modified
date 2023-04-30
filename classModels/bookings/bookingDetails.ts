@@ -6,10 +6,18 @@ export class BookingDetails {
   hotel_Owner_Id: string = "";
   hotel_Firebase_Id: string = "";
   hotel_Sanity_Id: string = "";
+  user_Unique_Id: string = "";
+  user_Email_Id: string = "";
+  user_Name: string = "";
+  user_Phone_Number: String = "";
   total_Rooms_Count: number = 0;
   total_Room_Cost: number = 0;
   total_Tax: number = 0;
   total_Price: number = 0;
+  payment_Made: boolean = false;
+  payment_Id: string = "";
+  amount_Paid: number = 0;
+  booking_Time: Date = new Date();
 
   //   constructor() {}
 

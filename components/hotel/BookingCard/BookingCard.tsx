@@ -1,5 +1,5 @@
 import React from "react";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 import { motion, motionValue } from "framer-motion";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SocailIcon } from "react-social-icons";
@@ -24,29 +24,26 @@ import {
   LocationMarkerIcon,
   CalendarIcon,
 } from "@heroicons/react/solid";
+import BookingPriceCard from "./BookingPriceCard";
 
-type Props = {};
+type Props = {
+  selectedRoomsList: any[];
+  setSelectedRoomsList: Function;
+  roomCount: number;
+  totalRoomCost: number;
+  totalTax: number;
+  totalPrice: number;
+  setRoomCount: Function;
+  setTotalRoomCost: Function;
+  setTotalTax: Function;
+  setTotalPrice: Function;
+};
 
 export const stayflexiHandler = async (
   hotelId: any,
   fromDate: any,
   toDate: any
 ) => {
-  // const apiUrl = `https://cmapi.stayflexi.com/core/apiv1/cmservice/getroomrates/?pmsId=20021&hotelId=25095&roomTypeId=12353&ratePlanId=30298&fromDate=${fromDate}%2000:00:00&toDate=${toDate}%2000:00:00`;
-  // const apiKey = "mkfegijystay5u70djld9";
-
-  // const response = await fetch(apiUrl, {
-  //   method: "GET",
-  //   headers: {
-  //     "X-SF-API-KEY": apiKey,
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-
-  // const data = await response.json();
-  // console.log("Stay-Flexi Data: " + data);
-  // return data;
-
   const response = await fetch("/api/hotel/hotelPricePlanner", {
     method: "POST",
     body: JSON.stringify({ hotelId, fromDate, toDate }),
@@ -69,11 +66,6 @@ export default function BookingCard(props: Props) {
   const [num_nights, setNum_nights] = React.useState<number>(1);
   const [num_guests, setNum_guests] = React.useState<number>(2);
 
-  const [roomCount, setRoomCount] = React.useState<number>(0);
-  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(0);
-  const [totalTax, setTotalTax] = React.useState<number>(0);
-  const [totalPrice, setTotalPrice] = React.useState<number>(0);
-
   React.useEffect(() => {
     setHotelId(String(router.query.hotel_id));
     setNum_nights(Number(router.query.num_guests));
@@ -85,14 +77,21 @@ export default function BookingCard(props: Props) {
         Number(router.query.num_nights)
       )
     );
-  }, [router.query.hotel_id, router.query.checkin, router.query.num_guests, router.query.num_nights]);
+  }, [
+    router.query.hotel_id,
+    router.query.checkin,
+    router.query.num_guests,
+    router.query.num_nights,
+  ]);
 
-  const bookHotelHandler = async () => {
+  const fetchStayFlexiHotelPrices = async () => {
     const fromDate = String(moment(checkin).format("DD-MM-YYYY"));
     const toDate = String(moment(checkout).format("DD-MM-YYYY"));
     const responseData = await stayflexiHandler(hotel_id, fromDate, toDate);
     console.log(responseData);
   };
+
+  const bookHotelHandler = async () => {};
 
   return (
     <React.Fragment>
@@ -101,7 +100,7 @@ export default function BookingCard(props: Props) {
       >
         <motion.div className={`w-full pb-4`}>
           <h1 className={`text-6xl font-semibold text-gray-500`}>
-            ₹{totalRoomCost}
+            ₹{props.totalRoomCost}
           </h1>
         </motion.div>
 
@@ -140,31 +139,72 @@ export default function BookingCard(props: Props) {
           </motion.div>
         </motion.div>
 
-        <motion.div className={`w-full mb-4 rounded-lg px-1`}>
-          <p className={`text-xl font-sans`}>{roomCount} rooms</p>
+        <motion.div className={`w-full rounded-lg px-1 mb-2`}>
+          <p className={`text-xl font-sans`}>{props.roomCount} rooms</p>
         </motion.div>
 
-        <motion.div
-          className={`relative w-full flex flex-col align-middle items-center justify-between rounded-lg py-2 px-2 bg-white mb-6 shadow-lg`}
-        >
-          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pb-1`}>
-            <motion.div className={`text-gray-700 font-medium font-sans`}>Room Price</motion.div>
-            <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalRoomCost}</motion.div>
+        {props.selectedRoomsList.length > 0 && (
+          <motion.div
+            className={`relative w-full flex flex-col items-center align-middle my-3 overflow-y-scroll h-36 py-2 shadow-md`}
+          >
+            {props.selectedRoomsList.map((planInfo: any, index: number) => (
+              <BookingPriceCard
+                key={index}
+                planInfo={planInfo}
+                planIndex={index}
+                roomCount={props.roomCount}
+                totalRoomCost={props.totalRoomCost}
+                totalTax={props.totalTax}
+                totalPrice={props.totalPrice}
+                setRoomCount={props.setRoomCount}
+                setTotalRoomCost={props.setTotalRoomCost}
+                setTotalTax={props.setTotalTax}
+                setTotalPrice={props.setTotalPrice}
+                selectedRoomsList={props.selectedRoomsList}
+                setSelectedRoomsList={props.setSelectedRoomsList}
+              />
+            ))}
           </motion.div>
-          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pb-3`}>
-            <motion.div className={`text-gray-700 font-medium font-sans`}>Tax</motion.div>
-            <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalTax}</motion.div>
+        )}
+        <motion.div
+          className={`relative w-full flex flex-col align-middle items-center justify-between rounded-lg py-2 px-2 bg-white mt-2 mb-6 shadow-lg`}
+        >
+          <motion.div
+            className={`w-full relative flex flex-row align-middle items-center justify-between pb-1`}
+          >
+            <motion.div className={`text-gray-700 font-medium font-sans`}>
+              Room Price
+            </motion.div>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>
+              ₹{props.totalRoomCost.toFixed(2)}
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className={`w-full relative flex flex-row align-middle items-center justify-between pb-1`}
+          >
+            <motion.div className={`text-gray-700 font-medium font-sans`}>
+              Tax
+            </motion.div>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>
+              ₹{props.totalTax.toFixed(2)}
+            </motion.div>
           </motion.div>
           <motion.div className={`w-full border-2`}></motion.div>
-          <motion.div className={`w-full relative flex flex-row align-middle items-center justify-between pt-3`}>
-            <motion.div className={`text-gray-700 font-medium font-sans`}>Total Cost</motion.div>
-            <motion.div className={`text-gray-700 font-medium font-sans`}>₹{totalRoomCost}</motion.div>
+          <motion.div
+            className={`w-full relative flex flex-row align-middle items-center justify-between pt-1`}
+          >
+            <motion.div className={`text-gray-700 font-medium font-sans`}>
+              Total Cost
+            </motion.div>
+            <motion.div className={`text-gray-700 font-medium font-sans`}>
+              ₹{props.totalPrice.toFixed(2)}
+            </motion.div>
           </motion.div>
         </motion.div>
 
         <motion.div
           className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
-          onClick={bookHotelHandler}
+          // onClick={bookHotelHandler}
         >
           Book Now!
         </motion.div>

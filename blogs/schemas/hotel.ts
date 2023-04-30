@@ -33,6 +33,11 @@ export default defineType({
       type: 'number',
     }),
     defineField({
+      name: 'hotel_firebase_Unique_Id',
+      title: 'Firebase Unique ID',
+      type: 'string',
+    }),
+    defineField({
       name: 'card_amenities',
       title: 'Card Amenities',
       type: 'string',

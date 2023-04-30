@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
     "start": "next start",
+    "build": "next build",
+    "dev": "next dev",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,8 +14,10 @@
     "@fullcalendar/daygrid": "^6.1.6",
     "@fullcalendar/react": "^6.1.6",
     "@heroicons/react": "^1.0.6",
+    "@nextui-org/react": "^1.0.0-beta.12",
     "@portabletext/react": "^2.0.2",
     "@sanity/image-url": "^1.0.2",
+    "@tailwindcss/forms": "^0.5.3",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
@@ -24,6 +26,7 @@
     "cookie-parse": "^0.4.0",
     "cookie-parser": "^1.4.6",
     "date-fns": "^2.29.3",
+    "dayjs": "^1.11.7",
     "eslint": "8.37.0",
     "eslint-config-next": "^13.3.0",
     "fetch": "^1.1.0",
@@ -43,6 +46,7 @@
     "react": "^18.2.0",
     "react-3d-hover": "^1.1.1",
     "react-big-calendar": "^1.6.9",
+    "react-calendar": "^4.2.1",
     "react-cookie": "^4.1.1",
     "react-date-range": "^1.4.0",
     "react-datepicker": "^4.11.0",
@@ -54,9 +58,15 @@
     "styled-components": "^5.3.9",
     "swr": "^2.1.2",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "typescript": "5.0.2"
+    "ts-loader": "^9.4.2",
+    "typescript": "5.0.2",
+    "vite": "^4.3.2",
+    "vite-plugin-react": "^4.0.1",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2"
   },
   "devDependencies": {
+    "@craco/craco": "^7.1.0",
     "@types/react-date-range": "^1.4.4",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",

@@ -41,6 +41,7 @@ async function handler(req: any, res: any) {
         headerValue3,
         textValue3,
       } = receivedData;
+      
       const docRef = doc(db, USER_COLLECTION_NAME, user_Id);
       const newVal = { headerValue1: textValue1 };
       const response = await updateDoc(docRef, {

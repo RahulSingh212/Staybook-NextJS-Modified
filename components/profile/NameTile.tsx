@@ -79,6 +79,11 @@ export default function NameTile(props: Props) {
           </motion.div>
           <motion.div
             onClick={() => {
+              if (editBtn) {
+                setTextValue1(props.firstText);
+                setTextValue2(props.middleText);
+                setTextValue3(props.lastText);
+              }
               setEditBtn(!editBtn);
             }}
             className={`relative flex items-center p-1 rounded-3xl bg-slate-400  ${

@@ -42,6 +42,11 @@ type Props = {
 
 export default function HotelInformation(props: Props) {
   const router = useRouter();
+  const [roomCount, setRoomCount] = React.useState<number>(0);
+  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(0);
+  const [totalTax, setTotalTax] = React.useState<number>(0);
+  const [totalPrice, setTotalPrice] = React.useState<number>(0);
+  const [selectedRoomsList, setSelectedRoomsList] = React.useState([]);
 
   return (
     <React.Fragment>
@@ -126,7 +131,20 @@ export default function HotelInformation(props: Props) {
             <AmenityCard amenitiesList={props.hotelInfo.amenities_List} />
 
             {/* Hotel Rooms */}
-            <RoomsCard roomsList={props.hotelInfo.rooms} />
+            <RoomsCard
+              roomsList={props.hotelInfo.rooms}
+              selectedRoomsList={selectedRoomsList}
+              setSelectedRoomsList={setSelectedRoomsList}
+              hotel_firebase_Unique_Id = {props.hotelInfo.hotel_firebase_Unique_Id}
+              roomCount={roomCount}
+              totalRoomCost={totalRoomCost}
+              totalTax={totalTax}
+              totalPrice={totalPrice}
+              setRoomCount={setRoomCount}
+              setTotalRoomCost={setTotalRoomCost}
+              setTotalTax={setTotalTax}
+              setTotalPrice={setTotalPrice}
+            />
 
             {/* Descriptions */}
             <DescriptionCard
@@ -143,7 +161,18 @@ export default function HotelInformation(props: Props) {
           </motion.div>
 
           {/* Booking Card */}
-          <BookingCard />
+          <BookingCard
+            selectedRoomsList={selectedRoomsList}
+            setSelectedRoomsList={setSelectedRoomsList}
+            roomCount={roomCount}
+            setRoomCount={setRoomCount}
+            totalRoomCost={totalRoomCost}
+            setTotalRoomCost={setTotalRoomCost}
+            totalTax={totalTax}
+            setTotalTax={setTotalTax}
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+          />
         </motion.div>
       </main>
     </React.Fragment>
@@ -166,6 +195,7 @@ export async function getServerSideProps(context: any) {
   const hotelInfoQuery = groq`
     *[_type == "hotel" && (slug.current == "${slug_Name}" || id == "${hotel_id}")] {
       address,
+      hotel_firebase_Unique_Id,
       "amenities_List":amenities[]->{
         _id,
         name,

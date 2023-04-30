@@ -5,7 +5,26 @@ export const EMAIL_SIGNUP = "email-sign-up";
 export const EMAIL_LOGIN = "email-log-in";
 export const GOOGLE_SIGNUP = "google-sign-up";
 export const GOOGLE_LOGIN = "google-log-in";
-export const HOTEL_PRICE_COLLECTION_NAME = "HOTEL-PRICE-PLANNER-INFORMATION";
+export const HOTEL_OWNERS_COLLECTION_NAME = "HOTEL-PRICE-PLANNER-INFORMATION";
+export const AFFILIATED_COLLECTION_NAME = "AFFLIATED-HOTELS";
+export const HOTEL_ROOMS_COLLECTION_NAME = "HOTEL-ROOMS";
+export const ROOM_PLANS_COLLECTION_NAME = "ROOM-PLANS";
+export const ROOM_PRICE_PLANNER_COLLECTION_NAME = "ROOM-PRICE-PLANNER";
+
+export const MONTH_NAME_LIST = [
+  "JANUARY",
+  "FEBRUARY",
+  "MARCH",
+  "APRIL",
+  "MAY",
+  "JUNE",
+  "JULY",
+  "AUGUST",
+  "SEPTEMBER",
+  "OCTOBER",
+  "NOVEMBER",
+  "DECEMBER",
+];
 export const USER_ACCESS_TOKEN = "user-access-token";
 export const USER_COLLECTION_NAME = "USER-PERSONAL-INFORMATION";
 export const COOKIE_EXPIRATOIN_TIME = 60 * 60;

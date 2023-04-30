@@ -63,6 +63,9 @@ export default function InfoTile(props: Props) {
           </motion.div>
           <motion.div
             onClick={() => {
+              if (editBtn) {
+                setInputValue(props.tileText);
+              }
               setEditBtn(!editBtn);
             }}
             className={`relative flex items-center p-1 rounded-3xl bg-slate-400 ${

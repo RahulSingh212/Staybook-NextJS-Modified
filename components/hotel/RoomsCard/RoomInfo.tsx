@@ -24,6 +24,18 @@ import {
 
 type Props = {
   roomInfo: any;
+  selectedRoomsList: any[];
+  setSelectedRoomsList: Function;
+
+  hotel_firebase_Unique_Id: String;
+  roomCount: number;
+  totalRoomCost: number;
+  totalTax: number;
+  totalPrice: number;
+  setRoomCount: Function;
+  setTotalRoomCost: Function;
+  setTotalTax: Function;
+  setTotalPrice: Function;
 };
 
 import PlanCard from "./PlanCard";
@@ -79,7 +91,23 @@ export default function RoomInfo(props: Props) {
 
         <motion.div className={`relative w-full flex flex-col space-y-4`}>
           {props.roomInfo.plans.map((plan: any, index: number) => (
-            <PlanCard key={plan._key} planInfo={plan} />
+            <PlanCard
+              key={plan._key}
+              planInfo={plan}
+              selectedRoomsList={props.selectedRoomsList}
+              setSelectedRoomsList={props.setSelectedRoomsList}
+
+              hotel_firebase_Unique_Id={props.hotel_firebase_Unique_Id}
+              hotel_Room_Type={props.roomInfo.type}
+              roomCount={props.roomCount}
+              totalRoomCost={props.totalRoomCost}
+              totalTax={props.totalTax}
+              totalPrice={props.totalPrice}
+              setRoomCount={props.setRoomCount}
+              setTotalRoomCost={props.setTotalRoomCost}
+              setTotalTax={props.setTotalTax}
+              setTotalPrice={props.setTotalPrice}
+            />
           ))}
         </motion.div>
       </motion.div>

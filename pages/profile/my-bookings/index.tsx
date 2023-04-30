@@ -5,11 +5,16 @@ import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { extractJWTValues } from "@/lib/helper";
+import { USER_ACCESS_TOKEN, extractJWTValues } from "@/lib/helper";
 import { useRouter } from "next/router";
+import { parse } from "cookie";
+import { getUserBookings } from "@/lib/firebase/userHandler";
+import BookingTile from "@/components/profile/bookings/BookingTile";
+import { BookingDetails } from "@/classModels/bookings/bookingDetails";
+import { RoomDetails } from "@/classModels/bookings/roomDetails";
 
 type Props = {
-  userDetails: any;
+  userBookingsList: BookingDetails[];
 };
 
 export default function HotelBookings(props: Props) {
@@ -31,23 +36,26 @@ export default function HotelBookings(props: Props) {
           <h1 className={`text-4xl font-bold`}>My Bookings</h1>
         </motion.div>
         <motion.div
-          className={`relative flex flex-col space-y-8 w-[90%] mt-16`}
-        ></motion.div>
+          className={`relative flex flex-col space-y-4 w-[90%] mt-16`}
+        >
+          {props.userBookingsList.map((booking: any, index: number) => (
+            <BookingTile key={index} bookingInfo={booking} />
+          ))}
+        </motion.div>
       </main>
     </React.Fragment>
   );
 }
 
-// export async function getServerSideProps(context: any) {
-//   const { req, res } = context;
-//   const cookies = parse(req.headers.cookie || "");
-//   const userAccessToken = cookies[USER_ACCESS_TOKEN];
-//   const userAccessTokenObject = await extractJWTValues(userAccessToken);
-//   const userCollectionDoc = await getUserProfileDetails(userAccessTokenObject);
-//   // console.log(userCollectionDoc);
-//   return {
-//     props: {
-//       userDetails: userCollectionDoc,
-//     },
-//   };
-// }
+export async function getServerSideProps(context: any) {
+  const { req, res } = context;
+  const cookies = parse(req.headers.cookie || "");
+  const userAccessToken = cookies[USER_ACCESS_TOKEN];
+  const userAccessTokenObject = await extractJWTValues(userAccessToken);
+  const userBookingsList: any = await getUserBookings(userAccessTokenObject);
+  return {
+    props: {
+      userBookingsList: JSON.parse(userBookingsList),
+    },
+  };
+}

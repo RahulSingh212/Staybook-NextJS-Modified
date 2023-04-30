@@ -45,6 +45,9 @@ export default function HotelInformation(props: Props) {
     bookingDetails.hotel_Firebase_Id = props.hotelInfo.hotel_Firebase_Unique_Id;
     bookingDetails.hotel_Sanity_Id = props.hotelInfo._id;
     bookingDetails.hotel_Owner_Id = props.hotelInfo.hotel_Owner_Unique_Id;
+    bookingDetails.hotel_Image_Url = props.hotelInfo.image_List[0];
+    bookingDetails.hotel_Name = props.hotelInfo.name;
+    bookingDetails.hotel_Landmark = props.hotelInfo.landmark;
     setUserBooking(bookingDetails);
   }, []);
   const [roomCount, setRoomCount] = React.useState<number>(
@@ -196,6 +199,7 @@ export async function getServerSideProps(context: any) {
   const hotelInfoQuery = groq`
     *[_type == "hotel" && (slug.current == "${slug_Name}" || id == "${hotel_id}")] {
       _id,
+      landmark,
       address,
       "hotel_Firebase_Unique_Id":hotel_firebase_Unique_Id,
       hotel_Owner_Unique_Id,

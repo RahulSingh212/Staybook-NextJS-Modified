@@ -38,7 +38,7 @@ export default function BookingPriceCard(props: Props) {
   return (
     <React.Fragment>
       <motion.div
-        className={`relative w-[95%] flex flex-col rounded-md shadow-md px-3 py-3 mb-2`}
+        className={`relative w-[95%] flex flex-col rounded-md shadow-md px-3 py-3`}
       >
         <motion.div className={`relative flex flex-row justify-between mb-2`}>
           <motion.div className={`relative w-[92.5%]`}>

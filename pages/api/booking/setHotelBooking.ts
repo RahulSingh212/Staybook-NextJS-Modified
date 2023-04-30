@@ -44,6 +44,11 @@ const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
   const response = await setDoc(docBookingRef, {
     booking_Id: userBookingId,
     booking_Time: String(userBooking.booking_Time),
+    checkin_Time: String(userBooking.checkin_Time),
+    checkout_Time: String(userBooking.checkout_Time),
+    hotel_Image_Url: userBooking.hotel_Image_Url,
+    hotel_Name: userBooking.hotel_Name,
+    hotel_Landmark: userBooking.hotel_Landmark,
     hotel_Firebase_Id: userBooking.hotel_Firebase_Id,
     hotel_Sanity_Id: userBooking.hotel_Sanity_Id,
     total_Rooms_Count: userBooking.total_Rooms_Count,
@@ -101,6 +106,11 @@ const userHotelBookingListing = async (userBooking: any) => {
     {
       booking_Id: "",
       booking_Time: String(userBooking.booking_Time),
+      checkin_Time: String(userBooking.checkin_Time),
+      checkout_Time: String(userBooking.checkout_Time),
+      hotel_Image_Url: userBooking.hotel_Image_Url,
+      hotel_Name: userBooking.hotel_Name,
+      hotel_Landmark: userBooking.hotel_Landmark,
       hotel_Owner_Id: userBooking.hotel_Owner_Id,
       hotel_Firebase_Id: userBooking.hotel_Firebase_Id,
       hotel_Sanity_Id: userBooking.hotel_Sanity_Id,

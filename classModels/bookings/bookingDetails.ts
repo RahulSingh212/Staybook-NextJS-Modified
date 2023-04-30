@@ -1,9 +1,13 @@
+import { addDays } from "@/lib/helper";
 import { RoomDetails } from "./roomDetails";
 
 export class BookingDetails {
   roomsList: RoomDetails[] = [];
   booking_Id: string = "";
   hotel_Owner_Id: string = "";
+  hotel_Image_Url: string = "";
+  hotel_Name: string = "";
+  hotel_Landmark: string = "";
   hotel_Firebase_Id: string = "";
   hotel_Sanity_Id: string = "";
   user_Unique_Id: string = "";
@@ -18,6 +22,8 @@ export class BookingDetails {
   payment_Id: string = "";
   amount_Paid: number = 0;
   booking_Time: Date = new Date();
+  checkin_Time: Date = new Date();
+  checkout_Time: Date = addDays(new Date(), 1);
 
   //   constructor() {}
 

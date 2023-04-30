@@ -160,7 +160,7 @@ export default function BookingCard(props: Props) {
 
         {props.userBooking.roomsList.length > 0 && (
           <motion.div
-            className={`relative w-full flex flex-col items-center align-middle my-3 overflow-y-scroll h-36 py-2 shadow-md`}
+            className={`relative w-full flex flex-col items-center align-middle my-3 overflow-y-scroll h-36 py-2 shadow-md space-y-2`}
           >
             {props.userBooking.roomsList.map((planInfo: any, index: number) => (
               <BookingPriceCard

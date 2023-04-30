@@ -1,8 +1,6 @@
 import React from "react";
 import fetch from "node-fetch";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -25,14 +23,11 @@ import {
   CalendarIcon,
 } from "@heroicons/react/solid";
 import BookingPriceCard from "./BookingPriceCard";
+import { RoomDetails } from "@/widgets/bookings/roomDetails";
+import { BookingDetails } from "@/widgets/bookings/bookingDetails";
 
 type Props = {
-  selectedRoomsList: any[];
-  setSelectedRoomsList: Function;
-  roomCount: number;
-  totalRoomCost: number;
-  totalTax: number;
-  totalPrice: number;
+  userBooking: BookingDetails;
   setRoomCount: Function;
   setTotalRoomCost: Function;
   setTotalTax: Function;
@@ -59,6 +54,7 @@ export const stayflexiHandler = async (
 };
 
 export default function BookingCard(props: Props) {
+  console.log("User Booking: " + props.userBooking);
   const router = useRouter();
   const [hotel_id, setHotelId] = React.useState<String>("");
   const [checkin, setCheckin] = React.useState<Date>(new Date());
@@ -100,7 +96,7 @@ export default function BookingCard(props: Props) {
       >
         <motion.div className={`w-full pb-4`}>
           <h1 className={`text-6xl font-semibold text-gray-500`}>
-            ₹{props.totalRoomCost}
+            ₹{props.userBooking.getTotalRoomCost.toFixed(2)}
           </h1>
         </motion.div>
 
@@ -140,28 +136,25 @@ export default function BookingCard(props: Props) {
         </motion.div>
 
         <motion.div className={`w-full rounded-lg px-1 mb-2`}>
-          <p className={`text-xl font-sans`}>{props.roomCount} rooms</p>
+          <p className={`text-xl font-sans`}>
+            {props.userBooking.getTotalRoomCount} rooms
+          </p>
         </motion.div>
 
-        {props.selectedRoomsList.length > 0 && (
+        {props.userBooking.roomsList.length > 0 && (
           <motion.div
             className={`relative w-full flex flex-col items-center align-middle my-3 overflow-y-scroll h-36 py-2 shadow-md`}
           >
-            {props.selectedRoomsList.map((planInfo: any, index: number) => (
+            {props.userBooking.roomsList.map((planInfo: any, index: number) => (
               <BookingPriceCard
                 key={index}
-                planInfo={planInfo}
                 planIndex={index}
-                roomCount={props.roomCount}
-                totalRoomCost={props.totalRoomCost}
-                totalTax={props.totalTax}
-                totalPrice={props.totalPrice}
+                planInfo={planInfo}
+                userBooking={props.userBooking}
                 setRoomCount={props.setRoomCount}
                 setTotalRoomCost={props.setTotalRoomCost}
                 setTotalTax={props.setTotalTax}
                 setTotalPrice={props.setTotalPrice}
-                selectedRoomsList={props.selectedRoomsList}
-                setSelectedRoomsList={props.setSelectedRoomsList}
               />
             ))}
           </motion.div>
@@ -176,7 +169,7 @@ export default function BookingCard(props: Props) {
               Room Price
             </motion.div>
             <motion.div className={`text-gray-700 font-medium font-sans`}>
-              ₹{props.totalRoomCost.toFixed(2)}
+              ₹{props.userBooking.getTotalRoomCost.toFixed(2)}
             </motion.div>
           </motion.div>
           <motion.div
@@ -186,7 +179,7 @@ export default function BookingCard(props: Props) {
               Tax
             </motion.div>
             <motion.div className={`text-gray-700 font-medium font-sans`}>
-              ₹{props.totalTax.toFixed(2)}
+              ₹{props.userBooking.getTotalTax.toFixed(2)}
             </motion.div>
           </motion.div>
           <motion.div className={`w-full border-2`}></motion.div>
@@ -197,7 +190,7 @@ export default function BookingCard(props: Props) {
               Total Cost
             </motion.div>
             <motion.div className={`text-gray-700 font-medium font-sans`}>
-              ₹{props.totalPrice.toFixed(2)}
+              ₹{props.userBooking.getTotalPrice.toFixed(2)}
             </motion.div>
           </motion.div>
         </motion.div>

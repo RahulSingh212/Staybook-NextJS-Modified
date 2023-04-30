@@ -1,7 +1,5 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -9,36 +7,37 @@ import { useRouter } from "next/router";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 import moment from "moment";
+import { RoomDetails } from "@/widgets/bookings/roomDetails";
+import { BookingDetails } from "@/widgets/bookings/bookingDetails";
 
-import {
-  GlobeAltIcon,
-  MenuIcon,
-  UserCircleIcon,
-  UsersIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  MapIcon,
-  LocationMarkerIcon,
-  CalendarIcon,
-} from "@heroicons/react/solid";
+// type Props = {
+//   planInfo: any;
+//   selectedRoomsList: RoomDetails[];
+//   setSelectedRoomsList: Function;
+
+//   hotel_firebase_Unique_Id: String;
+//   hotel_Room_Type: String;
+
+//   roomCount: number;
+//   totalRoomCost: number;
+//   totalTax: number;
+//   totalPrice: number;
+//   setRoomCount: Function;
+//   setTotalRoomCost: Function;
+//   setTotalTax: Function;
+//   setTotalPrice: Function;
+// };
 
 type Props = {
   planInfo: any;
-  selectedRoomsList: any[];
-  setSelectedRoomsList: Function;
-
-  hotel_firebase_Unique_Id: String;
-  hotel_Room_Type: String;
-
-  roomCount: number;
-  totalRoomCost: number;
-  totalTax: number;
-  totalPrice: number;
+  userBooking: BookingDetails;
+  roomName: String;
+  roomInfo: String;
   setRoomCount: Function;
   setTotalRoomCost: Function;
   setTotalTax: Function;
   setTotalPrice: Function;
-};
+}
 
 export default function PlanCard(props: Props) {
   const router = useRouter();
@@ -46,31 +45,22 @@ export default function PlanCard(props: Props) {
   const [num_infants, setNumInfants] = React.useState<number>(0);
 
   const roomPlanHandler = () => {
-    let list = props.selectedRoomsList;
-    list.push({
-      "hotel_firebase_Unique_Id": props.hotel_firebase_Unique_Id,
-      "hotel_Sanity_Id": `${router.query.hotel_id}`,
-      "room_Id": "",
-      "room_Name": "",
-      "room_Info": "",
-      "plan_Id": "",
-      "plan_Nmae": `${props.hotel_Room_Type}(${props.planInfo.title})`,
-      "plan_Price": `${props.planInfo.price}`,
-      "num_guests": `${router.query.num_guests}`,
-      "num_children": `${num_child}`,
-      "num_infants": `${num_infants}`,
-    });
-    let total = 0;
-    for (let i = 0; i < list.length; i++) {
-      total += Number(list[i].plan_Price);
-      total += Number(list[i].num_children)*1000;
-    }
-    
-    props.setRoomCount(props.roomCount+1);
-    props.setTotalRoomCost(total);
-    props.setTotalTax(total*0.12);
-    props.setTotalPrice(total*1.12);
-    props.setSelectedRoomsList(list);
+
+    const rd = new RoomDetails();
+    rd.room_Name = `${props.roomName}`;
+    rd.room_Info = `${props.roomInfo}`;
+    rd.plan_Name = `${props.planInfo.title}`;
+    rd.plan_Info = `${props.planInfo.info}`;
+    rd.plan_Price = Number(`${props.planInfo.price}`);
+    rd.num_Guests = Number(`${router.query.num_guests}`);
+    rd.num_Children = Number(`${num_child}`);
+    rd.num_Infants = Number(`${num_infants}`);
+
+    props.userBooking.addNewRoom(rd);
+    props.setRoomCount(props.userBooking.getTotalRoomCount);
+    props.setTotalRoomCost(props.userBooking.getTotalRoomCost);
+    props.setTotalTax(props.userBooking.getTotalTax);
+    props.setTotalPrice(props.userBooking.getTotalPrice);
   };
 
   return (

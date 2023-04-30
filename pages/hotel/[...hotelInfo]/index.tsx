@@ -20,16 +20,10 @@ import NearbyPlacesCard from "@/components/hotel/PlacesCard/NearbyPlacesCard";
 import RoomsCard from "@/components/hotel/RoomsCard/RoomsCard";
 import BookingCard from "@/components/hotel/BookingCard/BookingCard";
 
-import {
-  GlobeAltIcon,
-  MenuIcon,
-  UserCircleIcon,
-  UsersIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  MapIcon,
-  LocationMarkerIcon,
-} from "@heroicons/react/solid";
+import { BookingDetails } from "@/widgets/bookings/bookingDetails";
+import { RoomDetails } from "@/widgets/bookings/roomDetails";
+
+import { LocationMarkerIcon } from "@heroicons/react/solid";
 
 type Props = {
   hotelInfo: any;
@@ -42,11 +36,29 @@ type Props = {
 
 export default function HotelInformation(props: Props) {
   const router = useRouter();
-  const [roomCount, setRoomCount] = React.useState<number>(0);
-  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(0);
-  const [totalTax, setTotalTax] = React.useState<number>(0);
-  const [totalPrice, setTotalPrice] = React.useState<number>(0);
-  const [selectedRoomsList, setSelectedRoomsList] = React.useState([]);
+  // let userBooking = new BookingDetails();
+  const [userBooking, setUserBooking] = React.useState<BookingDetails>(
+    new BookingDetails()
+  );
+  React.useEffect(() => {
+    const bookingDetails = new BookingDetails();
+    bookingDetails.hotel_Firebase_Id = props.hotelInfo.hotel_Firebase_Unique_Id;
+    bookingDetails.hotel_Sanity_Id = props.hotelInfo.id;
+    bookingDetails.hotel_Owner_Id = props.hotelInfo.hotel_Owner_Unique_Id;
+    setUserBooking(bookingDetails);
+  }, []);
+  const [roomCount, setRoomCount] = React.useState<number>(
+    userBooking.total_Rooms_Count
+  );
+  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(
+    userBooking.total_Room_Cost
+  );
+  const [totalTax, setTotalTax] = React.useState<number>(userBooking.total_Tax);
+  const [totalPrice, setTotalPrice] = React.useState<number>(
+    userBooking.total_Price
+  );
+  const [selectedRoomsList, setSelectedRoomsList] =
+    React.useState<RoomDetails[]>();
 
   return (
     <React.Fragment>
@@ -133,13 +145,7 @@ export default function HotelInformation(props: Props) {
             {/* Hotel Rooms */}
             <RoomsCard
               roomsList={props.hotelInfo.rooms}
-              selectedRoomsList={selectedRoomsList}
-              setSelectedRoomsList={setSelectedRoomsList}
-              hotel_firebase_Unique_Id = {props.hotelInfo.hotel_firebase_Unique_Id}
-              roomCount={roomCount}
-              totalRoomCost={totalRoomCost}
-              totalTax={totalTax}
-              totalPrice={totalPrice}
+              userBooking={userBooking}
               setRoomCount={setRoomCount}
               setTotalRoomCost={setTotalRoomCost}
               setTotalTax={setTotalTax}
@@ -162,15 +168,10 @@ export default function HotelInformation(props: Props) {
 
           {/* Booking Card */}
           <BookingCard
-            selectedRoomsList={selectedRoomsList}
-            setSelectedRoomsList={setSelectedRoomsList}
-            roomCount={roomCount}
+            userBooking={userBooking}
             setRoomCount={setRoomCount}
-            totalRoomCost={totalRoomCost}
             setTotalRoomCost={setTotalRoomCost}
-            totalTax={totalTax}
             setTotalTax={setTotalTax}
-            totalPrice={totalPrice}
             setTotalPrice={setTotalPrice}
           />
         </motion.div>
@@ -195,7 +196,8 @@ export async function getServerSideProps(context: any) {
   const hotelInfoQuery = groq`
     *[_type == "hotel" && (slug.current == "${slug_Name}" || id == "${hotel_id}")] {
       address,
-      hotel_firebase_Unique_Id,
+      "hotel_Firebase_Unique_Id":hotel_firebase_Unique_Id,
+      hotel_Owner_Unique_Id,
       "amenities_List":amenities[]->{
         _id,
         name,

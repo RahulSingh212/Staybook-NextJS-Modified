@@ -38,6 +38,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'hotel_Owner_Unique_Id',
+      title: 'Hotel Owner Unique ID',
+      type: 'string',
+    }),
+    defineField({
       name: 'card_amenities',
       title: 'Card Amenities',
       type: 'string',

@@ -24,14 +24,7 @@ import {
 
 type Props = {
   roomInfo: any;
-  selectedRoomsList: any[];
-  setSelectedRoomsList: Function;
-
-  hotel_firebase_Unique_Id: String;
-  roomCount: number;
-  totalRoomCost: number;
-  totalTax: number;
-  totalPrice: number;
+  userBooking: BookingDetails;
   setRoomCount: Function;
   setTotalRoomCost: Function;
   setTotalTax: Function;
@@ -39,6 +32,8 @@ type Props = {
 };
 
 import PlanCard from "./PlanCard";
+import { RoomDetails } from "@/widgets/bookings/roomDetails";
+import { BookingDetails } from "@/widgets/bookings/bookingDetails";
 
 export default function RoomInfo(props: Props) {
   return (
@@ -94,15 +89,9 @@ export default function RoomInfo(props: Props) {
             <PlanCard
               key={plan._key}
               planInfo={plan}
-              selectedRoomsList={props.selectedRoomsList}
-              setSelectedRoomsList={props.setSelectedRoomsList}
-
-              hotel_firebase_Unique_Id={props.hotel_firebase_Unique_Id}
-              hotel_Room_Type={props.roomInfo.type}
-              roomCount={props.roomCount}
-              totalRoomCost={props.totalRoomCost}
-              totalTax={props.totalTax}
-              totalPrice={props.totalPrice}
+              roomName={props.roomInfo.type}
+              roomInfo={props.roomInfo.info}
+              userBooking={props.userBooking}
               setRoomCount={props.setRoomCount}
               setTotalRoomCost={props.setTotalRoomCost}
               setTotalTax={props.setTotalTax}

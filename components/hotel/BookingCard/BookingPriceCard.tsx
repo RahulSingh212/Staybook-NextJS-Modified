@@ -79,7 +79,10 @@ export default function BookingPriceCard(props: Props) {
             </motion.div>
           </motion.div>
           <motion.div className={``}>
-            <p className={`text-lg text-gray-400 font-medium`}>1 Room</p>
+            <p className={`text-lg text-gray-400 font-medium`}>
+              {props.planInfo.room_Count}&nbsp;
+              {props.planInfo.room_Count === 1 ? "Room" : "Rooms"}
+            </p>
           </motion.div>
         </motion.div>
       </motion.div>

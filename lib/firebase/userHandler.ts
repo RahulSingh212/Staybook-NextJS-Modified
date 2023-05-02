@@ -164,6 +164,7 @@ export const getUserBookings = async (userAccessTokenObject: any) => {
       roomInfo.room_Id = room.id;
       roomInfo.room_Name = room.data().room_Name;
       roomInfo.room_Info = room.data().room_Info;
+      roomInfo.room_Count = room.data().room_Count;
       roomInfo.plan_Id = room.data().plan_Id;
       roomInfo.plan_Name = room.data().plan_Name;
       roomInfo.plan_Info = room.data().plan_Info;

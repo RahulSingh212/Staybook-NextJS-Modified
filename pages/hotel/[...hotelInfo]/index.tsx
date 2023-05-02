@@ -34,9 +34,26 @@ type Props = {
   hotel_id: any;
 };
 
+import Script from "next/script";
+import Razorpay from "razorpay";
+
 export default function HotelInformation(props: Props) {
+  // const [Razorpay, setRazorpay] = React.useState<any>(null);
+
+  // React.useEffect(() => {
+  //   async function loadRazorpay() {
+  //     const { default: Razorpay } = await import('razorpay');
+  //     setRazorpay(Razorpay);
+  //   }
+
+  //   if (typeof window !== 'undefined') {
+  //     loadRazorpay();
+  //   }
+  // }, []);
+
+
+  
   const router = useRouter();
-  // let userBooking = new BookingDetails();
   const [userBooking, setUserBooking] = React.useState<BookingDetails>(
     new BookingDetails()
   );

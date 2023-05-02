@@ -25,6 +25,7 @@ import {
 import BookingPriceCard from "./BookingPriceCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
+import Razorpay from "razorpay";
 
 type Props = {
   userBooking: BookingDetails;
@@ -34,7 +35,92 @@ type Props = {
   setTotalPrice: Function;
 };
 
-const hotelBookingHandler = async (userBooking: BookingDetails) =>  {
+export const makePayment = async (userBooking: BookingDetails) => {
+  const userResponse = await fetch("/api/booking/createNewRazorpayOrder", {
+    method: "POST",
+    body: JSON.stringify({ userBooking: userBooking }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // const options = {
+  //   name: "Rahul Singh",
+  //   currency: userResponse.currency,
+  //   amount: userResponse.amount,
+  //   order_Id: "order-id",
+  //   description: "description",
+  //   handler: function (response: any) {},
+  //   prefill: {
+  //     name: "Rahul Singh",
+  //     email: "rahulsinghrs174326@gmail.com",
+  //     contact: "7543041204",
+  //   },
+  // };
+
+  const data = await userResponse.json();
+  console.log(data);
+  console.log(window);
+
+  const options2 = {
+    key_id: "yKBWPaNCj4yeIrtu1NUbRIUC", // Enter the Key ID generated from the Dashboard
+    amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    currency: "INR",
+    name: "Acme Corp",
+    description: "Test Transaction",
+    image:
+      "https://lh3.googleusercontent.com/a/AEdFTp65wOTrRfPJH4y-cXtcNYNw6kbbrjkhQAEpWljMyw=s96-c",
+    order_id: data.id,
+    callback_url: "https://localhost:3000/api/paymentVerification",
+    prefill: {
+      name: "Rahul Singh",
+      email: "rahulsinghrs174326@gmail.com",
+      contact: "7543041204",
+    },
+    notes: {
+      address: "New Delhi",
+    },
+    theme: {
+      color: "#3399cc",
+    },
+  };
+
+  // const razor = new window.Razorpay.get(options2);
+  // console.log(razor);
+  // razor.open();
+  // paymentObj.open();
+  // // paymentObj.on("payment.failed", function (response: any) {
+  // //   alert("Payment failded. Please try again. Contact Support for help");
+  // // })
+
+  // window.onload = function () {
+  //   var options = {
+  //     key_id: "yKBWPaNCj4yeIrtu1NUbRIUC", // Enter the Key ID generated from the Dashboard
+  //     amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  //     currency: "INR",
+  //     name: "Acme Corp",
+  //     description: "Test Transaction",
+  //     image: "https://lh3.googleusercontent.com/a/AEdFTp65wOTrRfPJH4y-cXtcNYNw6kbbrjkhQAEpWljMyw=s96-c",
+  //     order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //     callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+  //     prefill: {
+  //       name: "Rahul Singh",
+  //       email: "rahulsinghrs174326@gmail.com",
+  //       contact: "7543041204",
+  //     },
+  //     notes: {
+  //       address: "New Delhi",
+  //     },
+  //     theme: {
+  //       color: "#3399cc",
+  //     },
+  //   };
+  //   const razorpay = new Razorpay(options);
+  //   // Your code here
+  // };
+};
+
+const hotelBookingHandler = async (userBooking: BookingDetails) => {
   const response = await fetch("/api/booking/setHotelBooking", {
     method: "POST",
     body: JSON.stringify({
@@ -47,7 +133,7 @@ const hotelBookingHandler = async (userBooking: BookingDetails) =>  {
 
   const data = await response.json();
   console.log(data);
-}
+};
 
 export const stayflexiHandler = async (
   hotelId: any,
@@ -94,6 +180,16 @@ export default function BookingCard(props: Props) {
     router.query.num_nights,
   ]);
 
+  // React.useEffect(() => {
+  //   const script = document.createElement('script');
+  //   script.src = '/razorpay__client';
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
+
   const fetchStayFlexiHotelPrices = async () => {
     const fromDate = String(moment(checkin).format("DD-MM-YYYY"));
     const toDate = String(moment(checkout).format("DD-MM-YYYY"));
@@ -104,7 +200,7 @@ export default function BookingCard(props: Props) {
   const createNewHotelBooking = async () => {
     const responseData = await hotelBookingHandler(props.userBooking);
     console.log(responseData);
-  }
+  };
 
   return (
     <React.Fragment>
@@ -214,7 +310,8 @@ export default function BookingCard(props: Props) {
 
         <motion.div
           className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
-          onClick={createNewHotelBooking}
+          onClick={makePayment.bind(null, props.userBooking)}
+          // onClick={createNewHotelBooking}
         >
           Book Now!
         </motion.div>

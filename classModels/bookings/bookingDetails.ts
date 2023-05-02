@@ -14,6 +14,7 @@ export class BookingDetails {
   user_Email_Id: string = "";
   user_Name: string = "";
   user_Phone_Number: String = "";
+  user_Address: String = "";
   total_Rooms_Count: number = 0;
   total_Room_Cost: number = 0;
   total_Tax: number = 0;
@@ -24,6 +25,11 @@ export class BookingDetails {
   booking_Time: Date = new Date();
   checkin_Time: Date = new Date();
   checkout_Time: Date = addDays(new Date(), 1);
+
+  razorpay_Payment_Id: string = "";
+  razorpay_Order_Id: string = "";
+  razorpay_Signature_Id: string = "";
+  receipt_Id: string = "";
 
   //   constructor() {}
 
@@ -56,33 +62,39 @@ export class BookingDetails {
   }
 
   addNewRoom(roomInfo: RoomDetails) {
-    this.roomsList.push(roomInfo);
+    let chk = false,
+      idx = -1;
+    for (let i = 0; i < this.roomsList.length; i++) {
+      if (roomInfo.compareRooms(this.roomsList[i])) {
+        chk = true;
+        idx = i;
+        break;
+      }
+    }
+
+    if (chk) this.roomsList[idx].room_Count += 1;
+    else this.roomsList.push(roomInfo);
+
     this.total_Rooms_Count += 1;
     this.total_Room_Cost += roomInfo.plan_Price + roomInfo.num_Children * 1000;
-    this.total_Room_Cost.toFixed(2);
+    this.total_Room_Cost = Number(this.total_Room_Cost.toFixed(2));
     this.total_Tax = this.total_Room_Cost * 0.12;
-    this.total_Tax.toFixed(2);
+    this.total_Tax = Number(this.total_Tax.toFixed(2));
     this.total_Price = this.total_Room_Cost * 1.12;
-    this.total_Price.toFixed(2);
+    this.total_Price = Number(this.total_Price.toFixed(2));
   }
 
   updateChildToRoom(planIdx: number, val: number) {
-    if (val === 1) {
-      this.roomsList[planIdx].num_Children = 1;
-      this.total_Room_Cost += 1000;
-      this.total_Tax = this.total_Room_Cost * 0.12;
-      this.total_Price = this.total_Room_Cost * 1.12;
-    } else {
-      this.roomsList[planIdx].num_Children = 0;
-      this.total_Room_Cost -= 1000;
-      this.total_Tax = this.total_Room_Cost * 0.12;
-      this.total_Price = this.total_Room_Cost * 1.12;
-    }
+    this.total_Room_Cost -= this.roomsList[planIdx].num_Children * this.roomsList[planIdx].room_Count * 1000;
+    this.total_Room_Cost += val * this.roomsList[planIdx].room_Count * 1000;
+    this.total_Tax = this.total_Room_Cost * 0.12;
+    this.total_Price = this.total_Room_Cost * 1.12;
+    this.roomsList[planIdx].num_Children = val;
   }
 
   removeRoom(roomInfo: RoomDetails, planIdx: number) {
-    this.total_Rooms_Count -= 1;
-    this.total_Room_Cost -= roomInfo.plan_Price + roomInfo.num_Children * 1000;
+    this.total_Rooms_Count -= roomInfo.room_Count;
+    this.total_Room_Cost -= (roomInfo.plan_Price * roomInfo.room_Count) + (roomInfo.num_Children * roomInfo.room_Count * 1000);
     this.total_Tax = this.total_Room_Cost * 0.12;
     this.total_Price = this.total_Room_Cost * 1.12;
     this.roomsList.splice(planIdx, 1);

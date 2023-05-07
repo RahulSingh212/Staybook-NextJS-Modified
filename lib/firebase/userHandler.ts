@@ -107,6 +107,7 @@ export const createUserAccount = async (
     User_Mobile_Number: "",
     User_Alternate_Mobile_Number: "",
     User_Email_Id: userEmailId,
+    User_Permanent_Address: "",
     User_Coins: "0",
   });
 };
@@ -192,11 +193,14 @@ export const getUserBookings = async (userAccessTokenObject: any) => {
     bookingInfo.total_Tax = booking.data().total_Tax;
     bookingInfo.total_Price = booking.data().total_Price;
     bookingInfo.payment_Made = booking.data().payment_Made;
-    bookingInfo.payment_Id = booking.data().payment_Id;
     bookingInfo.amount_Paid = booking.data().amount_Paid;
     bookingInfo.booking_Time = new Date(booking.data().booking_Time);
     bookingInfo.checkin_Time = new Date(booking.data().checkin_Time);
     bookingInfo.checkout_Time = new Date(booking.data().checkout_Time);
+    bookingInfo.razorpay_Payment_Id = booking.data().razorpay_Payment_Id;
+    bookingInfo.razorpay_Order_Id = booking.data().razorpay_Order_Id;
+    bookingInfo.razorpay_Signature_Id = booking.data().razorpay_Signature_Id;
+    bookingInfo.receipt_Id = booking.data().receipt_Id;
 
     bookingList.push(bookingInfo);
   }

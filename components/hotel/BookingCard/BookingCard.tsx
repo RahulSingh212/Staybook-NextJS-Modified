@@ -26,13 +26,21 @@ import BookingPriceCard from "./BookingPriceCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import Razorpay from "razorpay";
+import {
+  hotelBookingHandler,
+  payOnHotelBookingHandler,
+} from "@/lib/booking/bookingHandler";
 
 type Props = {
   userBooking: BookingDetails;
+  setUserBooking: Function;
   setRoomCount: Function;
   setTotalRoomCost: Function;
   setTotalTax: Function;
   setTotalPrice: Function;
+
+  roomSelectHandler:Function;
+  hotelBookingHandler: Function;
 };
 
 export const makePayment = async (userBooking: BookingDetails) => {
@@ -120,21 +128,6 @@ export const makePayment = async (userBooking: BookingDetails) => {
   // };
 };
 
-const hotelBookingHandler = async (userBooking: BookingDetails) => {
-  const response = await fetch("/api/booking/setHotelBooking", {
-    method: "POST",
-    body: JSON.stringify({
-      userBooking: userBooking,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await response.json();
-  console.log(data);
-};
-
 export const stayflexiHandler = async (
   hotelId: any,
   fromDate: any,
@@ -197,9 +190,12 @@ export default function BookingCard(props: Props) {
     console.log(responseData);
   };
 
-  const createNewHotelBooking = async () => {
-    const responseData = await hotelBookingHandler(props.userBooking);
-    console.log(responseData);
+  const formHanlder = async () => {
+    props.roomSelectHandler();
+  }
+
+  const bookHotelHandler = async (event: any) => {
+    props.hotelBookingHandler();
   };
 
   return (
@@ -308,10 +304,22 @@ export default function BookingCard(props: Props) {
           </motion.div>
         </motion.div>
 
+        {/* <label
+          className={`relative flex w-full space-x-2 mb-2 hover:underline`}
+        >
+          <input
+            type="checkbox"
+            className={`mr-2 cursor-pointer`}
+            checked={props.formVisibility}
+            // onClick={makePayment.bind(null, props.userBooking)}
+            onChange={checkBoxHandler}
+          />
+          Pay at Hotel
+        </label> */}
+
         <motion.div
           className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
-          onClick={makePayment.bind(null, props.userBooking)}
-          // onClick={createNewHotelBooking}
+          onClick={formHanlder}
         >
           Book Now!
         </motion.div>

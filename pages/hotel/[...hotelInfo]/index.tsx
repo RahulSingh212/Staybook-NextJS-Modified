@@ -25,6 +25,11 @@ import { RoomDetails } from "@/classModels/bookings/roomDetails";
 
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 
+import PayOnHotelForm from "@/components/models/payOnHotelForm/PayOnHotelForm";
+import LoadingModel from "@/components/models/Loading/LoadingModel";
+import ErrorModel from "@/components/models/Error/ErrorModel";
+import SuccessModel from "@/components/models/success/SuccessModal";
+
 type Props = {
   hotelInfo: any;
   checkin: any;
@@ -36,8 +41,18 @@ type Props = {
 
 import Script from "next/script";
 import Razorpay from "razorpay";
+import { fetchUserPersonalDetails } from "@/lib/booking/bookingHandler";
 
 export default function HotelInformation(props: Props) {
+  const [formVisibility, setFormVisibility] = React.useState<boolean>(false);
+  const [loadingModelVisible, setLoadingModel] = React.useState<boolean>(false);
+
+  const [errorModelVisible, setErrorModel] = React.useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
+
+  const [successModelVisible, setSuccessModel] = React.useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = React.useState<string>("");
+
   // const [Razorpay, setRazorpay] = React.useState<any>(null);
 
   // React.useEffect(() => {
@@ -51,8 +66,6 @@ export default function HotelInformation(props: Props) {
   //   }
   // }, []);
 
-
-  
   const router = useRouter();
   const [userBooking, setUserBooking] = React.useState<BookingDetails>(
     new BookingDetails()
@@ -80,6 +93,30 @@ export default function HotelInformation(props: Props) {
   const [selectedRoomsList, setSelectedRoomsList] =
     React.useState<RoomDetails[]>();
 
+  const roomSelectHandler = async () => {
+    if (userBooking.roomsList.length === 0) {
+      setErrorMessage("Please select a room before creating a booking!");
+      setErrorModel(true);
+      return;
+    }
+    const response = await fetchUserPersonalDetails(userBooking);
+    userBooking.user_Name = response.user_Name;
+    userBooking.user_Phone_Number = response.user_Phone_Number;
+    userBooking.user_Email_Id = response.user_Email_Id;
+    setUserBooking(userBooking);
+    // console.log(response);
+    setFormVisibility(!formVisibility);
+  };
+
+  const hotelBookingHandler = async (event: any) => {
+    // setFormVisibility(false);
+    // setLoadingModel(true);
+    const data = await hotelBookingHandler(userBooking);
+    setLoadingModel(false);
+    setSuccessMessage("Your hotel was booked successfully.");
+    setSuccessModel(true);
+  };
+
   return (
     <React.Fragment>
       <Head>
@@ -90,6 +127,35 @@ export default function HotelInformation(props: Props) {
       </Head>
 
       <main className={`w-screen`}>
+        <PayOnHotelForm
+          userBooking={userBooking}
+          formVisibility={formVisibility}
+          setFormVisibility={setFormVisibility}
+
+          setSuccessModel={setSuccessModel}
+          setSuccessMessage={setSuccessMessage}
+
+          setErrorMessage={setErrorMessage}
+          setErrorModel={setErrorModel}
+
+          setLoadingModel={setLoadingModel}
+        />
+        <LoadingModel
+          modelVisible={loadingModelVisible}
+          setLoadingModel={setLoadingModel}
+        />
+        <ErrorModel
+          errorMsg={errorMessage}
+          setErrorMessage={setErrorMessage}
+          modelVisible={errorModelVisible}
+          setErrorModel={setErrorModel}
+        />
+        <SuccessModel
+          successMsg={successMessage}
+          successModelVisible={successModelVisible}
+          setSuccessModel={setSuccessModel}
+          setSuccessMessage={setSuccessMessage}
+        />
         <motion.div className={`relative w-screen flex flex-col mb-5`}>
           <ImageGalleryCard hotelImgList={props.hotelInfo.image_List} />
         </motion.div>
@@ -189,10 +255,13 @@ export default function HotelInformation(props: Props) {
           {/* Booking Card */}
           <BookingCard
             userBooking={userBooking}
+            setUserBooking={setUserBooking}
             setRoomCount={setRoomCount}
             setTotalRoomCost={setTotalRoomCost}
             setTotalTax={setTotalTax}
             setTotalPrice={setTotalPrice}
+            roomSelectHandler={roomSelectHandler}
+            hotelBookingHandler={hotelBookingHandler}
           />
         </motion.div>
       </main>

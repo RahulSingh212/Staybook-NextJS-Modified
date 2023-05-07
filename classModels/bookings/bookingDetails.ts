@@ -11,9 +11,9 @@ export class BookingDetails {
   hotel_Firebase_Id: string = "";
   hotel_Sanity_Id: string = "";
   user_Unique_Id: string = "";
-  user_Email_Id: string = "";
   user_Name: string = "";
-  user_Phone_Number: String = "";
+  user_Email_Id: string = "";
+  user_Phone_Number: string = "";
   user_Address: String = "";
   total_Rooms_Count: number = 0;
   total_Room_Cost: number = 0;

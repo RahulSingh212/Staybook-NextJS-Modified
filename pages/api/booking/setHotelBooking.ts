@@ -37,7 +37,7 @@ const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
     db,
     HOTEL_BOOKINGS_COLLECTION_NAME,
     userBooking.hotel_Owner_Id,
-    BOOKED_ROOMS_COLLECTION_NAME,
+    userBooking.hotel_Firebase_Id,
     userBookingId
   );
 
@@ -58,13 +58,18 @@ const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
     payment_Made:
       Math.floor(userBooking.amount_Paid) ===
       Math.floor(userBooking.total_Price),
-    payment_Id: "",
     amount_Paid: userBooking.amount_Paid,
     booking_Status: true,
     user_Unique_Id: userBooking.user_Unique_Id,
     user_Name: userBooking.user_Name,
+    user_Address: userBooking.user_Address,
     user_Email_Id: userBooking.user_Email_Id,
     user_Phone_Number: userBooking.user_Phone_Number,
+
+    razorpay_Payment_Id: userBooking.razorpay_Payment_Id,
+    razorpay_Order_Id: userBooking.razorpay_Order_Id,
+    razorpay_Signature_Id: userBooking.razorpay_Signature_Id,
+    receipt_Id: userBooking.receipt_Id,
   });
 
   for (let i = 0; i < userBooking.roomsList.length; i++) {
@@ -73,7 +78,7 @@ const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
         db,
         HOTEL_BOOKINGS_COLLECTION_NAME,
         userBooking.hotel_Owner_Id,
-        BOOKED_ROOMS_COLLECTION_NAME,
+        userBooking.hotel_Firebase_Id,
         userBookingId,
         HOTEL_BOOKINGS_ROOMS_COLLECTION_NAME
       ),
@@ -122,13 +127,18 @@ const userHotelBookingListing = async (userBooking: any) => {
       payment_Made:
         userBooking.amount_Paid.toFixed(2) ===
         userBooking.total_Price.toFixed(2),
-      payment_Id: "",
       amount_Paid: userBooking.amount_Paid,
       booking_Status: true,
       user_Unique_Id: userBooking.user_Unique_Id,
       user_Name: userBooking.user_Name,
+      user_Address: userBooking.user_Address,
       user_Email_Id: userBooking.user_Email_Id,
       user_Phone_Number: userBooking.user_Phone_Number,
+
+      razorpay_Payment_Id: userBooking.razorpay_Payment_Id,
+      razorpay_Order_Id: userBooking.razorpay_Order_Id,
+      razorpay_Signature_Id: userBooking.razorpay_Signature_Id,
+      receipt_Id: userBooking.receipt_Id,
     }
   );
 

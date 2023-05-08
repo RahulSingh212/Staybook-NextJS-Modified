@@ -28,7 +28,6 @@ import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import Razorpay from "razorpay";
 import {
   hotelBookingHandler,
-  payOnHotelBookingHandler,
 } from "@/lib/booking/bookingHandler";
 
 type Props = {
@@ -321,7 +320,7 @@ export default function BookingCard(props: Props) {
           className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
           onClick={formHanlder}
         >
-          Book Now!
+          {`I'll reserve`}
         </motion.div>
       </motion.div>
     </React.Fragment>

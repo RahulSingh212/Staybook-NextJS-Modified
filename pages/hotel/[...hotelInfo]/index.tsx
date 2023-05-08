@@ -1,7 +1,5 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -24,6 +22,7 @@ import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 
 import { LocationMarkerIcon } from "@heroicons/react/solid";
+import PaymentInformation from "@/components/hotel/PaymentInfo/PaymentInformation";
 
 import PayOnHotelForm from "@/components/models/payOnHotelForm/PayOnHotelForm";
 import LoadingModel from "@/components/models/Loading/LoadingModel";
@@ -49,10 +48,6 @@ export default function HotelInformation(props: Props) {
 
   const [errorModelVisible, setErrorModel] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-
-  const [successModelVisible, setSuccessModel] = React.useState<boolean>(false);
-  const [successMessage, setSuccessMessage] = React.useState<string>("");
-
   // const [Razorpay, setRazorpay] = React.useState<any>(null);
 
   // React.useEffect(() => {
@@ -78,6 +73,18 @@ export default function HotelInformation(props: Props) {
     bookingDetails.hotel_Image_Url = props.hotelInfo.image_List[0];
     bookingDetails.hotel_Name = props.hotelInfo.name;
     bookingDetails.hotel_Landmark = props.hotelInfo.landmark;
+
+    let rm = new RoomDetails();
+    rm.room_Count = 1;
+    rm.num_Guests = 2;
+    rm.room_Name = props.hotelInfo.rooms[0].type;
+    rm.room_Info = props.hotelInfo.rooms[0].info;
+    rm.plan_Name = props.hotelInfo.rooms[0].plans[0].title;
+    rm.plan_Info = props.hotelInfo.rooms[0].plans[0].info;
+    rm.plan_Price = props.hotelInfo.rooms[0].plans[0].price;
+    bookingDetails.roomsList.push(rm);
+    bookingDetails.updateBookingDetails();
+    console.log(bookingDetails);
     setUserBooking(bookingDetails);
   }, []);
   const [roomCount, setRoomCount] = React.useState<number>(
@@ -113,8 +120,6 @@ export default function HotelInformation(props: Props) {
     // setLoadingModel(true);
     const data = await hotelBookingHandler(userBooking);
     setLoadingModel(false);
-    setSuccessMessage("Your hotel was booked successfully.");
-    setSuccessModel(true);
   };
 
   return (
@@ -127,19 +132,6 @@ export default function HotelInformation(props: Props) {
       </Head>
 
       <main className={`w-screen`}>
-        <PayOnHotelForm
-          userBooking={userBooking}
-          formVisibility={formVisibility}
-          setFormVisibility={setFormVisibility}
-
-          setSuccessModel={setSuccessModel}
-          setSuccessMessage={setSuccessMessage}
-
-          setErrorMessage={setErrorMessage}
-          setErrorModel={setErrorModel}
-
-          setLoadingModel={setLoadingModel}
-        />
         <LoadingModel
           modelVisible={loadingModelVisible}
           setLoadingModel={setLoadingModel}
@@ -149,12 +141,6 @@ export default function HotelInformation(props: Props) {
           setErrorMessage={setErrorMessage}
           modelVisible={errorModelVisible}
           setErrorModel={setErrorModel}
-        />
-        <SuccessModel
-          successMsg={successMessage}
-          successModelVisible={successModelVisible}
-          setSuccessModel={setSuccessModel}
-          setSuccessMessage={setSuccessMessage}
         />
         <motion.div className={`relative w-screen flex flex-col mb-5`}>
           <ImageGalleryCard hotelImgList={props.hotelInfo.image_List} />
@@ -264,6 +250,15 @@ export default function HotelInformation(props: Props) {
             hotelBookingHandler={hotelBookingHandler}
           />
         </motion.div>
+        {formVisibility && (
+          <PaymentInformation
+            userBooking={userBooking}
+            setUserBooking={setUserBooking}
+            setErrorMessage={setErrorMessage}
+            setErrorModel={setErrorModel}
+            setLoadingModel={setLoadingModel}
+          />
+        )}
       </main>
     </React.Fragment>
   );

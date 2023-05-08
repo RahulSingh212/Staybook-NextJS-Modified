@@ -20,7 +20,6 @@ export class BookingDetails {
   total_Tax: number = 0;
   total_Price: number = 0;
   payment_Made: boolean = false;
-  payment_Id: string = "";
   amount_Paid: number = 0;
   booking_Time: Date = new Date();
   checkin_Time: Date = new Date();
@@ -98,6 +97,19 @@ export class BookingDetails {
     this.total_Tax = this.total_Room_Cost * 0.12;
     this.total_Price = this.total_Room_Cost * 1.12;
     this.roomsList.splice(planIdx, 1);
+  }
+
+  updateBookingDetails() {
+    let tot = 0, roomCnt = 0;
+    for (let i = 0; i < this.roomsList.length; i++) {
+      tot += this.roomsList[i].plan_Price * this.roomsList[i].room_Count;
+      roomCnt += this.roomsList[i].room_Count;
+    }
+
+    this.total_Rooms_Count = roomCnt;
+    this.total_Room_Cost = tot;
+    this.total_Tax = tot * 0.12;
+    this.total_Price = tot * 1.12;
   }
 
   get getTotalRoomCount(): number {

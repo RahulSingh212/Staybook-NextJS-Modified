@@ -1,4 +1,3 @@
-import cookie from "js-cookie"; // front end cookie which is present on the front end side
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
   GOOGLE_LOGIN,

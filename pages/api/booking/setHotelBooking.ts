@@ -32,7 +32,9 @@ import {
   HOTEL_BOOKINGS_COLLECTION_NAME,
 } from "@/lib/helper";
 
-const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
+const shortid = require("shortid");
+
+const ownerHotelBookingList = async (userBooking: any, userBookingId: any, receiptId: string) => {
   const docBookingRef = doc(
     db,
     HOTEL_BOOKINGS_COLLECTION_NAME,
@@ -69,7 +71,7 @@ const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
     razorpay_Payment_Id: userBooking.razorpay_Payment_Id,
     razorpay_Order_Id: userBooking.razorpay_Order_Id,
     razorpay_Signature_Id: userBooking.razorpay_Signature_Id,
-    receipt_Id: userBooking.receipt_Id,
+    receipt_Id: receiptId,
   });
 
   for (let i = 0; i < userBooking.roomsList.length; i++) {
@@ -101,7 +103,7 @@ const ownerHotelBookingList = async (userBooking: any, userBookingId: any) => {
   return response;
 };
 
-const userHotelBookingListing = async (userBooking: any) => {
+const userHotelBookingListing = async (userBooking: any, receiptId:string) => {
   const userDocRef = await addDoc(
     collection(
       db,
@@ -138,7 +140,7 @@ const userHotelBookingListing = async (userBooking: any) => {
       razorpay_Payment_Id: userBooking.razorpay_Payment_Id,
       razorpay_Order_Id: userBooking.razorpay_Order_Id,
       razorpay_Signature_Id: userBooking.razorpay_Signature_Id,
-      receipt_Id: userBooking.receipt_Id,
+      receipt_Id: receiptId,
     }
   );
 
@@ -186,7 +188,6 @@ async function handler(req: any, res: any) {
   const receivedData = req.body;
   const { userBooking } = receivedData;
   //   const bookingObj = JSON.parse(userBooking);
-  console.log(userBooking);
 
   try {
     const cookies = parse(req.headers.cookie || "");
@@ -202,12 +203,15 @@ async function handler(req: any, res: any) {
       userBooking.user_Email_Id = userData1.email;
     }
 
-    const userDocRef = await userHotelBookingListing(userBooking);
-    const ownerDocRef = await ownerHotelBookingList(userBooking, userDocRef.id);
+    const receipt_Id = await shortid.generate();
+    const userDocRef = await userHotelBookingListing(userBooking, receipt_Id);
+    const ownerDocRef = await ownerHotelBookingList(userBooking, userDocRef.id, receipt_Id);
 
     res.status(201).json({
       userCredentials: userDocRef,
       ownerCredentails: ownerDocRef,
+      booking_Id: userDocRef.id,
+      receipt_Id: receipt_Id,
       error: null,
       message: "User access token value generated!",
     });
@@ -216,6 +220,8 @@ async function handler(req: any, res: any) {
     res.status(422).json({
       userCredentials: null,
       ownerCredentails: null,
+      booking_Id: "",
+      receipt_Id: "",
       error,
       message: "Error occoured",
     });

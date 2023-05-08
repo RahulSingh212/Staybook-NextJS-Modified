@@ -112,7 +112,7 @@ export default function BookingTile(props: Props) {
               <p
                 className={`text-red-500 text-3xl font-bold`}
               >{`₹. ${props.bookingInfo.total_Price}`}</p>
-              <p className={`text-sm text-gray-500`}>{`inclusive all taxes`}</p>
+              <p className={`text-sm text-gray-500`}>{`inclusive all taxes (${props.bookingInfo.amount_Paid === 0 ? 'pay at hotel' : 'amont paid'})`}</p>
             </div>
 
             <div

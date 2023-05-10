@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: ["icons8.com", "cdn.sanity.io", "lh3.googleusercontent.com"],
     disableStaticImages: true,

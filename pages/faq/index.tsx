@@ -87,7 +87,7 @@ export default function FrequentlyAskedQuestions(props: Props) {
             by email or message. What do I have to do?
           </h3>
           <p>
-            Ans. After completing the booking process, you'll receive a
+            Ans. After completing the booking process, you&apos;ll receive a
             confirmation e-mail only if you have entered the correct email ID.
             Also, you can contact the hotel reception and ask the managers for
             details.
@@ -153,12 +153,12 @@ export default function FrequentlyAskedQuestions(props: Props) {
             Ans. The Mobile Number and location of hotels are listed on the
             contact-us page of
           </p>
-          staybook.in, or in the hotel's description. They will also be shared
+          staybook.in, or in the hotel&apos;s description. They will also be shared
           after you have made the reservation in the confirmation email.
           <h3>Q21. Is it a private room and washroom?</h3>
           <p>Ans. Yes, your room is a private room with a personal washroom.</p>
           <h3>Q22. Is the hotel safe for couples?</h3>
-          <p>Ans. Yes, it's safe for couples.</p>
+          <p>Ans. Yes, it&apos;s safe for couples.</p>
           <h3>Q23. Is Air conditioning available in the Hotel Room?</h3>
           <p>
             Ans. Yes, all our rooms are equipped with air conditioning, which is
@@ -187,7 +187,7 @@ export default function FrequentlyAskedQuestions(props: Props) {
           </p>
           <h3>Q28. How far is Hotel from the New Delhi railway station?</h3>
           <p>
-            Ans. It's 10 minutes away only. The hotel is near the New Delhi
+            Ans. It&apos;s 10 minutes away only. The hotel is near the New Delhi
             railway station.
           </p>
           <h3>Q29. How can I get to the airport?</h3>
@@ -224,16 +224,3 @@ export default function FrequentlyAskedQuestions(props: Props) {
     </React.Fragment>
   );
 }
-
-// import React from 'react'
-// import '../styles/Misc.scss'
-
-// function FrequentlyAskedQuestions() {
-//   return (
-//     <>
-
-//     </>
-//   )
-// }
-
-// export default Faq

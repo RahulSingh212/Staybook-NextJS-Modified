@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 import classes from "./blogs.module.scss";
 import { groq } from "next-sanity";
@@ -65,16 +66,25 @@ export default function Blogs(props: Props) {
         <div className={classes.outerFloat}>
           <div className={classes.floating}>
             <div className={classes.innerFloat}>
-              <div onClick={() => {
-                router.push({pathname: '/hotel'});
-              }} className={`${classes.btn} ${classes['btn-primary']} cursor-pointer`}>
+              <div
+                onClick={() => {
+                  router.push({ pathname: "/hotel" });
+                }}
+                className={`${classes.btn} ${classes["btn-primary"]} cursor-pointer`}
+              >
                 Book Now
               </div>
             </div>
           </div>
         </div>
         <div className={classes.blogHeader}>
-          <img src={`/images/favicon.png`} alt="StayBook Hotels" />
+          <Image
+            src={`/images/favicon.png`}
+            alt="StayBook Hotels"
+            layout="fill"
+            objectFit="contain"
+            objectPosition="left"
+          />
           <h4 className={classes.heading}>Blog page</h4>
 
           <span className={classes["sr-only"]}>Search</span>

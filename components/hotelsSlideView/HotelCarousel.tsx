@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, motionValue, useAnimation } from "framer-motion";
+// import { motion, motionValue, useAnimation } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -10,13 +10,7 @@ type Props = {
   hotelsList: any[];
 };
 
-const boxVariant = {
-  visible: { opacity: 1, translateX: 0, transition: { duration: 1 } },
-  hidden: { opacity: 0, translateX: "15" },
-};
-
 export default function HotelCarousel(props: Props) {
-  const control = useAnimation();
   const [hotelIdx, setHotelIdx] = React.useState<number>(0);
 
   React.useEffect(() => {
@@ -38,10 +32,10 @@ export default function HotelCarousel(props: Props) {
         {/* <motion.div className={`flex justify-center items-center mt-5`}>
           <h1 className={`text-4xl sm:text-6xl `}>Our Hotels</h1>
         </motion.div> */}
-        <motion.div
+        <div
           className={`relative w-screen h-full md:h-[700px] lg:h-[500px] flex flex-col md:flex-row justify-center items-center p-5`}
         >
-          <motion.div
+          <div
             className={`relative flex flex-col items-center justify-center w-[80%] h-56 sm:w-[70%] sm:h-64 md:w-1/2 md:h-full`}
           >
             <div
@@ -72,8 +66,8 @@ export default function HotelCarousel(props: Props) {
                 className={`rounded-lg drop-shadow-xl`}
               />
             </div>
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             className={`flex flex-col items-center justify-center w-[100%] md:w-[50%] h-[100%] mt-8`}
           >
             <div className={`py-5 px-2`}>
@@ -84,14 +78,14 @@ export default function HotelCarousel(props: Props) {
             <div className={`text-justify py-5 px-2 sm:px-5`}>
               {props.hotelsList[hotelIdx].description}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        <motion.div
+        <div
           className={`relative flex flex-row items-center justify-center align-middle mb-5`}
         >
           {props.hotelsList.map((hotel: any, index: number) => (
-            <motion.div
+            <div
               className={`flex flex-row items-center align-middle`}
               key={hotel._id}
             >
@@ -100,9 +94,9 @@ export default function HotelCarousel(props: Props) {
               ) : (
                 <HotelRing hotelIndex={index} setHotelIdx={setHotelIdx} hotel_Name={hotel.hotel_Name} />
               )}
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </React.Fragment>
   );

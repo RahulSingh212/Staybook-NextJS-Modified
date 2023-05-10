@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, motionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import "react-date-range/dist/styles.css"; // main style file

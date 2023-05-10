@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import classes from "./Footer.module.scss";
 import moment from "moment";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   const router = useRouter();
@@ -10,7 +12,7 @@ export default function Footer() {
     router.push({
       pathname: url,
     });
-  }
+  };
 
   const hotelUrlHandler = (hotelId: string) => {
     router.push({
@@ -23,6 +25,7 @@ export default function Footer() {
       },
     });
   };
+
   const [data, setData] = useState<any[]>([
     {
       name: "Hotel Aira Xing by Staybook",
@@ -44,58 +47,78 @@ export default function Footer() {
   ]);
 
   return (
-    <div className={`${classes.footerBody} ${classes.noprint} mt-16`}>
-      <img src={`/images/footerBg.svg`} alt={"StayBook"} />
+    <React.Fragment>
+      <div className={`${classes.footerBody} ${classes.noprint} mt-16`}>
+        <Image
+          src={`/images/footerBg.svg`}
+          alt="StayBook"
+          layout="fill"
+          objectFit="contain"
+          objectPosition="left"
+        />
 
-      <div className={classes.logoCircle}>
-        <img src={`/images/logo.png`} alt={"StayBook"} />
-        <div className={classes.line}></div>
-        <p>2022 © StayBook, New Delhi. All rights reserved</p>
-        <a href="Tel: +91-8373929299">Ph. no: +91-8373929299</a>
-        <a href="mailto: booking@staybook.in">booking@staybook.in</a>
-      </div>
+        <div className={classes.logoCircle}>
+          <Image
+            src={`/images/logo.png`}
+            alt={"StayBook"}
+            layout="fill"
+            objectFit="contain"
+            objectPosition="center"
+          />
+          <div className={`${classes.line}`}></div>
+          <p>2022 © StayBook, New Delhi. All rights reserved</p>
+          <Link href="Tel: +91-8373929299">Ph. no: +91-8373929299</Link>
+          <Link href="mailto: booking@staybook.in">booking@staybook.in</Link>
+        </div>
 
-      <div className={`${classes.linkCard} ${classes.noprint}`}>
-        <div className={classes.heading}>
-          <h2>Hotels:</h2>
+        <div className={`${classes.linkCard} ${classes.noprint}`}>
+          <div className={classes.heading}>
+            <h2>Hotels:</h2>
             {data.map((hotel: any, index: number) => (
-              <div key={index} className={`text-red-400 my-1 cursor-pointer hover:underline text-sm`} onClick={hotelUrlHandler.bind(null, hotel.hotelId)}>{hotel.name}</div>
+              <div
+                key={index}
+                className={`text-red-400 my-1 cursor-pointer hover:underline text-sm`}
+                onClick={hotelUrlHandler.bind(null, hotel.hotelId)}
+              >
+                {hotel.name}
+              </div>
             ))}
-        </div>
+          </div>
 
-        <div className={classes.heading}>
-          <h2>Socials:</h2>
-          <a href="https://www.instagram.com/staybook_1/" target="_blank">
-            Instagram
-          </a>
-          <a
-            href="https://www.facebook.com/budgetfriendlyhotel?paipv=0&eav=AfZ-waWz6OajACPaAqHeTptaNS9Rt4i4iwbdVK0jE5KwoQfbZ6GsLkTVHLjTpMMeyxk"
-            target="_blank"
-          >
-            Facebook
-          </a>
-          <a href="https://twitter.com/stayboook" target="_blank">
-            Twitter
-          </a>
-        </div>
+          <div className={classes.heading}>
+            <h2>Socials:</h2>
+            <Link href="https://www.instagram.com/staybook_1/" target="_blank">
+              Instagram
+            </Link>
+            <Link
+              href="https://www.facebook.com/budgetfriendlyhotel?paipv=0&eav=AfZ-waWz6OajACPaAqHeTptaNS9Rt4i4iwbdVK0jE5KwoQfbZ6GsLkTVHLjTpMMeyxk"
+              target="_blank"
+            >
+              Facebook
+            </Link>
+            <Link href="https://twitter.com/stayboook" target="_blank">
+              Twitter
+            </Link>
+          </div>
 
-        <div className={classes.heading}>
-          <h2>Interests:</h2>
-          <a href="/packages">Tours and Packages</a>
-          <a href="/blogs">Blogs</a>
-          <a href="/about">About Us</a>
-          <a href="/contact">Contact Us</a>
-          <a href="/faq">FAQ</a>
-        </div>
+          <div className={classes.heading}>
+            <h2>Interests:</h2>
+            <Link href="/packages">Tours and Packages</Link>
+            <Link href="/blogs">Blogs</Link>
+            <Link href="/about">About Us</Link>
+            <Link href="/contact">Contact Us</Link>
+            <Link href="/faq">FAQ</Link>
+          </div>
 
-        <div className={classes.heading}>
-          <h2>Misc:</h2>
-          <a href={"/tnc"}>Terms and Conditions</a>
-          <a href={"/policy/privacy-policy"}>Privacy Policy</a>
-          <a href={"/policy/refund-policy"}>Refund Policy</a>
-          <a href={"/policy/general-policy"}>General Policy</a>
+          <div className={classes.heading}>
+            <h2>Misc:</h2>
+            <Link href={"/tnc"}>Terms and Conditions</Link>
+            <Link href={"/policy/privacy-policy"}>Privacy Policy</Link>
+            <Link href={"/policy/refund-policy"}>Refund Policy</Link>
+            <Link href={"/policy/general-policy"}>General Policy</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }

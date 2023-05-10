@@ -15,7 +15,6 @@ import { Calendar } from "react-date-range";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import CalendarSidebar from "@/components/calendar/Sidebar";
 import CalendarMonth from "@/components/calendar/Month";
-import EventModal from "@/components/calendar/EventModal";
 
 type Props = {
   userDetails: any;
@@ -56,7 +55,6 @@ export default function HotelPriceCalendar(props: Props) {
       <main
         className={`w-screen flex justify-center align-middle items-center`}
       >
-        {showEventModal && <EventModal />}
         {/* <button onClick={fetchHotelPrices}>fetch</button> */}
 
         <div className="relative h-full w-[97.5%] flex flex-col justify-start">

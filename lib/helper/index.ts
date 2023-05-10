@@ -70,12 +70,6 @@ export async function getErrorMessage(errorValue: String) {
   }
 }
 
-export async function hashToken(token: string) {
-  const hashedToken = await hash(token, 12);
-
-  return hashedToken;
-}
-
 export const extractJWTValues = async (token: any) => {
   try {
     const decodedValue = await jwt_decode(token);

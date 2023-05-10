@@ -3,6 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["icons8.com", "cdn.sanity.io"],
+    disableStaticImages: true,
+    disableServerSideCache: true,
   },
   env: {
     RAZORPAY_API_KEY: process.env.RAZORPAY_API_SECRET_KEY,

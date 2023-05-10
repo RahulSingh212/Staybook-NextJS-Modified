@@ -1,13 +1,9 @@
 import React from "react";
 import { motion, motionValue, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
-import Head from "next/head";
 
 import classes from "./PayOnHotelForm.module.scss";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import PhoneInput from "react-phone-input-2";
-import allCountries from "react-phone-number-input";
 import "react-phone-input-2/lib/material.css";
 import { Textarea, theme } from "@nextui-org/react";
 import { hotelBookingHandler } from "@/lib/booking/bookingHandler";

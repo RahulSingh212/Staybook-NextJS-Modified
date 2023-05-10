@@ -1,8 +1,8 @@
 import React from "react";
 import { motion, motionValue, animate } from "framer-motion";
-import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
+import Cookies from "js-cookie";
 
 import {
   GlobeAltIcon,
@@ -12,10 +12,21 @@ import {
 } from "@heroicons/react/solid";
 
 import SearchBar from "./searchbar/SearchBar";
+import { USER_ACCESS_TOKEN } from "@/lib/helper";
+import { fetchUserImageUrl } from "@/lib/firebase/userHandler";
 
 type Props = {};
 
 export default function Navbar(props: Props) {
+  const [image_Url, setImage_Url] = React.useState<string>("/user.png");
+  React.useEffect(() => {
+    async function fetchData() {
+      const imgUrl = await fetchUserImageUrl();
+      setImage_Url(imgUrl);
+    }
+    fetchData();
+  }, []);
+
   return (
     <React.Fragment>
       <header
@@ -48,13 +59,13 @@ export default function Navbar(props: Props) {
             <MenuIcon className={`h-6`} />
             {/* <UserCircleIcon className={`h-8`} /> */}
             <Image
-              src={`/logo.png`}
+              src={image_Url}
               alt="icon"
-              height={25}
-              width={25}
+              height={35}
+              width={35}
               objectFit="contain"
               objectPosition="left"
-              className={``}
+              className={`rounded-full`}
             />
           </div>
         </Link>

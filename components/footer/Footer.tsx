@@ -59,7 +59,7 @@ export default function Footer() {
         <div className={classes.heading}>
           <h2>Hotels:</h2>
             {data.map((hotel: any, index: number) => (
-              <div className={`text-red-400 my-1 cursor-pointer hover:underline text-sm`} onClick={hotelUrlHandler.bind(null, hotel.hotelId)}>{hotel.name}</div>
+              <div key={index} className={`text-red-400 my-1 cursor-pointer hover:underline text-sm`} onClick={hotelUrlHandler.bind(null, hotel.hotelId)}>{hotel.name}</div>
             ))}
         </div>
 

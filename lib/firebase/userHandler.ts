@@ -206,3 +206,26 @@ export const getUserBookings = async (userAccessTokenObject: any) => {
 
   return JSON.stringify(bookingList);
 };
+
+
+export const fetchUserImageUrl = async () => {
+  const response = await fetch("/api/userProfile/fetchUserDetails", {
+    method: "POST",
+    body: JSON.stringify({
+      userBooking: "userBooking",
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  let imageUrl = "/user.png";
+
+  if (data.userCredentials) {
+    imageUrl = data.userCredentials.User_Image_Url;
+  }
+
+  return imageUrl;
+};

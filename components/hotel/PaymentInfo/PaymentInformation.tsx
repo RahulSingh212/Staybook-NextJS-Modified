@@ -32,15 +32,14 @@ const bookingConfirmationRedirector = (
 ) => {
   router.replace(
     {
-      pathname: `/bookingStatus/bookingSuccess`,
+      pathname: `/bookingInformation/${booking_Id}/`,
       query: {
         booking_status: "Booking Successful",
         hotel_Name: userBooking.hotel_Name,
-        booking_receipt: receipt_Id,
         user_Name: userBooking.user_Name,
         user_Email: userBooking.user_Email_Id,
         user_Phone: userBooking.user_Phone_Number,
-        booking_Id: booking_Id,
+        booking_receipt: receipt_Id,
       },
     },
   );

@@ -50,9 +50,9 @@ export default function Home(props: Props) {
         <div id="offers">
           <SpeacialOffers />
         </div>
-        <div id="contact">
+        {/* <div id="contact">
           <ContactUs />
-        </div>
+        </div> */}
       </main>
     </React.Fragment>
   );

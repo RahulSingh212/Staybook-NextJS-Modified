@@ -22,15 +22,17 @@ export default function BookingInformation(props: Props) {
   const [userPhoneNumber, setUserPhoneNumber] = React.useState<string>("");
   const [userEmailId, setUserEmailId] = React.useState<string>("");
 
+  console.log(router);
   React.useEffect(() => {
     setHotelName(String(router.query.hotel_Name));
-    setUserBookingId(String(router.query.booking_Id));
+    // setUserBookingId(String(router.params.bookingId));
     setUserName(String(router.query.user_Name));
     setUserPhoneNumber(String(router.query.user_Phone));
-    setUserEmailId(String(router.query.booking_Id));
+    setUserEmailId(String(router.query.user_Email));
   }, [
-    router.query.booking_Id,
+    router.query.bookingId,
     router.query.hotel_Name,
+    router.query.user_Email,
     router.query.user_Name,
     router.query.user_Phone,
   ]);
@@ -173,7 +175,6 @@ export default function BookingInformation(props: Props) {
                 {props.userBooking.amount_Paid}
               </motion.div>
             </motion.div>
-
           </motion.div>
         </motion.div>
       </main>
@@ -185,7 +186,7 @@ export async function getServerSideProps(context: any) {
   const { params, query, req, res } = await context;
 
   const userEmailId = query.user_Email;
-  const booking_Id = query.booking_Id;
+  const booking_Id = params.bookingId;
 
   const userBooking = await getBookedHotelDetails(userEmailId, booking_Id);
 

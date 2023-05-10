@@ -1,12 +1,5 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import Link from "next/link";
-import Image from "next/image";
-import Head from "next/head";
-import { extractJWTValues } from "@/lib/helper";
-import { useRouter } from "next/router";
-import { doc, onSnapshot } from "firebase/firestore";
 
 type Props = {
   firebaseHeaderName: string;

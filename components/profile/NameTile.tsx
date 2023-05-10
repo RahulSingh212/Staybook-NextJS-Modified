@@ -1,11 +1,6 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import Link from "next/link";
-import Image from "next/image";
-import Head from "next/head";
 import { USER_UPDATE_TYPE_NAME, extractJWTValues } from "@/lib/helper";
-import { useRouter } from "next/router";
 
 type Props = {
   headerText: string;

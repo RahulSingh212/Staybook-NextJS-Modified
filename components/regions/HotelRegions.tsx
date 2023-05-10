@@ -1,9 +1,4 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Head from "next/head";
-import { groq } from "next-sanity";
-import { sanityClient, urlFor } from "@/sanity";
 import RegionCard from "../widgets/RegionCard";
 
 type Props = {

@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
 import Image from "next/image";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import GalleryView from "../UI/GalleryView";
 

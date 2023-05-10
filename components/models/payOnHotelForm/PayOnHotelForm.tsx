@@ -1,8 +1,6 @@
 import React from "react";
 import { motion, motionValue, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
-import Head from "next/head";
 
 import classes from "./PayOnHotelForm.module.scss";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";

@@ -1,9 +1,6 @@
 import React from "react";
 import { motion, motionValue, useAnimation } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
-import Head from "next/head";
-import { groq } from "next-sanity";
 import { sanityClient, urlFor } from "@/sanity";
 import { useRouter } from "next/router";
 

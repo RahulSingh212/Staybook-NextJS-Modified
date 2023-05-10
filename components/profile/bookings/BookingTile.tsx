@@ -2,7 +2,6 @@ import React from "react";
 import { motion, motionValue } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import Head from "next/head";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import { format } from "date-fns";

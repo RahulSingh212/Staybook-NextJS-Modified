@@ -1,8 +1,6 @@
 import React from "react";
-import { motion, motionValue, animate } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import Cookies from "js-cookie";
 
 import {
   GlobeAltIcon,
@@ -57,46 +55,46 @@ export default function Navbar(props: Props) {
           </div>
         </Link>
 
-        <motion.div
+        <div
           className={`relative flex align-middle items-center space-x-3`}
         >
-          <motion.div
+          <div
             onClick={urlHandler.bind(null, "/hotel")}
             className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             Hotels
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             onClick={urlHandler.bind(null, "/packages")}
             className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             Tour Packages
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             onClick={urlHandler.bind(null, "/blogs")}
             className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             Blogs
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             onClick={urlHandler.bind(null, "/about")}
             className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             About Us
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             onClick={urlHandler.bind(null, "/contact")}
             className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             Contact Us
-          </motion.div>
+          </div>
           {/* <motion.div
             onClick={() => {setSearchBar(!searchBar)}}
             className={`relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             Search
           </motion.div> */}
-        </motion.div>
+        </div>
         {/* Middle Section */}
         {/* <SearchBar /> */}
 
@@ -120,9 +118,9 @@ export default function Navbar(props: Props) {
         </Link>
       </header>
       {searchBar && (
-        <motion.div className={`relative stickey w-full top-3 items-center align-middle`}>
+        <div className={`relative stickey w-full top-3 items-center align-middle`}>
           <SearchBar />
-        </motion.div>
+        </div>
       )}
     </React.Fragment>
   );

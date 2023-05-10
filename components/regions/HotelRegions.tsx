@@ -1,5 +1,4 @@
 import React from "react";
-import { motion, motionValue, useAnimation } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -35,32 +34,26 @@ export default function HotelRegions(props: Props) {
 
   return (
     <React.Fragment>
-      <motion.div
+      <div
         className={`relative flex flex-col justify-evenly items-center align-middle mx-w-full mb-16`}
       >
-        <motion.div
+        <div
           className={`flex flex-col justify-center items-center align-middle pb-4`}
         >
-          <motion.h1
-            initial={{ opacity: 0.0, y: 30 }}
-            transition={{ duration: 2.0, type: "spring" }}
-            whileInView={{ opacity: 1, y: 0 }}
+          <h1
             className={`text-5xl sm:text-7xl md:text-8xl text-center px-5`}
           >
             Hotel Regions
-          </motion.h1>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0.0, y: 30 }}
-          transition={{ duration: 2.0, type: "spring" }}
-          whileInView={{ opacity: 1, y: 0 }}
+          </h1>
+        </div>
+        <div
           className={`relative w-[90%] flex space-x-8 overflow-x-scroll my-2 scrollbar-hide`}
         >
           {props.hotelRegionsList.map((hr) => (
             <RegionCard key={hr._id} hotelRegion={hr} />
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </React.Fragment>
   );
 }

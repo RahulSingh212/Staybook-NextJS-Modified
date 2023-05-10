@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, motionValue, useAnimation } from "framer-motion";
+import { motion, motionValue } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 

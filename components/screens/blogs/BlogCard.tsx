@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 import classes from "./BlogCard.module.scss";
@@ -22,7 +22,13 @@ export default function BlogCard(props: Props) {
       className={classes.blogCard}
       onClick={showBlogDetails}
     >
-      <img src={props.post.mainImage.asset.url} alt={props.post.title} />
+      <Image
+        src={props.post.mainImage.asset.url}
+        alt={props.post.title}
+        layout="fill"
+        objectFit="contain"
+        objectPosition="left"
+      />
       <h3>{props.post.title}</h3>
     </article>
   );

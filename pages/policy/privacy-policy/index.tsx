@@ -85,7 +85,7 @@ export default function PrivacyPolicy(props: Props) {
             action would be taken against them.
             <br />
             <br />
-            We don't use any of the personalized email at Staybook we only
+            We don&apos;t use any of the personalized email at Staybook we only
             contact guest with emails ending with “Staybook.in” so if some guest
             get a any unauthorized email we request the guest to not to use
             reply those email, in case if you get any call form the Hotels staff

@@ -9,6 +9,7 @@ import {
   GlobeAltIcon,
   MenuIcon,
   UserCircleIcon,
+  SearchCircleIcon,
   UsersIcon,
 } from "@heroicons/react/solid";
 
@@ -92,30 +93,36 @@ export default function SearchBar(props: Props) {
   return (
     <React.Fragment>
       <motion.div
-        className={`hidden relative w-[45%] sm:flex flex-col justify-center items-center`}
+        className={`relative w-[80%] md:w-[45%] flex flex-col justify-center items-center mx-auto`}
+        // className={`hidden relative w-[45%] sm:flex flex-col justify-center items-center mx-auto`}
       >
         <motion.div
           initial={{ opacity: 0.0, y: -35 }}
           transition={{ duration: 2.0, type: "spring", stiffness: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className={`hidden relative w-[100%] sm:flex flex-row justify-between items-center md:border-2 rounded-full py-1 px-2 md:shadow-sm hover:shadow-md`}
+          // className={`hidden relative w-[100%] sm:flex flex-row justify-between items-center md:border-2 rounded-full py-1 px-2 md:shadow-sm hover:shadow-md`}
+          className={`relative w-[100%] flex flex-row justify-between items-center border-2 rounded-full py-1 px-2 shadow-sm hover:shadow-md`}
         >
           <input
             value={searchInput}
             onChange={(event) => setSearchInput(event.target.value)}
             type="text"
             placeholder={searchBarPlaceHolder}
+            // className={`flex-grow pl-2 bg-transparent outline-none text-md text-gray-600 placeholder-gray-400`}
             className={`flex-grow pl-2 bg-transparent outline-none text-md text-gray-600 placeholder-gray-400`}
           />
           <SearchIcon
-            className={`hidden md:inline-flex h-8 bg-red-400 text-white p-2 rounded-full cursor-pointer`}
+            // className={`hidden md:inline-flex h-8 bg-red-400 text-white p-2 rounded-full cursor-pointer`}
+            className={`h-8 bg-red-400 text-white p-2 rounded-full cursor-pointer`}
             onClick={searchHandler}
           />
         </motion.div>
         <motion.div
           className={`${
             !searchInput ? "hidden" : "absolute"
-          } w-fit align-middle items-center justify-center mt-[530px] p-2 rounded-lg bg-slate-100`}
+          } 
+          w-fit align-middle items-center justify-center mt-[500px] p-2 rounded-lg bg-slate-100 z-30`}
+          // w-fit align-middle items-center justify-center mt-[530px] p-2 rounded-lg bg-slate-100 z-50`}
           initial={{ opacity: 0.0 }}
           transition={{ duration: 4.0, type: "spring", stiffness: 200 }}
           whileInView={{ opacity: 1.0 }}

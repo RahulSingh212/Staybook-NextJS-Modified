@@ -7,7 +7,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/sanity";
-import classes from "../../styles/About.module.scss";
+import classes from "./About.module.scss";
 
 type Props = {
   aboutList: any[];

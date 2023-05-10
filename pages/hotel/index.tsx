@@ -12,6 +12,7 @@ import { groq } from "next-sanity";
 
 import HotelCard from "@/components/screens/hotel/HotelCard";
 import { addDays } from "@/lib/helper";
+import SearchBar from "@/components/navbar/searchbar/SearchBar";
 
 type Props = {
   hotelsList: any[];
@@ -32,6 +33,9 @@ export default function AllHotels(props: Props) {
         <link rel="icon" href="/images/favicon.png" />
       </Head>
       <main className={`w-screen`}>
+        {/* <motion.div className={`relative flex justify-items-center w-full py-5 align-middle items-center mx-auto`}>
+          <SearchBar />
+        </motion.div> */}
         <motion.div
           initial={{ opacity: 0.0, x: -50 }}
           transition={{ duration: 3.0, type: "spring" }}

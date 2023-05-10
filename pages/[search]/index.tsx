@@ -33,9 +33,9 @@ export default function Search(props: Props) {
       </Head>
       <main className={`flex flex-col`}>
         <section className={`flex flex-col px-2 md:px-5 xl:px-10 py-5`}>
-          <p className={`text-lg`}>
+          {/* <p className={`text-lg`}>
             Showing results for &quot;{router.query["q"]}&quot;
-          </p>
+          </p> */}
           <p className={`text-sm`}>
             {/* {String(format(moment(router.query.checkin, 'DD-MM-YYYY').toDate(), "dd MMMMM yy"))} - {String(format(moment(router.query.checkout, 'DD-MM-YYYY').toDate(), "dd MMMMM yy"))}, for{" "} */}
             {format(

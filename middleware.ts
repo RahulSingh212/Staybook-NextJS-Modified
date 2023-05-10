@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import Router from "next/router";
-import cookie from "cookie-parser";
 import { USER_ACCESS_TOKEN } from "./lib/helper";
 
 export function middleware(req: NextRequest, res: NextResponse) {

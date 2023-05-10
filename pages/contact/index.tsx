@@ -18,11 +18,6 @@ type Inputs = {
 };
 
 export default function ContactUs(props: Props) {
-  const { register, handleSubmit } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href = `mailto:booking@staybook.in?subject='Contact Staybook'&body=Sender's Name: ${name},\nSender's Email-Id: ${email},\nMessage: ${message}`;
-  };
 
   const router = useRouter();
   const [name, setName] = React.useState<string>("");
@@ -30,26 +25,20 @@ export default function ContactUs(props: Props) {
   const [message, setMessage] = React.useState<string>("");
   const [sent, isSent] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
+  const [msgError, setMsgError] = React.useState<boolean>(false);
 
   const sendMail = async () => {
     setError(false);
     if (!name || !email) {
       setError(true);
-    } else {
-      onSubmit;
-      // let templateParams = {
-      //   from_name: name,
-      //   from_email: email,
-      //   message: message,
-      // };
-      // const mail = await emailjs
-      //   .send(
-      //     "service_pz9e3th",
-      //     "template_nrpx7uj",
-      //     templateParams,
-      //     "bE7FBsdP5YFb4U6LK"
-      //   )
-      //   .then(() => isSent(true));
+    }
+    else if (!message) {
+      setMsgError(true);
+    } 
+    else {
+      setError(false);
+      setMsgError(false);
+      window.location.href = `mailto:booking@staybook.in?subject='Connect to Staybook'&body=Sender's Name: ${name},\nSender's Email-Id: ${email},\nMessage: ${message}`;
     }
   };
 
@@ -103,6 +92,7 @@ export default function ContactUs(props: Props) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Message"
             />
+            {msgError && <p className={classes.error}>Enter yoru message</p>}
             {!sent ? (
               <div onClick={sendMail} className={classes.button}>
                 Submit

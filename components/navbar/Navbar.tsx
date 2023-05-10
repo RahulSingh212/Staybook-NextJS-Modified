@@ -46,7 +46,16 @@ export default function Navbar(props: Props) {
             className={`flex space-x-2 text-gray-400 items-center align-middle cursor-pointer p-1 border-2 rounded-full shadow-sm hover:shadow-md`}
           >
             <MenuIcon className={`h-6`} />
-            <UserCircleIcon className={`h-8`} />
+            {/* <UserCircleIcon className={`h-8`} /> */}
+            <Image
+              src={`/logo.png`}
+              alt="icon"
+              height={25}
+              width={25}
+              objectFit="contain"
+              objectPosition="left"
+              className={``}
+            />
           </div>
         </Link>
       </header>

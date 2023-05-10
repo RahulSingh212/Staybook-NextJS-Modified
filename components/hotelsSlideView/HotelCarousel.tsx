@@ -81,7 +81,7 @@ export default function HotelCarousel(props: Props) {
                 {props.hotelsList[hotelIdx].hotel_Name}
               </h1>
             </div>
-            <div className={`text-justify md:text-center py-5 px-2 sm:px-5`}>
+            <div className={`text-justify py-5 px-2 sm:px-5`}>
               {props.hotelsList[hotelIdx].description}
             </div>
           </motion.div>

@@ -44,9 +44,9 @@ export default function Home(props: Props) {
         <div id="tnt">
           <ToursAndTravels />
         </div>
-        <div id="amenites">
+        {/* <div id="amenites">
           <DiscoverBenefits />
-        </div>
+        </div> */}
         <div id="offers">
           <SpeacialOffers />
         </div>

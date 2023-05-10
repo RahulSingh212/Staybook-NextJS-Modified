@@ -12,14 +12,13 @@ type Props = {
   userDetails: any;
 };
 
+type Props = {
+  userDetails: any;
+};
+
 export default function UserProfile(props: Props) {
   const router = useRouter();
   console.log(props.userDetails);
-  //   React.useEffect(() => {
-  //     if (!props.userDetails) {
-  //       router.push("/profile");
-  //     }
-  //   }, []);
 
   return (
     <React.Fragment>
@@ -30,20 +29,35 @@ export default function UserProfile(props: Props) {
         <link rel="icon" href="/images/favicon.png" />
       </Head>
       <main className={`w-screen`}>
-        <h1>user profile page</h1>
+        <motion.div className={`relative flex flex-col w-[90%] mt-10`}>
+          <h1 className={`text-md font-normal`}>Profile</h1>
+          <div className={`relative flex flex-row`}>
+            <div className={`relative flex font-bold`}>
+              {props.userDetails.User_Display_Name}
+            </div>
+            <div className={`relative flex`}>
+              {props.userDetails.user_Email_Id}.
+            </div>
+            <div className={`relative flex underline font-semibold`}>
+              Go to Profile
+            </div>
+          </div>
+        </motion.div>
       </main>
     </React.Fragment>
   );
 }
 
-// export async function getServerSideProps(context: any) {
-//   const accessToken = await localStorage.getItem("token");
-//   const userDetails = await extractJWTValues(accessToken);
-
-//   console.log(userDetails);
-//   return {
-//     props: {
-//       userDetails,
-//     },
-//   };
-// }
+export async function getServerSideProps(context: any) {
+  const { req, res } = context;
+  const cookies = parse(req.headers.cookie || "");
+  const userAccessToken = cookies[USER_ACCESS_TOKEN];
+  const userAccessTokenObject = await extractJWTValues(userAccessToken);
+  const userCollectionDoc = await getUserProfileDetails(userAccessTokenObject);
+  // console.log(userCollectionDoc);
+  return {
+    props: {
+      userDetails: userCollectionDoc,
+    },
+  };
+}

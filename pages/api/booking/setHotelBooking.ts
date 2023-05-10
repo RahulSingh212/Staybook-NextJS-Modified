@@ -1,6 +1,3 @@
-import { auth } from "@/lib/firebase";
-// import cookie from "js-cookie"; // front end cookie which is present on the front end side
-import cookie from "cookie"; // server side cookie only https and available on the server side
 import { serialize, parse } from "cookie";
 import {
   doc,

@@ -1,7 +1,4 @@
 import { auth, db } from "@/lib/firebase";
-import { Cookie } from "next-auth/core/lib/cookie";
-// import cookie from "js-cookie"; // front end cookie which is present on the front end side
-import cookie from "cookie"; // server side cookie only https and available on the server side
 
 import {
   EMAIL_SIGNUP,

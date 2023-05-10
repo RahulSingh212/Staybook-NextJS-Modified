@@ -1,6 +1,4 @@
 import { auth } from "@/lib/firebase";
-import cookie from "cookie"; // server side cookie only https and available on the server side
-import { serialize, parse } from "cookie";
 
 const Razorpay = require("razorpay");
 const shortid = require("shortid");

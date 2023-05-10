@@ -1,10 +1,8 @@
 import dayjs from "dayjs";
 import React, { useContext } from "react";
-import logo from "../assets/logo.png";
 import { format } from "date-fns";
 import { getMonth } from "@/lib/calendar/calendarHandler";
-import { Dropdown } from "@nextui-org/react";
-import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Props = {
   selectedDate: Date;
@@ -43,10 +41,13 @@ export default function CalendarHeader(props: Props) {
 
   return (
     <header className="relative w-full py-2 flex items-center">
-      <img
+      <Image
         src={`/google-calendar.png`}
         alt="calendar"
         className="mr-2 w-12 h-12"
+        layout="fill"
+        objectFit="contain"
+        objectPosition="center"
       />
       <h1 className="mr-5 text-xl text-gray-500 fond-bold">Calendar</h1>
       <button
@@ -59,20 +60,26 @@ export default function CalendarHeader(props: Props) {
         onClick={handlePrevMonth}
         className="rounded-full p-2 mx-1 hover:bg-gray-50"
       >
-        <img
+        <Image
           src={`/less-than.png`}
           alt="calendar"
           className="flex justify-center align-middle items-center w-6 h-6"
+          layout="fill"
+          objectFit="contain"
+          objectPosition="center"
         />
       </button>
       <button
         onClick={handleNextMonth}
         className="rounded-full p-2 mx-1 hover:bg-gray-50"
       >
-        <img
+        <Image
           src={`/more-than.png`}
           alt="calendar"
           className="flex justify-center align-middle items-center w-6 h-6"
+          layout="fill"
+          objectFit="contain"
+          objectPosition="center"
         />
       </button>
       <h2 className="ml-2 text-xl text-gray-500 font-bold">

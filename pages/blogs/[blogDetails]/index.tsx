@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 import classes from "./BlogDetails.module.scss";
 
@@ -48,10 +49,13 @@ export default function BlogDetails(props: Props) {
           <h4>{props.singlePost.title}</h4>
           <div className={classes.backgroundImg}>
             {props.singlePost.mainImage && props.singlePost.mainImage.asset && (
-              <img
+              <Image
                 src={props.singlePost.mainImage.asset.url}
                 alt={props.singlePost.title}
                 title={props.singlePost.title}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="center"
               />
             )}
           </div>
@@ -103,7 +107,14 @@ export default function BlogDetails(props: Props) {
               {props.singlePost.images && (
                 <>
                   {props.singlePost.images.map((item: any, index: number) => (
-                    <img src={item.asset.url}></img>
+                    <Image
+                      key={index}
+                      src={item.asset.url}
+                      alt="blog-image"
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="center"
+                    />
                   ))}
                 </>
               )}

@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 
 import { getMonth } from "@/lib/calendar/calendarHandler";
 
@@ -60,20 +61,26 @@ export default function SmallCalendar(props: Props) {
             onClick={handlePrevMonth}
             className="rounded-full p-2 mx-1 hover:bg-gray-50"
           >
-            <img
+            <Image
               src={`/less-than.png`}
               alt="calendar"
               className="flex justify-center align-middle items-center w-4 h-4"
+              layout="fill"
+              objectFit="contain"
+              objectPosition="center"
             />
           </button>
           <button
             onClick={handleNextMonth}
             className="rounded-full p-2 mx-1 hover:bg-gray-50"
           >
-            <img
+            <Image
               src={`/more-than.png`}
               alt="calendar"
               className="flex justify-center align-middle items-center w-4 h-4"
+              layout="fill"
+              objectFit="contain"
+              objectPosition="center"
             />
           </button>
         </div>

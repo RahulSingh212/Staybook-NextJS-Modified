@@ -18,7 +18,6 @@ type Inputs = {
 };
 
 export default function ContactUs(props: Props) {
-
   const router = useRouter();
   const [name, setName] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
@@ -31,11 +30,9 @@ export default function ContactUs(props: Props) {
     setError(false);
     if (!name || !email) {
       setError(true);
-    }
-    else if (!message) {
+    } else if (!message) {
       setMsgError(true);
-    } 
-    else {
+    } else {
       setError(false);
       setMsgError(false);
       window.location.href = `mailto:booking@staybook.in?subject='Connect to Staybook'&body=Sender's Name: ${name},\nSender's Email-Id: ${email},\nMessage: ${message}`;
@@ -55,7 +52,13 @@ export default function ContactUs(props: Props) {
       </Head>
       <main className={`w-screen`}>
         <div className={classes.contactUsBody}>
-          <img src={`/background.jpg`} alt={"Staybook Hotels and Tours"} />
+          <Image
+            src={`/background.jpg`}
+            alt={"Staybook Hotels and Tours"}
+            layout="fill"
+            objectFit="contain"
+            objectPosition="center"
+          />
           <div className={`relative flex flex-col ${classes.form}`}>
             <h1>Contact Us</h1>
             <p>

@@ -7,7 +7,6 @@ import Head from "next/head";
 import classes from "./PayOnHotelForm.module.scss";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import PhoneInput from "react-phone-input-2";
-import allCountries from "react-phone-number-input";
 import "react-phone-input-2/lib/material.css";
 import { Textarea, theme } from "@nextui-org/react";
 import { hotelBookingHandler } from "@/lib/booking/bookingHandler";
@@ -37,9 +36,6 @@ export default function PayOnHotelForm(props: Props) {
     props.userBooking.user_Email_Id
   );
   const [userAddress, setUserAddress] = React.useState<string>("");
-  const listOfCountries = allCountries?.defaultProps?.labels;
-
-  const allCountryCodes = Object.keys(allCountries);
 
   const closeFormHandler = () => {
     props.setFormVisibility(false);

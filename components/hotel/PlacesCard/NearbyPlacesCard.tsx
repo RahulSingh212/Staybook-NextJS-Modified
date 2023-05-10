@@ -28,7 +28,7 @@ export default function NearbyPlacesCard(props: Props) {
         <motion.div
           className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3`}
         >
-          {props.locationsList.map(
+          {props?.locationsList?.map(
             (location: any, index: number) =>
               (!viewMore
                 ? index < Math.min(8, props.locationsList.length)

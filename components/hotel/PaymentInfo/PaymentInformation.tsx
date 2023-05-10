@@ -103,7 +103,7 @@ export default function PaymentInformation(props: Props) {
             <motion.div
               className={`relative flex align-middle justify-center items-center mb-5 w-full`}
             >
-              <h1 className={`font-semibold text-3xl font-serif`}>
+              <h1 id={'bookinginformation'} className={`font-semibold text-3xl font-serif`}>
                 Booking Information
               </h1>
             </motion.div>

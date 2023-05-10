@@ -26,7 +26,7 @@ export default function FullAmenityCard(props: Props) {
         <motion.div
           className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3`}
         >
-          {props.aminityList.map(
+          {props?.aminityList?.map(
             (amenity: any, index: number) =>
               (!viewMore
                 ? index < Math.min(8, props.aminityList.length)

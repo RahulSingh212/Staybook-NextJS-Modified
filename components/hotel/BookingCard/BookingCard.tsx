@@ -190,7 +190,8 @@ export default function BookingCard(props: Props) {
   };
 
   const formHanlder = async () => {
-    props.roomSelectHandler();
+    await props.roomSelectHandler();
+    router.push('#bookinginformation')
   }
 
   const bookHotelHandler = async (event: any) => {

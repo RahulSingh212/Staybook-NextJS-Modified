@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-
+import emailjs from "@emailjs/browser";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import {
   BOOKED_ROOMS_COLLECTION_NAME,
@@ -87,6 +87,34 @@ export const getBookedHotelDetails = async (
 
   return JSON.stringify(bookingInfo);
 };
+
+export const emailHandler = async ({email, hotelName, checkIn, checkOut, Plans, guests, address, status, contact, price}:any) => {
+    let templateParams = {
+      to_name: email,
+      hotelName: hotelName,
+      checkIn: checkIn!.toLocaleDateString(),
+      checkOut: checkOut!.toLocaleDateString(),
+      roomNumbers: Plans.length.toString(),
+      rooms: Plans,
+      guests: guests.toString(),
+      hotelContact: "+918373929299",
+      address: address,
+      status: ``,
+      customerContact: contact,
+    };
+
+    try {
+      await emailjs
+        .send(
+          "service_pz9e3th",
+          "template_i78ka1b",
+          templateParams,
+          "rxw7da9yaeHbqZ1ou"
+        )
+    } catch (error) {
+      console.log(error);
+    }
+}
 
 export const hotelBookingHandler = async (userBooking: BookingDetails) => {
   const response = await fetch("/api/booking/setHotelBooking", {

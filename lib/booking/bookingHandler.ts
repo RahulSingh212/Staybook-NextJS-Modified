@@ -88,7 +88,7 @@ export const getBookedHotelDetails = async (
   return JSON.stringify(bookingInfo);
 };
 
-export const emailHandler = async ({email, hotelName, checkIn, checkOut, Plans, guests, address, status, contact, price}:any) => {
+const emailHandler = async ({email, hotelName, checkIn, checkOut, Plans, address, contact, price}:any) => {
     let templateParams = {
       to_name: email,
       hotelName: hotelName,
@@ -96,10 +96,13 @@ export const emailHandler = async ({email, hotelName, checkIn, checkOut, Plans, 
       checkOut: checkOut!.toLocaleDateString(),
       roomNumbers: Plans.length.toString(),
       rooms: Plans,
-      guests: guests.toString(),
+      guests: 2,
       hotelContact: "+918373929299",
       address: address,
-      status: ``,
+      status: `Amount due: ₹${price}, Pay now to save extra ₹${Math.min(
+        175,
+        0.05 * price
+      )}-`,
       customerContact: contact,
     };
 
@@ -128,6 +131,22 @@ export const hotelBookingHandler = async (userBooking: BookingDetails) => {
   });
 
   const data = await response.json();
+
+  let roomInfo:string=''
+  userBooking.roomsList?.forEach((room)=>{
+    roomInfo  += `Room ${room.room_Name} with plan ${room.plan_Name}, `
+  }), 
+
+  await emailHandler ({
+    email: userBooking.user_Email_Id, 
+    hotelName: userBooking.hotel_Name, 
+    checkIn: userBooking.checkin_Time, 
+    checkOut: userBooking.checkout_Time, 
+    Plans:roomInfo,
+    address: userBooking.hotel_Landmark, 
+    contact: userBooking.user_Phone_Number, 
+    price: userBooking.total_Price,
+  })
   return data;
 };
 

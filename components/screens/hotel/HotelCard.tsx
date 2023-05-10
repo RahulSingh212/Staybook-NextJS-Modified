@@ -181,7 +181,7 @@ export default function HotelCard(props: Props) {
             <div className={`flex flex-col pb-4 sm:pb-0 justify-center`}>
               <p
                 className={`text-red-500 text-3xl font-bold`}
-              >{`₹. ${props.hotelInfo.min_Price}`}</p>
+              >{`₹ ${props.hotelInfo.min_Price}`}</p>
               <p className={`text-sm text-gray-500`}>{`per room per night`}</p>
             </div>
 

@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 type Props = {};
 
 export default function Navbar(props: Props) {
-  const [searchBar, setSearchBar] = React.useState<boolean>(false);
+  const [searchBar, setSearchBar] = React.useState<boolean>(true);
   const router = useRouter();
 
   const urlHandler = (url: string) => {
@@ -90,12 +90,12 @@ export default function Navbar(props: Props) {
           >
             Contact Us
           </motion.div>
-          <motion.div
+          {/* <motion.div
             onClick={() => {setSearchBar(!searchBar)}}
             className={`relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
           >
             Search
-          </motion.div>
+          </motion.div> */}
         </motion.div>
         {/* Middle Section */}
         {/* <SearchBar /> */}

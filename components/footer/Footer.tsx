@@ -44,7 +44,7 @@ export default function Footer() {
   ]);
 
   return (
-    <div className={`${classes.footerBody} ${classes.noprint}`}>
+    <div className={`${classes.footerBody} ${classes.noprint} mt-16`}>
       <img src={`/images/footerBg.svg`} alt={"StayBook"} />
 
       <div className={classes.logoCircle}>

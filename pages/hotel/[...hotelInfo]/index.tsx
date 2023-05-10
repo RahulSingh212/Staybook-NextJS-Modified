@@ -25,7 +25,6 @@ import PaymentInformation from "@/components/hotel/PaymentInfo/PaymentInformatio
 import PayOnHotelForm from "@/components/models/payOnHotelForm/PayOnHotelForm";
 import LoadingModel from "@/components/models/Loading/LoadingModel";
 import ErrorModel from "@/components/models/Error/ErrorModel";
-import SuccessModel from "@/components/models/success/SuccessModal";
 
 type Props = {
   hotelInfo: any;

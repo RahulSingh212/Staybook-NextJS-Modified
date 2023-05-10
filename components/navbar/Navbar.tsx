@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 type Props = {};
 
 export default function Navbar(props: Props) {
-  const [searchBar, setSearchBar] = React.useState<boolean>(true);
+  const [searchBar, setSearchBar] = React.useState<boolean>(false);
   const router = useRouter();
 
   const urlHandler = (url: string) => {
@@ -110,8 +110,8 @@ export default function Navbar(props: Props) {
             <Image
               src={image_Url}
               alt="icon"
-              height={35}
-              width={35}
+              height={30}
+              width={30}
               objectFit="contain"
               objectPosition="left"
               className={`rounded-full`}

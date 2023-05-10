@@ -5,12 +5,10 @@ import { SocailIcon } from "react-social-icons";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { extractJWTValues } from "@/lib/helper";
+import { USER_ACCESS_TOKEN, extractJWTValues } from "@/lib/helper";
 import { useRouter } from "next/router";
-
-type Props = {
-  userDetails: any;
-};
+import { getUserProfileDetails } from "@/lib/firebase/userHandler";
+import { parse } from "cookie";
 
 type Props = {
   userDetails: any;
@@ -18,7 +16,6 @@ type Props = {
 
 export default function UserProfile(props: Props) {
   const router = useRouter();
-  console.log(props.userDetails);
 
   return (
     <React.Fragment>
@@ -29,19 +26,33 @@ export default function UserProfile(props: Props) {
         <link rel="icon" href="/images/favicon.png" />
       </Head>
       <main className={`w-screen`}>
-        <motion.div className={`relative flex flex-col w-[90%] mt-10`}>
-          <h1 className={`text-md font-normal`}>Profile</h1>
-          <div className={`relative flex flex-row`}>
-            <div className={`relative flex font-bold`}>
-              {props.userDetails.User_Display_Name}
+        <motion.div
+          className={`relative flex flex-col w-[90%] mt-10 align-middle mx-auto`}
+        >
+          <motion.div className={`relative flex w-full mt-3`}>
+            <h1 className={`text-3xl font-bold`}>Account</h1>
+          </motion.div>
+          <div className={`relative flex flex-row mt-2`}>
+            <div className={`relative flex font-medium mr-1`}>
+              {props.userDetails.User_Display_Name},
             </div>
-            <div className={`relative flex`}>
-              {props.userDetails.user_Email_Id}.
+            <div className={`relative flex font-light`}>
+              {props.userDetails.User_Email_Id}.
             </div>
-            <div className={`relative flex underline font-semibold`}>
+            <div
+              onClick={() => {
+                router.push({ pathname: "/profile/personal-info" });
+              }}
+              className={`relative flex underline font-semibold ml-2 cursor-pointer`}
+            >
               Go to Profile
             </div>
           </div>
+          <motion.div className={`relative flex flex-col w-full mt-5 mb-10 space-y-2`}>
+            <motion.div className={`realtive rounded-lg px-5 py-3 shadow-lg`}>
+              <div className={``}></div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </main>
     </React.Fragment>

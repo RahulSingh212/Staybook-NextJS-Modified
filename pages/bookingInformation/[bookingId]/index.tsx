@@ -175,6 +175,21 @@ export default function BookingInformation(props: Props) {
                 {props.userBooking.amount_Paid}
               </motion.div>
             </motion.div>
+            <motion.div
+              className={`relative flex flex-col mt-5 align-middle items-center mx-auto`}
+            >
+              <button
+                onClick={() => {
+                  router.push({ pathname: "/profile/my-bookings" });
+                }}
+                className={`px-6 py-3 rounded-full font-medium text-lg bg-gray-300 hover:bg-gray-400`}
+              >
+                Go to Profile
+              </button>
+              <p className={`my-3 text-gray-500`}>
+                View your booking by logging-in to your account.
+              </p>
+            </motion.div>
           </motion.div>
         </motion.div>
       </main>

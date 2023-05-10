@@ -1,9 +1,5 @@
 import React from "react";
 import { motion, motionValue } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { SocailIcon } from "react-social-icons";
-import Link from "next/link";
-import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import moment from "moment";
@@ -11,7 +7,6 @@ import { format } from "date-fns";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/sanity";
 import HotelCard from "@/components/screens/hotel/HotelCard";
-import { NULL } from "sass";
 
 type Props = {
   hotelsList: any[];

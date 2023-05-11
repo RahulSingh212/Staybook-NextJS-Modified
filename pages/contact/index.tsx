@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Head from "next/head";
-import classes from "./ContactUs.module.scss";
 import { useRouter } from "next/router";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { motion } from "framer-motion";
+
+import classes from "./ContactUs.module.scss";
 
 type Props = {};
 
@@ -33,6 +36,12 @@ export default function ContactUs(props: Props) {
       setMsgError(false);
       window.location.href = `mailto:booking@staybook.in?subject='Connect to Staybook'&body=Sender's Name: ${name},\nSender's Email-Id: ${email},\nMessage: ${message}`;
     }
+  };
+
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (formData) => {
+    window.location.href = `mailto:rahulsinghrs174326@gmail.com?subject=${formData.subject}&body=Sender's Name: ${formData.name},\nSender's Email-Id: ${formData.email},\nMessage: ${formData.message}`;
   };
 
   return (

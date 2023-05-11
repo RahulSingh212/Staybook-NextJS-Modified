@@ -24,11 +24,15 @@ $shadow2: #e8e8e8d7;
 
 .contactUsBody {
   width: screen;
+  height: 100vh;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  background-color: #cf8f24;
+  // overflow: hidden;
+  top: 20px;
 
   .form {
     position: absolute;
@@ -41,11 +45,13 @@ $shadow2: #e8e8e8d7;
     flex-direction: column;
     text-align: center;
     align-items: center;
+    justify-content: center;
     border-radius: 0.5rem;
 
     @media screen and (max-width: 800px) {
       width: 80%;
       padding: 1rem;
+      margin-top: 50px;
     }
 
     .input {
@@ -166,6 +172,6 @@ $shadow2: #e8e8e8d7;
   cursor: pointer;
   margin-top: 20px;
   padding: 12.5px 30px;
-  background-color: #e6683c;
+  background-color: #cf8f24;
   border-radius: 0.5rem;
 }

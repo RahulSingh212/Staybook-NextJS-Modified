@@ -16,7 +16,7 @@ import PlanCard from "./PlanCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import InfoCard from "./InfoCard";
-import { FullScreenImageView } from "./FullScreenImageView";
+import { FullScreenImageView } from "../../UI/FullScreenImageView";
 
 export default function RoomInfo(props: Props) {
   const [isFullScreen, setIsFullScreen] = React.useState<boolean>(false);

@@ -28,11 +28,11 @@ export default function FullAmenityCard(props: Props) {
                   className={`relative flex align-middle items-center pb-4`}
                 >
                   <div
-                    className={`relative h-6 w-6 mr-2 flex rounded-full bg-gray-100`}
+                    className={`relative h-7 w-7 mr-2 flex rounded-full bg-gray-100`}
                   >
                     <Image
-                      className={`rounded-full`}
-                      src={`/checkmark.png`}
+                      className={`rounded-full p-1`}
+                      src={`/correct.png`}
                       alt="amenity-img"
                       layout="fill"
                       objectFit="cover"

@@ -3,6 +3,7 @@ import { motion, motionValue } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import GalleryView from "../UI/GalleryView";
+import { FullScreenImageView } from "../UI/FullScreenImageView";
 
 type Props = {
   hotelImgList: any[];
@@ -18,8 +19,11 @@ export default function ImageGalleryCard(props: Props) {
 
   return (
     <React.Fragment>
-      {galleryView && (
+      {/* {galleryView && (
         <GalleryView hotelImgList={props.hotelImgList} closeGalleryView={galleryHandler} />
+      )} */}
+      {galleryView && (
+        <FullScreenImageView imageList={props.hotelImgList} onClose={galleryHandler} />
       )}
       <motion.div
         className={`relative w-[95%] h-[275px] sm:h-[350px] md:h-[425px] lg:h-[500px] xl:h-[550px] flex flex-row items-center align-middle justify-between z-20 rounded-3xl mx-auto my-5`}

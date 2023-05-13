@@ -15,30 +15,29 @@ type Props = {
 
 export const FullScreenImageView = (props: Props) => {
   const [imageIndex, setImageIndex] = React.useState<number>(0);
-  const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        props.onClose();
+    const enterFullscreen = async () => {
+      try {
+        await document.documentElement.requestFullscreen();
+        console.log("Inside");
+      } catch (error) {
+        console.error("Failed to enter fullscreen mode:", error);
       }
     };
 
-    if (ref.current) {
-      ref.current.requestFullscreen().catch((error) => {
-        console.log(
-          "Error attempting to enable full-screen mode:",
-          error.message
-        );
-      });
-      document.addEventListener("keydown", handleKeyDown);
-    }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        props.onClose();
+        // enterFullscreen();
+      }
+    };
+
+
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      }
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [props]);
 
@@ -59,7 +58,6 @@ export const FullScreenImageView = (props: Props) => {
   return (
     <React.Fragment>
       <motion.div
-        ref={ref}
         className={`fixed flex flex-col justify-center align-middle items-center left-0 top-0 w-screen h-screen z-50 bg-black no-scrollbar`}
       >
         <Image
@@ -90,7 +88,7 @@ export const FullScreenImageView = (props: Props) => {
           />
         </div>
         <div
-          className={`relative flex align-middle justify-center items-center my-2 w-full h-16 px-2 space-x-2 no-scrollbar`}
+          className={`relative flex flex-row align-middle justify-center items-center my-2 w-full h-20 px-2 space-x-2 no-scrollbar overflow-x-scroll`}
         >
           {props.imageList.map((imgUrl: string, index: number) => (
             <div key={index} className={`h-full w-20`}>

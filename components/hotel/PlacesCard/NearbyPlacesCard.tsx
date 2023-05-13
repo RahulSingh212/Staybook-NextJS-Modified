@@ -30,10 +30,10 @@ export default function NearbyPlacesCard(props: Props) {
                     className={`relative flex align-middle items-center pb-4`}
                   >
                     <div
-                      className={`relative h-8 w-8 mr-2 flex rounded-full bg-gray-100`}
+                      className={`relative h-7 w-7 mr-2 flex rounded-full bg-gray-100`}
                     >
                       <Image
-                        className={`rounded-full`}
+                        className={`rounded-full p-1`}
                         src={`/map-pin.png`}
                         alt="amenity-img"
                         layout="fill"

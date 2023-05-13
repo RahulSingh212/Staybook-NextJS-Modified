@@ -52,7 +52,7 @@ export default function InfoCard(props: Props) {
           className={`fixed flex flex-col justify-center align-middle items-center left-0 top-0 w-screen h-screen z-30 bg-black`}
         >
           <motion.div
-            className={`relative flex flex-col overflow-y-scroll w-[95%] h-[80%] md:w-[75%] xl:w-[65%] p-4 bg-[#fff] rounded-2xl border-[1px] border-[#cf8f24] mt-16 no-scrollbar`}
+            className={`relative flex flex-col overflow-y-scroll w-[95%] h-[80%] md:w-[75%] xl:w-[65%] p-4 bg-[#fff] rounded-2xl border-[1px] border-[#cf8f24] no-scrollbar`}
             initial={{ opacity: 0.25 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 2 }}

@@ -2,23 +2,8 @@ import React from "react";
 import fetch from "node-fetch";
 import { motion, motionValue } from "framer-motion";
 import { useRouter } from "next/router";
-import { sanityClient } from "@/sanity";
-import { groq } from "next-sanity";
 import moment from "moment";
 import { addDays, format } from "date-fns";
-import AmountCard from "../AmountCard/AmountCard";
-
-import {
-  GlobeAltIcon,
-  MenuIcon,
-  UserCircleIcon,
-  UsersIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  MapIcon,
-  LocationMarkerIcon,
-  CalendarIcon,
-} from "@heroicons/react/solid";
 import BookingPriceCard from "./BookingPriceCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
@@ -198,11 +183,12 @@ export default function BookingCard(props: Props) {
   return (
     <React.Fragment>
       <motion.div
+      id="booking-card"
         className={`sticky w-full md:w-[37.5%] h-full bg-white py-6 px-4 rounded-xl top-20 right-0 shadow-xl`}
       >
         <motion.div className={`w-full pb-4`}>
-          <h1 className={`text-6xl font-semibold text-gray-500`}>
-            ₹{props.userBooking.getTotalRoomCost.toFixed(2)}
+          <h1 className={`text-5xl font-semibold text-gray-500`}>
+            ₹{props.userBooking.getTotalPrice.toFixed(2)}
           </h1>
         </motion.div>
 
@@ -301,19 +287,6 @@ export default function BookingCard(props: Props) {
           </motion.div>
         </motion.div>
 
-        {/* <label
-          className={`relative flex w-full space-x-2 mb-2 hover:underline`}
-        >
-          <input
-            type="checkbox"
-            className={`mr-2 cursor-pointer`}
-            checked={props.formVisibility}
-            // onClick={makePayment.bind(null, props.userBooking)}
-            onChange={checkBoxHandler}
-          />
-          Pay at Hotel
-        </label> */}
-
         <motion.div
           className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
           onClick={formHanlder}
@@ -324,10 +297,3 @@ export default function BookingCard(props: Props) {
     </React.Fragment>
   );
 }
-
-// BookingCard.defaultProps = {
-//   plan_price: 0,
-//   checkin: new Date(),
-//   chechout: addDays(new Date(), 1),
-//   num_rooms: 0,
-// };

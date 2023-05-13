@@ -22,6 +22,7 @@ import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 
 type Props = {
   roomsList: any[];
+  amenitiesList: any[];
   userBooking: BookingDetails;
   setRoomCount: Function;
   setTotalRoomCost: Function;
@@ -46,6 +47,7 @@ export default function RoomsCard(props: Props) {
             <RoomInfo
               key={room._key}
               roomInfo={room}
+              roomAmenitiesList={props.amenitiesList}
               userBooking={props.userBooking}
               setRoomCount={props.setRoomCount}
               setTotalRoomCost={props.setTotalRoomCost}

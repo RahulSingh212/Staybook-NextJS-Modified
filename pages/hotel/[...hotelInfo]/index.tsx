@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 import moment from "moment";
+import Link from "next/link";
+import { format } from "date-fns";
 import { addDays, getDateDifference } from "@/lib/helper";
 
 import ImageGalleryCard from "@/components/imageGallery/ImageGalleryCard";
@@ -29,7 +31,7 @@ import ErrorModel from "@/components/models/Error/ErrorModel";
 type Props = {
   hotelInfo: any;
   checkin: any;
-  chechout: any;
+  checkout: any;
   num_nights: any;
   num_guests: any;
   hotel_id: any;
@@ -38,9 +40,11 @@ type Props = {
 import Script from "next/script";
 import Razorpay from "razorpay";
 import { fetchUserPersonalDetails } from "@/lib/booking/bookingHandler";
+import { MobileBookingCard } from "@/components/hotel/BookingCard/MobileBookingCard";
 
 export default function HotelInformation(props: Props) {
   const [formVisibility, setFormVisibility] = React.useState<boolean>(false);
+  const [bookingCardVisibility, setBookingCardVisibility] = React.useState<boolean>(false);
   const [loadingModelVisible, setLoadingModel] = React.useState<boolean>(false);
 
   const [errorModelVisible, setErrorModel] = React.useState<boolean>(false);
@@ -80,22 +84,19 @@ export default function HotelInformation(props: Props) {
     rm.plan_Info = props.hotelInfo.rooms[0].plans[0].info;
     rm.plan_Price = props.hotelInfo.rooms[0].plans[0].price;
     bookingDetails.roomsList.push(rm);
+    setRoomCount(bookingDetails.total_Rooms_Count);
+    setTotalRoomCost(bookingDetails.total_Room_Cost);
+    setTotalTax(bookingDetails.total_Tax);
+    setTotalPrice(bookingDetails.total_Price);
+    setSelectedRoomsList(bookingDetails.roomsList);
     bookingDetails.updateBookingDetails();
-    console.log(bookingDetails);
     setUserBooking(bookingDetails);
   }, []);
-  const [roomCount, setRoomCount] = React.useState<number>(
-    userBooking.total_Rooms_Count
-  );
-  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(
-    userBooking.total_Room_Cost
-  );
+  const [roomCount, setRoomCount] = React.useState<number>(userBooking.total_Rooms_Count);
+  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(userBooking.total_Room_Cost);
   const [totalTax, setTotalTax] = React.useState<number>(userBooking.total_Tax);
-  const [totalPrice, setTotalPrice] = React.useState<number>(
-    userBooking.total_Price
-  );
-  const [selectedRoomsList, setSelectedRoomsList] =
-    React.useState<RoomDetails[]>();
+  const [totalPrice, setTotalPrice] = React.useState<number>(userBooking.total_Price);
+  const [selectedRoomsList, setSelectedRoomsList] = React.useState<RoomDetails[]>();
 
   const roomSelectHandler = async () => {
     if (userBooking.roomsList.length === 0) {
@@ -109,12 +110,10 @@ export default function HotelInformation(props: Props) {
     userBooking.user_Email_Id = response.user_Email_Id;
     setUserBooking(userBooking);
     // console.log(response);
-    setFormVisibility(!formVisibility);
+    setFormVisibility(true);
   };
 
   const hotelBookingHandler = async (event: any) => {
-    // setFormVisibility(false);
-    // setLoadingModel(true);
     const data = await hotelBookingHandler(userBooking);
     setLoadingModel(false);
   };
@@ -128,7 +127,7 @@ export default function HotelInformation(props: Props) {
         <link rel="icon" href="/images/favicon.png" />
       </Head>
 
-      <main className={`w-screen`}>
+      <main className={`w-screen scrollbar-hide`}>
         <LoadingModel
           modelVisible={loadingModelVisible}
           setLoadingModel={setLoadingModel}
@@ -152,18 +151,11 @@ export default function HotelInformation(props: Props) {
               <h1 className={`text-5xl font-serif`}>{props.hotelInfo.name}</h1>
             </motion.div>
 
-            {/* Description */}
-            <motion.div className={`w-full mb-4 text-justify`}>
-              <p className={`text-xl font-mono text-justify`}>
-                {props.hotelInfo.description}
-              </p>
-            </motion.div>
-
             {/* Address */}
             <motion.div
               className={`w-full flex mb-4 text-justify items-center align-middle`}
             >
-              <a
+              <Link
                 target="_blank"
                 href={props.hotelInfo.map}
                 className={`cursor-pointer`}
@@ -175,7 +167,7 @@ export default function HotelInformation(props: Props) {
                     className={`relative fill-black h-7 w-7 rounded-full cursor-pointer`}
                   />
                 </div>
-              </a>
+              </Link>
               <p className={`text-xl font-light text-justify`}>
                 {props.hotelInfo.address}
               </p>
@@ -214,12 +206,20 @@ export default function HotelInformation(props: Props) {
             {/* Hotel Rooms */}
             <RoomsCard
               roomsList={props.hotelInfo.rooms}
+              amenitiesList={props.hotelInfo.hotel_amenities}
               userBooking={userBooking}
               setRoomCount={setRoomCount}
               setTotalRoomCost={setTotalRoomCost}
               setTotalTax={setTotalTax}
               setTotalPrice={setTotalPrice}
             />
+
+            {/* Description */}
+            <motion.div className={`w-full mb-4 text-justify`}>
+              <p className={`text-xl font-mono text-justify`}>
+                {props.hotelInfo.description}
+              </p>
+            </motion.div>
 
             {/* Descriptions */}
             <DescriptionCard
@@ -247,7 +247,7 @@ export default function HotelInformation(props: Props) {
             hotelBookingHandler={hotelBookingHandler}
           />
         </motion.div>
-        {formVisibility && (
+        {(formVisibility && userBooking.roomsList.length) && (
           <PaymentInformation
             userBooking={userBooking}
             setUserBooking={setUserBooking}
@@ -256,6 +256,11 @@ export default function HotelInformation(props: Props) {
             setLoadingModel={setLoadingModel}
           />
         )}
+        <MobileBookingCard
+          userBooking={userBooking}
+          checkin={props.checkin}
+          checkout={props.checkout}
+        />
       </main>
     </React.Fragment>
   );
@@ -266,7 +271,7 @@ export async function getServerSideProps(context: any) {
 
   const slug_Name = params?.hotelInfo[0];
   const checkin = moment(query.checkin, "DD-MM-YYYY").toDate();
-  const chechout = addDays(
+  const checkout = addDays(
     moment(query.checkin, "DD-MM-YYYY").toDate(),
     Number(query.num_nights)
   );
@@ -321,7 +326,7 @@ export async function getServerSideProps(context: any) {
     props: {
       hotelInfo: hotelInfo[0],
       checkin: String(moment(query.checkin, "DD-MM-YYYY").toDate()),
-      chechout: String(
+      checkout: String(
         addDays(
           moment(query.checkin, "DD-MM-YYYY").toDate(),
           Number(query.num_nights)

@@ -115,7 +115,7 @@ export default function PlanCard(props: Props) {
           </motion.div>
           <motion.div
             onClick={roomPlanHandler}
-            className={`relative w-fit bg-red-700 hover:bg-red-600 py-2 px-4 cursor-pointer rounded-lg align-middle items-center`}
+            className={`relative w-fit bg-[#cf8f24] hover:bg-red-600 py-2 px-4 cursor-pointer rounded-lg align-middle items-center`}
           >
             <p className={`text-white text-lg font-light text-center`}>
               Select

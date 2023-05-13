@@ -2,20 +2,9 @@ import React from "react";
 import { motion, motionValue } from "framer-motion";
 import Image from "next/image";
 
-import {
-  GlobeAltIcon,
-  MenuIcon,
-  UserCircleIcon,
-  UsersIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  MapIcon,
-  LocationMarkerIcon,
-  CalendarIcon,
-} from "@heroicons/react/solid";
-
 type Props = {
   roomInfo: any;
+  roomAmenitiesList: any[];
   userBooking: BookingDetails;
   setRoomCount: Function;
   setTotalRoomCost: Function;
@@ -26,10 +15,24 @@ type Props = {
 import PlanCard from "./PlanCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
+import InfoCard from "./InfoCard";
 
 export default function RoomInfo(props: Props) {
+  const [roomDetails, setRoomDetails] = React.useState<boolean>(false);
+
+  const roomInfoHandler = () => {
+    setRoomDetails(!roomDetails);
+  };
+
   return (
     <React.Fragment>
+      {roomDetails && (
+        <InfoCard
+          roomInfo={props.roomInfo}
+          roomAmenitiesList={props.roomAmenitiesList}
+          roomModalHandler={roomInfoHandler}
+        />
+      )}
       <motion.div
         className={`relative w-full flex flex-col p-4 rounded-lg border-[1px] border-red-500`}
       >
@@ -56,7 +59,8 @@ export default function RoomInfo(props: Props) {
               </motion.div>
             </div>
             <motion.div
-              className={`relative w-fit bg-red-700 hover:bg-red-600 py-1 px-3 cursor-pointer rounded-lg align-middle items-center`}
+              onClick={roomInfoHandler}
+              className={`relative w-fit bg-[#cf8f24] hover:bg-red-500 py-1 px-3 cursor-pointer rounded-lg align-middle items-center`}
             >
               <p className={`text-white text-lg font-light text-center`}>
                 More Info

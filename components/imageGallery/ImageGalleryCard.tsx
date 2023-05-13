@@ -96,7 +96,7 @@ export default function ImageGalleryCard(props: Props) {
           className={`absolute h-full w-full flex justify-end items-end`}
         >
           <motion.div
-            className={`relative bottom-0 text-center text-white rounded-full p-3 md:p-5 bg-red-500 cursor-pointer mb-3 mr-3 opacity-60 hover:opacity-90 shadow-lg`}
+            className={`relative bottom-0 text-center text-white rounded-full p-3 md:p-5 bg-[#cf8f24] cursor-pointer mb-3 mr-3 opacity-80 hover:opacity-90 shadow-lg`}
           >
             <p
               className={`text-center text-xs md:text-base font-semibold rounded-full`}

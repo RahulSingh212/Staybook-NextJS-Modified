@@ -315,7 +315,7 @@ export async function getServerSideProps(context: any) {
     }
   `;
 
-  const hotelInfo: any[] = await sanityClient.fetch(hotelInfoQuery);
+  let hotelInfo: any[] = await sanityClient.fetch(hotelInfoQuery);
 
   return {
     props: {

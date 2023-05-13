@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function FullAmenityCard(props: Props) {
-  const [viewMore, setViewMore] = React.useState<boolean>(true);
+  const [viewMore, setViewMore] = React.useState<boolean>(false);
 
   return (
     <React.Fragment>

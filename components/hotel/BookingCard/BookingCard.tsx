@@ -288,7 +288,7 @@ export default function BookingCard(props: Props) {
         </motion.div>
 
         <motion.div
-          className={`w-full text-center text-lg font-semibold bg-red-700 rounded-lg hover:bg-red-600 text-white py-4 cursor-pointer`}
+          className={`w-full text-center text-lg font-semibold bg-[#cf8f24] rounded-lg hover:bg-red-500 text-white py-4 cursor-pointer`}
           onClick={formHanlder}
         >
           {`I'll reserve`}

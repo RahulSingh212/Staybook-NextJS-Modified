@@ -84,11 +84,6 @@ export default function HotelInformation(props: Props) {
     rm.plan_Info = props.hotelInfo.rooms[0].plans[0].info;
     rm.plan_Price = props.hotelInfo.rooms[0].plans[0].price;
     bookingDetails.roomsList.push(rm);
-    setRoomCount(bookingDetails.total_Rooms_Count);
-    setTotalRoomCost(bookingDetails.total_Room_Cost);
-    setTotalTax(bookingDetails.total_Tax);
-    setTotalPrice(bookingDetails.total_Price);
-    setSelectedRoomsList(bookingDetails.roomsList);
     bookingDetails.updateBookingDetails();
     setUserBooking(bookingDetails);
   }, []);

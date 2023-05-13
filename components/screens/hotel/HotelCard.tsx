@@ -6,13 +6,8 @@ import moment from "moment";
 import Link from "next/link";
 
 import {
-  GlobeAltIcon,
-  MenuIcon,
-  UserCircleIcon,
-  UsersIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  MapIcon,
   LocationMarkerIcon,
   StarIcon,
 } from "@heroicons/react/solid";

@@ -16,21 +16,40 @@ import PlanCard from "./PlanCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import InfoCard from "./InfoCard";
+import { FullScreenImageView } from "./FullScreenImageView";
 
 export default function RoomInfo(props: Props) {
+  const [isFullScreen, setIsFullScreen] = React.useState<boolean>(false);
   const [roomDetails, setRoomDetails] = React.useState<boolean>(false);
 
   const roomInfoHandler = () => {
     setRoomDetails(!roomDetails);
   };
 
+  const openFullScreen = () => {
+    setRoomDetails(false);
+    setIsFullScreen(true);
+  };
+
+  const closeFullScreen = () => {
+    setIsFullScreen(false);
+    setRoomDetails(true);
+  };
+
   return (
     <React.Fragment>
+      {isFullScreen && (
+        <FullScreenImageView
+          imageList={props.roomInfo.image_List}
+          onClose={closeFullScreen}
+        />
+      )}
       {roomDetails && (
         <InfoCard
           roomInfo={props.roomInfo}
           roomAmenitiesList={props.roomAmenitiesList}
           roomModalHandler={roomInfoHandler}
+          openFullScreen={openFullScreen}
         />
       )}
       <motion.div

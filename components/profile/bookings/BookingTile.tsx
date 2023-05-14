@@ -25,7 +25,7 @@ export default function BookingTile(props: Props) {
     <React.Fragment>
       <motion.div
         // className={`relative flex flex-col md:flex-row w-full justify-between align-middle items-center px-4 py-6 rounded-md shadow-md`}
-        className={`relative flex flex-col w-full sm:flex-row p-3 rounded-2xl bg-slate-100 hover:shadow-sm`}
+        className={`relative flex flex-col w-full sm:flex-row p-3 rounded-2xl bg-white shadow-lg`}
       >
         <motion.div
           initial={{ opacity: 0.0, x: -25 }}
@@ -109,16 +109,16 @@ export default function BookingTile(props: Props) {
           >
             <div className={`flex flex-col pb-4 sm:pb-0 justify-center`}>
               <p
-                className={`text-red-500 text-3xl font-bold`}
-              >{`₹. ${props.bookingInfo.total_Price}`}</p>
+                className={`text-[#cf8f24] text-3xl font-bold`}
+              >{`₹ ${props.bookingInfo.total_Price}`}</p>
               <p className={`text-sm text-gray-500`}>{`inclusive all taxes (${props.bookingInfo.amount_Paid === 0 ? 'pay at hotel' : 'amont paid'})`}</p>
             </div>
 
-            <div
-              className={`relative w-full sm:w-fit text-center px-4 py-2 rounded-lg bg-red-500 cursor-pointer hover:shadow-md`}
+            {/* <div
+              className={`relative w-full sm:w-fit text-center px-4 py-2 rounded-lg bg-[#cf8f24] cursor-pointer hover:shadow-md`}
             >
               <p className={`text-gray-200 font-medium`}>View Details</p>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       </motion.div>

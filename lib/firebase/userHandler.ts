@@ -128,6 +128,7 @@ export const getUserAccessTokenObject = async () => {
 };
 
 export const getUserProfileDetails = async (userAccessTokenObject: any) => {
+  if (userAccessTokenObject === null) return null;
   const docRef = doc(db, USER_COLLECTION_NAME, userAccessTokenObject.user_id);
   const docSnap = await getDoc(docRef);
   return docSnap.data();
@@ -221,7 +222,7 @@ export const fetchUserImageUrl = async () => {
 
   const data = await response.json();
 
-  let imageUrl = "/user.png";
+  let imageUrl = "";
 
   if (data.userCredentials) {
     imageUrl = data.userCredentials.User_Image_Url;

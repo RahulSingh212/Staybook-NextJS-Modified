@@ -42,7 +42,7 @@ export default function HotelRegions(props: Props) {
           </h1>
         </div>
         <div
-          className={`relative w-[90%] flex space-x-8 overflow-x-scroll my-2 scrollbar-hide`}
+          className={`relative w-[90%] flex space-x-8 overflow-x-scroll my-2 scrollbar-hide no-scrollbar`}
         >
           {props.hotelRegionsList.map((hr) => (
             <RegionCard key={hr._id} hotelRegion={hr} />

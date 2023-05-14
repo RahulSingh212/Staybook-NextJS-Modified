@@ -112,7 +112,7 @@ export default function HotelCard(props: Props) {
               <LocationMarkerIcon
                 className={`relative fill-[#cf8f24] h-7 w-7 p-1 border-2 border-[#cf8f24] rounded-full mr-2`}
               />
-              <Link href={props.hotelInfo.map} className={`z-30`}>
+              <Link href={props.hotelInfo.map} className={`z-30`} target="_blank">
                 <p className={`md:text-lg xl:text-xl`}>
                   {props.hotelInfo.landmark}
                 </p>
@@ -124,13 +124,17 @@ export default function HotelCard(props: Props) {
             <div
               className={`relative flex flex-col sm:flex-row justify-between items-start w-[100%] mb-2`}
             >
-              <div className={`relative items-center flex`}>
-                <StarIcon
-                  className={`h-6 w-6 bg-slate-100 rounded-full p-1 mr-2 shadow-md`}
-                />
-                <p
+              <div className={`relative items-center flex space-x-3`}>
+                {[...Array(props.hotelInfo.rating)].map((idx: number) => (
+                  <StarIcon
+                    key={idx}
+                    className={`h-6 w-6 bg-slate-100 rounded-full p-1 shadow-md`}
+                  />
+                ))}
+
+                {/* <p
                   className={`text-lg text-gray-500`}
-                >{` ${props.hotelInfo.rating.toFixed(1)}`}</p>
+                >{` ${props.hotelInfo.rating.toFixed(1)}`}</p> */}
                 {/* <p className={`text-xs md:text-sm text-gray-500`}>
                   {`Available Plans: `}&nbsp;
                 </p>
@@ -154,7 +158,7 @@ export default function HotelCard(props: Props) {
             </div>
 
             <motion.div
-              className={`relative flex flex-row justify-between flex-wrap w-full`}
+              className={`relative flex flex-row gap-1 flex-wrap w-full`}
             >
               {props.hotelInfo.amenities_List.map(
                 (amenity: any, index: number) => (
@@ -183,7 +187,7 @@ export default function HotelCard(props: Props) {
           >
             <div className={`flex flex-col pb-4 sm:pb-0 justify-center`}>
               <p
-                className={`text-[#cf8f24] text-3xl font-bold`}
+                className={`text-red-500 text-3xl font-bold`}
               >{`₹ ${props.hotelInfo.min_Price}`}</p>
               <p className={`text-sm text-gray-500`}>{`per room per night`}</p>
             </div>

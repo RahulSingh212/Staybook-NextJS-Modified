@@ -10,7 +10,8 @@ export function middleware(req: NextRequest, res: NextResponse) {
   // console.log(userAccessToken);
   if (req.nextUrl.pathname.startsWith("/login") && userAccessToken) {
     return NextResponse.redirect(new URL("/profile", req.url));
-  } else if (req.nextUrl.pathname.startsWith("/profile/") && !userAccessToken) {
+  }
+  if (req.nextUrl.pathname.startsWith("/profile") && !userAccessToken) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
   //   console.log("Request: ", req.nextUrl.pathname);

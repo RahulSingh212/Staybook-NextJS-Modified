@@ -25,7 +25,7 @@ export const MobileBookingCard = (props: Props) => {
           <motion.div
             className={`relative w-fit text-transparent bg-clip-text flex flex-row items-end text-gradient-to-r text-2xl font-mono font-bold bg-gradient-to-r from-[#1999a8] to-[#1caf95]`}
           >
-            ₹{props.userBooking.getTotalRoomCost}
+            ₹{props.userBooking.getTotalPrice}
             <p className={`text-black text-sm font-light`}>
               &nbsp;{props.userBooking.total_Price != 0 ? " nights" : ""}
             </p>

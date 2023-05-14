@@ -77,7 +77,7 @@ export default function Footer() {
             {data.map((hotel: any, index: number) => (
               <div
                 key={index}
-                className={`text-red-400 my-1 cursor-pointer hover:underline text-sm`}
+                className={`text-[#cf8f24] my-1 cursor-pointer hover:underline text-sm`}
                 onClick={hotelUrlHandler.bind(null, hotel.hotelId)}
               >
                 {hotel.name}

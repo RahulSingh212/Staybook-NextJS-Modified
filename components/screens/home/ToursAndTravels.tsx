@@ -29,7 +29,7 @@ export default function ToursAndTravels(props: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           className={`relative w-[90%] flex items-center justify-center align-middle text-center py-2 md:py-4`}
         >
-          <h1 className={`text-5xl sm:text-7xl md:text-8xl text-center`}>
+          <h1 className={`text-5xl sm:text-6xl md:text-7xl text-center font-serif`}>
             Tours and Travels
           </h1>
         </motion.div>
@@ -37,7 +37,7 @@ export default function ToursAndTravels(props: Props) {
           initial={{ opacity: 0.0, y: 30 }}
           transition={{ duration: 2.0, type: "spring" }}
           whileInView={{ opacity: 1, y: 0 }}
-          className={`relative w-[90%] flex items-center justify-center align-middle text-center text-red-500 text-2xl py-4`}
+          className={`relative w-[90%] flex items-center justify-center align-middle text-center text-[#6d6d6d] text-2xl py-4`}
         >
           Staybook offers customised family trips tailored to the needs of any
           family, large or small, with youngsters or the elderly. It is a
@@ -49,7 +49,7 @@ export default function ToursAndTravels(props: Props) {
             initial={{ opacity: 0.0, y: 30 }}
             transition={{ duration: 2.0, type: "spring" }}
             whileInView={{ opacity: 1, y: 0 }}
-            className={`relative flex items-center justify-center align-middle text-center border-2 rounded-lg px-16 py-5 border-red-500 hover:bg-red-500 cursor-pointer`}
+            className={`relative flex items-center justify-center align-middle text-center text-lg border-2 rounded-lg px-16 py-5 border-[#cf8f24] hover:bg-[#cf8f24] cursor-pointer`}
           >
             Find More
           </motion.div>

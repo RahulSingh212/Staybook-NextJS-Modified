@@ -74,6 +74,7 @@ export const getStaticProps = async () => {
   const hotelRegionsListQuery = groq`
     *[_type == "navoptions"]{
       _id,
+      id,
       name,
       "slug_Name": slug.current,
       "image_Url": image.asset->url

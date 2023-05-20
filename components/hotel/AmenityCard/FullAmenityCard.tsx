@@ -16,7 +16,7 @@ export default function FullAmenityCard(props: Props) {
           <h2 className={`text-gray-500 text-2xl font-semibold`}>Hotel Amenities</h2>
         </motion.div>
         <motion.div
-          className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3`}
+          className={`grid grid-cols-2 xl:grid-cols-3`}
         >
           {props?.aminityList?.map(
             (amenity: any, index: number) =>
@@ -38,7 +38,7 @@ export default function FullAmenityCard(props: Props) {
                       objectFit="cover"
                     />
                   </div>
-                  <div className={`text-base text-left`}>{amenity}</div>
+                  <div className={`text-xs md:text-base text-left`}>{amenity}</div>
                 </motion.div>
               )
           )}

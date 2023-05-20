@@ -36,7 +36,7 @@ export default function HotelRegions(props: Props) {
           className={`flex flex-col justify-center items-center align-middle pb-4`}
         >
           <h1
-            className={`text-5xl sm:text-7xl md:text-8xl text-center px-5`}
+            className={`text-5xl sm:text-6xl md:text-7xl text-center px-5 font-serif`}
           >
             Hotel Regions
           </h1>

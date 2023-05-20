@@ -142,7 +142,7 @@ export default function HotelInformation(props: Props) {
         >
           <motion.div className={`relative w-full md:w-[60%] scrollbar-hide`}>
             {/* Name */}
-            <motion.div className={`w-full mb-4 text-justify`}>
+            <motion.div className={`w-full mb-4 text-center md:text-left`}>
               <h1 className={`text-5xl font-serif`}>{props.hotelInfo.name}</h1>
             </motion.div>
 
@@ -170,12 +170,12 @@ export default function HotelInformation(props: Props) {
 
             {/* Phone & Email Id */}
             <motion.div
-              className={`w-full flex flex-col lg:flex-row justify-between mb-4 items-center align-middle`}
+              className={`w-full flex flex-col lg:flex-row justify-between mb-4 md:items-center md:align-middle`}
             >
               <motion.div
-                className={`flex text-start items-center align-middle py-1`}
+                className={`flex text-left items-center align-middle py-1`}
               >
-                <p className={`font-semibold text-xl text-red-600`}>
+                <p className={`font-semibold text-xl text-red-600 text-left`}>
                   PHONE:&nbsp;&nbsp;
                 </p>
                 <p className={`text-xl`}>{props.hotelInfo.phone}</p>
@@ -183,7 +183,7 @@ export default function HotelInformation(props: Props) {
               <motion.div
                 className={`flex text-start items-center align-middle py-1`}
               >
-                <p className={`font-semibold text-xl text-red-600`}>
+                <p className={`font-semibold text-xl text-red-600 text-left`}>
                   EMAIL:&nbsp;&nbsp;
                 </p>
                 <p className={`text-xl`}>{props.hotelInfo.email}</p>
@@ -211,7 +211,7 @@ export default function HotelInformation(props: Props) {
 
             {/* Description */}
             <motion.div className={`w-full mb-4 text-justify`}>
-              <p className={`text-xl font-mono text-justify`}>
+              <p className={`text-xl font-light text-justify`}>
                 {props.hotelInfo.description}
               </p>
             </motion.div>

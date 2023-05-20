@@ -18,7 +18,7 @@ export default function SpeacialOffers(props: Props) {
             initial={{ opacity: 0.0, y: 30 }}
             transition={{ duration: 2.0, type: "spring" }}
             whileInView={{ opacity: 1, y: 0 }}
-            className={`text-5xl sm:text-7xl md:text-8xl text-center pb-5`}
+            className={`text-5xl sm:text-6xl md:text-7xl text-center pb-5 font-serif`}
           >
             Special Offers
           </motion.h1>
@@ -52,7 +52,7 @@ export default function SpeacialOffers(props: Props) {
                 initial={{ opacity: 0.0, y: 40 }}
                 transition={{ duration: 3.0, type: "spring" }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className={`text-center text-[20px]`}
+                className={`text-center text-[20px] text-[#6d6d6d]`}
               >
                 We can help you fit your stay and experience within your alloted
                 budget.

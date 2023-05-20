@@ -20,7 +20,7 @@ export default function RegionCard(props: Props) {
   return (
     <React.Fragment>
       <motion.div onClick={showRegionHotelsHandler}
-        className={`relative w-[98%] h-[400px] md:w-[600px] md:h-[450px] flex-shrink-0 flex flex-col items-center align-middle p-4 rounded-3xl bg-red-100 hover:bg-gray-200 cursor-pointer`}
+        className={`relative w-[98%] h-[400px] md:w-[600px] md:h-[450px] flex-shrink-0 flex flex-col items-center align-middle p-4 rounded-3xl bg-gray-100 hover:bg-red-100 cursor-pointer`}
       >
         <motion.div className={`relative w-full h-full mb-8`}>
           <Image
@@ -29,11 +29,11 @@ export default function RegionCard(props: Props) {
             layout="fill"
             // objectFit="contain"
             objectPosition="center"
-            className={`rounded-3xl hover:drop-shadow-xl shadow-lg w-fit h-fill`}
+            className={`rounded-3xl shadow-lg w-fit h-fill`}
           />
         </motion.div>
         <motion.div>
-          <h2 className={`text-center text-2xl text-red-500`}>
+          <h2 className={`text-center text-2xl text-[#6d6d6d]`}>
             {props.hotelRegion.name}
           </h2>
         </motion.div>

@@ -32,6 +32,7 @@ export default function Login(props: Props) {
 export const getStaticProps = async (context: any) => {
   const hotelImageListQuery = groq`
       *[_type == "hotel"] {
+          name,
           "url":images[0].asset->url
       }
   `;

@@ -64,7 +64,7 @@ export default function AuthCard(props: Props) {
     const interval = setInterval(() => {
       const newIdx = (imgIdx + Number(1)) % props.imagesList.length;
       setHotelIdx(newIdx);
-    }, 6000);
+    }, 1750);
 
     return () => clearInterval(interval);
   }, [imgIdx, props.imagesList.length]);
@@ -77,7 +77,9 @@ export default function AuthCard(props: Props) {
       setErrorModel(true);
     } else if (userResponse.error) {
       console.log("User error: " + userResponse.error);
-      const displayErrorMsg = await getErrorMessage("Google authentication error!");
+      const displayErrorMsg = await getErrorMessage(
+        "Google authentication error!"
+      );
       setErrorMessage(String(displayErrorMsg));
       setErrorModel(true);
     } else {
@@ -140,7 +142,7 @@ export default function AuthCard(props: Props) {
         setErrorModel={setErrorModel}
       />
       <motion.div
-        className={`relative w-[90%] sm:w-[95%] sm:h-[600px] xl:w-[1150px] flex justify-between shadow-xl rounded-2xl mt-5 p-5 bg-gray-200`}
+        className={`relative w-[90%] sm:w-[95%] sm:h-[600px] xl:w-[1150px] flex justify-between shadow-2xl rounded-2xl mt-5 p-5 bg-gray-100`}
       >
         <motion.div
           className={`relative flex flex-col w-full sm:w-[50%] h-full items-center justify-center`}
@@ -275,6 +277,13 @@ export default function AuthCard(props: Props) {
             layout="fill"
             objectFit="cover"
           />
+          <div
+            className={`absolute w-full text-center top-2 bg-slate-200 px-2`}
+          >
+            <h2 className={`text-2xl font-serif text-center`}>
+              {props.imagesList[imgIdx].name}
+            </h2>
+          </div>
         </motion.div>
       </motion.div>
     </React.Fragment>

@@ -17,9 +17,7 @@ export default function NearbyPlacesCard(props: Props) {
             Nearby Places
           </h2>
         </motion.div>
-        <motion.div
-          className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3`}
-        >
+        <motion.div className={`grid grid-cols-2 xl:grid-cols-3`}>
           {props?.locationsList?.map(
             (location: any, index: number) =>
               (!viewMore
@@ -40,7 +38,9 @@ export default function NearbyPlacesCard(props: Props) {
                         objectFit="cover"
                       />
                     </div>
-                    <div className={`text-base text-left`}>{location.name}</div>
+                    <div className={`text-xs md:text-base text-left`}>
+                      {location.name}
+                    </div>
                   </motion.div>
                 </a>
               )

@@ -71,28 +71,12 @@ export default function SearchBar(props: Props) {
       },
     });
     resetSearchTextHandler();
-
-    // const requestBody = {
-    //   q: String(searchInput),
-    //   checkin: String(checkInDate),
-    //   checkout: String(checkOutDate),
-    //   num_nights: String(getDateDifference(checkInDate, checkOutDate)),
-    //   num_guests: String(numberOfGuests),
-    // };
-
-    // fetch('/api/searchHotel', {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   method: 'GET',
-    //   body: JSON.stringify(requestBody),
-    // });
   };
 
   return (
     <React.Fragment>
       <motion.div
-        className={`relative w-[80%] md:w-[45%] flex flex-col justify-center items-center mx-auto`}
+        className={`relative w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] hidden md:flex flex-col justify-center items-center mx-auto`}
         // className={`hidden relative w-[45%] sm:flex flex-col justify-center items-center mx-auto`}
       >
         <motion.div
@@ -117,9 +101,7 @@ export default function SearchBar(props: Props) {
           />
         </motion.div>
         <motion.div
-          className={`${
-            !searchInput ? "hidden" : "absolute"
-          } 
+          className={`${!searchInput ? "hidden" : "absolute"} 
           w-fit align-middle items-center justify-center mt-[500px] p-2 rounded-lg bg-slate-100 z-30`}
           // w-fit align-middle items-center justify-center mt-[530px] p-2 rounded-lg bg-slate-100 z-50`}
           initial={{ opacity: 0.0 }}

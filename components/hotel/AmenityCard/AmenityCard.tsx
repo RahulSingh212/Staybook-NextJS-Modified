@@ -16,7 +16,7 @@ export default function AmenityCard(props: Props) {
           <h2 className={`text-gray-500 text-2xl font-semibold`}>Amenities</h2>
         </motion.div>
         <motion.div
-          className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3`}
+          className={`grid grid-cols-2 lg:grid-cols-3`}
         >
           {props.amenitiesList.map(
             (amenity: any, index: number) =>

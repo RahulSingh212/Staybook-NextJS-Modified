@@ -55,7 +55,7 @@ export default function HotelCard(props: Props) {
     <React.Fragment>
       <motion.div
         onClick={bookHotelHandler}
-        className={`relative flex flex-col sm:flex-row mx-2 md:mx-4 xl:mx-8 my-2 p-3 rounded-2xl bg-white shadow-md hover:shadow-lg cursor-pointer`}
+        className={`relative flex flex-col sm:flex-row mx-2 md:mx-4 xl:mx-8 my-2 p-3 rounded-2xl bg-white hover:bg-slate-100 shadow-md hover:shadow-lg cursor-pointer`}
       >
         <motion.div
           className={`relative flex flex-row h-72 w-[100%] sm:h-80 sm:w-[45%] md:h-80 md:w-[40%] lg:h-72 lg:w-96 xl:h-80 xl:w-[480px] flex-shrink-0 mr-2 md:mr-4 xl:mr-6`}
@@ -112,7 +112,11 @@ export default function HotelCard(props: Props) {
               <LocationMarkerIcon
                 className={`relative fill-[#cf8f24] h-7 w-7 p-1 border-2 border-[#cf8f24] rounded-full mr-2`}
               />
-              <Link href={props.hotelInfo.map} className={`z-30`} target="_blank">
+              <Link
+                href={props.hotelInfo.map}
+                className={`z-30`}
+                target="_blank"
+              >
                 <p className={`md:text-lg xl:text-xl`}>
                   {props.hotelInfo.landmark}
                 </p>
@@ -157,29 +161,37 @@ export default function HotelCard(props: Props) {
               </div>
             </div>
 
-            <motion.div
-              className={`relative flex flex-row gap-1 flex-wrap w-full`}
+            <div
+              className={`relative flex flex-row overflow-x-scroll scrollbar-hide no-scrollbar`}
             >
-              {props.hotelInfo.amenities_List.map(
-                (amenity: any, index: number) => (
-                  <motion.div
-                    key={amenity._id}
-                    className={`relative flex flex-row items-start align-middle justify-center rounded-full flex-shrink-0 px-2 py-1 bg-white shadow-5xl border-2 scrollbar-hide mb-1`}
-                  >
-                    <div className={`relative h-5 w-5 mr-2 flex rounded-full`}>
-                      <Image
-                        className={`rounded-full`}
-                        src={amenity.image_Url}
-                        alt="amenity-img"
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                    </div>
-                    <div className={`text-sm text-center`}>{amenity.name}</div>
-                  </motion.div>
-                )
-              )}
-            </motion.div>
+              <motion.div
+                className={`relative flex flex-row overscroll-x-scroll w-full`}
+              >
+                {props.hotelInfo.amenities_List.map(
+                  (amenity: any, index: number) => (
+                    <motion.div
+                      key={amenity._id}
+                      className={`relative flex flex-row items-start align-middle justify-center rounded-full flex-shrink-0 mr-2 px-2 py-1 bg-white border-[1px]`}
+                    >
+                      <div
+                        className={`relative h-5 w-5 mr-2 flex rounded-full bg-white`}
+                      >
+                        <Image
+                          className={`rounded-full`}
+                          src={amenity.image_Url}
+                          alt="amenity-img"
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      </div>
+                      <div className={`text-sm text-center`}>
+                        {amenity.name}
+                      </div>
+                    </motion.div>
+                  )
+                )}
+              </motion.div>
+            </div>
           </div>
 
           <div

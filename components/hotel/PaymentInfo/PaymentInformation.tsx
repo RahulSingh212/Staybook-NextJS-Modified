@@ -8,6 +8,7 @@ import "react-phone-input-2/lib/material.css";
 import { Textarea, theme } from "@nextui-org/react";
 import { hotelBookingHandler } from "@/lib/booking/bookingHandler";
 import { useRouter } from "next/router";
+import { makePayment } from "@/lib/razorpay/razorpayHandler";
 
 const shortid = require("shortid");
 
@@ -41,22 +42,6 @@ const bookingConfirmationRedirector = (
   );
 };
 
-const initializeRazorpay = (userBooking: BookingDetails) => {
-  return new Promise((resolve) => {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-
-    script.onload = () => {
-      resolve(true);
-    };
-    script.onerror = () => {
-      resolve(false);
-    };
-
-    document.body.appendChild(script);
-  });
-};
-
 export default function PaymentInformation(props: Props) {
   const router = useRouter();
   const [userFullName, setUserFullName] = React.useState<string>(
@@ -78,7 +63,8 @@ export default function PaymentInformation(props: Props) {
     } else if (!userEmailId.includes("@") || !userEmailId.includes(".")) {
     }
 
-    const razorPayResponse = await initializeRazorpay(props.userBooking);
+    console.log("initialization");
+    const razorPayResponse = await makePayment(props.userBooking);
     
     
     // props.setLoadingModel(true);

@@ -49,18 +49,6 @@ export default function HotelInformation(props: Props) {
 
   const [errorModelVisible, setErrorModel] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
-  // const [Razorpay, setRazorpay] = React.useState<any>(null);
-
-  // React.useEffect(() => {
-  //   async function loadRazorpay() {
-  //     const { default: Razorpay } = await import('razorpay');
-  //     setRazorpay(Razorpay);
-  //   }
-
-  //   if (typeof window !== 'undefined') {
-  //     loadRazorpay();
-  //   }
-  // }, []);
 
   const router = useRouter();
   const [userBooking, setUserBooking] = React.useState<BookingDetails>(
@@ -86,12 +74,28 @@ export default function HotelInformation(props: Props) {
     bookingDetails.roomsList.push(rm);
     bookingDetails.updateBookingDetails();
     setUserBooking(bookingDetails);
-  }, []);
-  const [roomCount, setRoomCount] = React.useState<number>(userBooking.total_Rooms_Count);
-  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(userBooking.total_Room_Cost);
+  }, [
+    props.hotelInfo._id,
+    props.hotelInfo.hotel_Firebase_Unique_Id,
+    props.hotelInfo.hotel_Owner_Unique_Id,
+    props.hotelInfo.image_List,
+    props.hotelInfo.landmark,
+    props.hotelInfo.name,
+    props.hotelInfo.rooms,
+  ]);
+
+  const [roomCount, setRoomCount] = React.useState<number>(
+    userBooking.total_Rooms_Count
+  );
+  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(
+    userBooking.total_Room_Cost
+  );
   const [totalTax, setTotalTax] = React.useState<number>(userBooking.total_Tax);
-  const [totalPrice, setTotalPrice] = React.useState<number>(userBooking.total_Price);
-  const [selectedRoomsList, setSelectedRoomsList] = React.useState<RoomDetails[]>();
+  const [totalPrice, setTotalPrice] = React.useState<number>(
+    userBooking.total_Price
+  );
+  const [selectedRoomsList, setSelectedRoomsList] =
+    React.useState<RoomDetails[]>();
 
   const roomSelectHandler = async () => {
     if (userBooking.roomsList.length === 0) {
@@ -104,7 +108,6 @@ export default function HotelInformation(props: Props) {
     userBooking.user_Phone_Number = response.user_Phone_Number;
     userBooking.user_Email_Id = response.user_Email_Id;
     setUserBooking(userBooking);
-    // console.log(response);
     setFormVisibility(true);
   };
 
@@ -112,7 +115,7 @@ export default function HotelInformation(props: Props) {
     const data = await hotelBookingHandler(userBooking);
     setLoadingModel(false);
   };
-
+  
   return (
     <React.Fragment>
       <Head>
@@ -242,7 +245,7 @@ export default function HotelInformation(props: Props) {
             hotelBookingHandler={hotelBookingHandler}
           />
         </motion.div>
-        {(formVisibility && userBooking.roomsList.length) && (
+        {formVisibility && userBooking.roomsList.length && (
           <PaymentInformation
             userBooking={userBooking}
             setUserBooking={setUserBooking}

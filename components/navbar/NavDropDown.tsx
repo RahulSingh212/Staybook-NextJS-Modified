@@ -4,6 +4,8 @@ import Image from "next/image";
 import moment from "moment";
 import { motion } from "framer-motion";
 
+import { OfficeBuildingIcon, UsersIcon } from "@heroicons/react/solid";
+
 type Props = {
   dropDown: boolean;
   setDropDown: any;
@@ -28,7 +30,10 @@ export default function NavDropDown(props: Props) {
                 <li
                   className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  Hotels
+                  <div className={`reltive flex space-x-1`}>
+                    
+                    <h3>Hotels</h3>
+                  </div>
                 </li>
               </Link>
               <li className="relative w-full p-[1px] my-1 bg-gray-200"></li>

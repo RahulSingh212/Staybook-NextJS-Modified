@@ -26,3 +26,32 @@
     }
   }
 }
+
+/* react-date-range styles */
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.custom-date-range-picker {
+  /* Add your custom styles here */
+}
+
+.rdrCalendarWrapper {
+  /* Add your custom styles here */
+}
+
+.rdrDayHovered {
+  
+}
+.rdrDayStartPreview {
+  
+}
+.rdrDayInPreview {
+  
+}
+.rdrDayEndPreview {
+  
+}
+.rdrDaySelected {
+  /* Add your custom styles here */
+}

@@ -96,7 +96,7 @@ export default function SearchBar(props: Props) {
           />
           <SearchIcon
             // className={`hidden md:inline-flex h-8 bg-red-400 text-white p-2 rounded-full cursor-pointer`}
-            className={`h-8 bg-red-400 text-white p-2 rounded-full cursor-pointer`}
+            className={`h-8 bg-[#cf8f24] text-white p-2 rounded-full cursor-pointer`}
             onClick={searchHandler}
           />
         </motion.div>
@@ -112,7 +112,7 @@ export default function SearchBar(props: Props) {
             <DateRangePicker
               ranges={[dateSelectionRange]}
               minDate={new Date()}
-              rangeColors={["#FD5B61"]}
+              rangeColors={["#cf8f24"]}
               onChange={rangeHandler}
             />
           </div>
@@ -140,7 +140,7 @@ export default function SearchBar(props: Props) {
                 value={numberOfGuests}
                 min={2}
                 max={4}
-                className={`w-8 text-lg ml-2 text-right outline-none text-red-400`}
+                className={`w-8 text-lg ml-2 text-right outline-none text-[#cf8f24]`}
               />
               <div
                 className={`p-[6px] bg-gray-300 rounded-full ml-3 cursor-pointer`}
@@ -163,7 +163,7 @@ export default function SearchBar(props: Props) {
               Cancel
             </button>
             <button
-              className={`flex-grow text-red-400`}
+              className={`flex-grow text-[#cf8f24]`}
               onClick={searchHandler}
             >
               Search

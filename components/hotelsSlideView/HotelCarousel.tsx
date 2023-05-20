@@ -45,10 +45,11 @@ export default function HotelCarousel(props: Props) {
           <h1 className={`text-4xl sm:text-6xl `}>Our Hotels</h1>
         </motion.div> */}
         <motion.div
+          onClick={bookHotelHandler}
           initial={{ opacity: 0.0, y: -35 }}
           transition={{ duration: 1.0, type: "spring", stiffness: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className={`relative w-screen h-full md:h-[700px] lg:h-[500px] flex flex-col md:flex-row justify-center items-center px-5 pt-5 pb-8`}
+          className={`relative w-screen h-full md:h-[700px] lg:h-[500px] flex flex-col md:flex-row justify-center items-center px-5 pt-5 pb-8 cursor-pointer`}
         >
           <div
             className={`relative flex flex-col items-center justify-center w-[80%] h-56 sm:w-[70%] sm:h-64 md:w-1/2 md:h-full`}
@@ -86,18 +87,20 @@ export default function HotelCarousel(props: Props) {
                 {props.hotelsList[hotelIdx].hotel_Name}
               </h1>
             </div>
-            <div className={`text-justify py-5 px-2 sm:px-5 font-light text-[#6d6d6d]`}>
+            <div
+              className={`text-justify py-5 px-2 sm:px-5 font-light text-[#6d6d6d]`}
+            >
               {props.hotelsList[hotelIdx].description}
             </div>
           </div>
-          <div className={`absolute bottom-1`}>
+          {/* <div className={`absolute bottom-1`}>
             <button
               onClick={bookHotelHandler}
               className={`px-4 py-2 rounded-3xl bg-[#cf8f24] text-white`}
             >
               Book Now
             </button>
-          </div>
+          </div> */}
         </motion.div>
 
         <div

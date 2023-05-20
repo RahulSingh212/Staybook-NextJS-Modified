@@ -128,11 +128,11 @@ export default function HotelCard(props: Props) {
             <div
               className={`relative flex flex-col sm:flex-row justify-between items-start w-[100%] mb-2`}
             >
-              <div className={`relative items-center flex space-x-3`}>
+              <div className={`relative items-center flex space-x-2`}>
                 {[...Array(props.hotelInfo.rating)].map((idx: number) => (
                   <StarIcon
                     key={idx}
-                    className={`h-6 w-6 bg-slate-100 rounded-full p-1 shadow-md`}
+                    className={`h-6 w-6 rounded-full p-1 shadow-md fill-[#cf8f24] border-[1px]`}
                   />
                 ))}
 

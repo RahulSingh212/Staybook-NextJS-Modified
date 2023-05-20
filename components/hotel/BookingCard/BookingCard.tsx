@@ -8,9 +8,10 @@ import BookingPriceCard from "./BookingPriceCard";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import Razorpay from "razorpay";
-import {
-  hotelBookingHandler,
-} from "@/lib/booking/bookingHandler";
+import { hotelBookingHandler } from "@/lib/booking/bookingHandler";
+import { DateRangePicker } from "react-date-range";
+import { UsersIcon } from "@heroicons/react/solid";
+import Image from "next/image";
 
 type Props = {
   userBooking: BookingDetails;
@@ -20,7 +21,7 @@ type Props = {
   setTotalTax: Function;
   setTotalPrice: Function;
 
-  roomSelectHandler:Function;
+  roomSelectHandler: Function;
   hotelBookingHandler: Function;
 };
 
@@ -32,81 +33,6 @@ export const makePayment = async (userBooking: BookingDetails) => {
       "Content-Type": "application/json",
     },
   });
-
-  // const options = {
-  //   name: "Rahul Singh",
-  //   currency: userResponse.currency,
-  //   amount: userResponse.amount,
-  //   order_Id: "order-id",
-  //   description: "description",
-  //   handler: function (response: any) {},
-  //   prefill: {
-  //     name: "Rahul Singh",
-  //     email: "rahulsinghrs174326@gmail.com",
-  //     contact: "7543041204",
-  //   },
-  // };
-
-  const data = await userResponse.json();
-  console.log(data);
-  console.log(window);
-
-  const options2 = {
-    key_id: "yKBWPaNCj4yeIrtu1NUbRIUC", // Enter the Key ID generated from the Dashboard
-    amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    currency: "INR",
-    name: "Acme Corp",
-    description: "Test Transaction",
-    image:
-      "https://lh3.googleusercontent.com/a/AEdFTp65wOTrRfPJH4y-cXtcNYNw6kbbrjkhQAEpWljMyw=s96-c",
-    order_id: data.id,
-    callback_url: "https://localhost:3000/api/paymentVerification",
-    prefill: {
-      name: "Rahul Singh",
-      email: "rahulsinghrs174326@gmail.com",
-      contact: "7543041204",
-    },
-    notes: {
-      address: "New Delhi",
-    },
-    theme: {
-      color: "#3399cc",
-    },
-  };
-
-  // const razor = new window.Razorpay.get(options2);
-  // console.log(razor);
-  // razor.open();
-  // paymentObj.open();
-  // // paymentObj.on("payment.failed", function (response: any) {
-  // //   alert("Payment failded. Please try again. Contact Support for help");
-  // // })
-
-  // window.onload = function () {
-  //   var options = {
-  //     key_id: "yKBWPaNCj4yeIrtu1NUbRIUC", // Enter the Key ID generated from the Dashboard
-  //     amount: "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-  //     currency: "INR",
-  //     name: "Acme Corp",
-  //     description: "Test Transaction",
-  //     image: "https://lh3.googleusercontent.com/a/AEdFTp65wOTrRfPJH4y-cXtcNYNw6kbbrjkhQAEpWljMyw=s96-c",
-  //     order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //     callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
-  //     prefill: {
-  //       name: "Rahul Singh",
-  //       email: "rahulsinghrs174326@gmail.com",
-  //       contact: "7543041204",
-  //     },
-  //     notes: {
-  //       address: "New Delhi",
-  //     },
-  //     theme: {
-  //       color: "#3399cc",
-  //     },
-  //   };
-  //   const razorpay = new Razorpay(options);
-  //   // Your code here
-  // };
 };
 
 export const stayflexiHandler = async (
@@ -130,6 +56,7 @@ export const stayflexiHandler = async (
 
 export default function BookingCard(props: Props) {
   const router = useRouter();
+  const [dateRangePicker, setDateRangePicker] = React.useState<boolean>(false);
   const [hotel_id, setHotelId] = React.useState<String>("");
   const [checkin, setCheckin] = React.useState<Date>(new Date());
   const [checkout, setCheckout] = React.useState<Date>(addDays(new Date(), 1));
@@ -154,16 +81,6 @@ export default function BookingCard(props: Props) {
     router.query.num_nights,
   ]);
 
-  // React.useEffect(() => {
-  //   const script = document.createElement('script');
-  //   script.src = '/razorpay__client';
-  //   script.async = true;
-  //   document.body.appendChild(script);
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
-
   const fetchStayFlexiHotelPrices = async () => {
     const fromDate = String(moment(checkin).format("DD-MM-YYYY"));
     const toDate = String(moment(checkout).format("DD-MM-YYYY"));
@@ -172,18 +89,69 @@ export default function BookingCard(props: Props) {
   };
 
   const formHanlder = async () => {
+    resetSearchTextHandler();
     await props.roomSelectHandler();
-    router.push('#bookinginformation')
-  }
+    router.push("#bookinginformation");
+  };
 
   const bookHotelHandler = async (event: any) => {
     props.hotelBookingHandler();
   };
 
+  const dateSelectionRange = {
+    startDate: checkin,
+    endDate: checkout,
+    key: "selection",
+  };
+
+  const dateRangeHandler = (selectedRange: any) => {
+    setCheckin(selectedRange.selection.startDate);
+    setCheckout(selectedRange.selection.endDate);
+  };
+
+  const guestNumberHandler = (action: number) => {
+    if (action === 1) {
+      if (num_guests <= 3) {
+        setNum_guests(num_guests + 1);
+      }
+    } else {
+      if (num_guests >= 3) {
+        setNum_guests(num_guests - 1);
+      }
+    }
+  };
+
+  const resetSearchTextHandler = () => {
+    setDateRangePicker(false);
+    setHotelId(String(router.query.hotel_id));
+    setNum_nights(Number(router.query.num_guests));
+    setNum_guests(Number(router.query.num_guests));
+    setCheckin(moment(router.query.checkin, "DD-MM-YYYY").toDate());
+    setCheckout(
+      addDays(
+        moment(router.query.checkin, "DD-MM-YYYY").toDate(),
+        Number(router.query.num_nights)
+      )
+    );
+  };
+
+  const hotelDetailsHandler = () => {
+    setDateRangePicker(false);
+    router.replace({
+      pathname: `/hotel/google/list/${hotel_id}/`,
+      query: {
+        checkin: String(moment(checkin).format("DD-MM-YYYY")),
+        num_nights: String(num_nights),
+        num_guests: String(num_guests),
+        hotel_id: String(hotel_id),
+      },
+    });
+  };
+
   return (
     <React.Fragment>
       <motion.div
-      id="booking-card"
+        id="booking-card"
         className={`sticky w-full md:w-[37.5%] h-full bg-white py-6 px-4 rounded-xl top-20 right-0 shadow-xl`}
       >
         <motion.div className={`w-full pb-4`}>
@@ -195,11 +163,15 @@ export default function BookingCard(props: Props) {
         <motion.div
           className={`relative flex flex-col w-full mb-4 shadow-md bg-white rounded-2xl`}
         >
+          {/* Date Range */}
           <motion.div
-            className={`relative w-full flex justify-between border-red-950 border-[1px] rounded-t-lg`}
+            onClick={() => {
+              setDateRangePicker(true);
+            }}
+            className={`relative w-full flex justify-between border-red-950 border-[1px] rounded-t-lg cursor-pointer`}
           >
             <motion.div
-              className={`relative flex flex-col w-[50%] px-4 py-2 border-r-[1px] border-red-950`}
+              className={`relative flex flex-col w-[50%] px-4 py-2 border-r-[1px]  border-red-950 hover:bg-slate-100`}
             >
               <motion.div className={`text-xs font-semibold`}>
                 CHECK-IN
@@ -208,7 +180,9 @@ export default function BookingCard(props: Props) {
                 {format(checkin, "dd MMMM yy")}
               </motion.div>
             </motion.div>
-            <motion.div className={`relative flex flex-col w-[50%] px-4 py-2`}>
+            <motion.div
+              className={`relative flex flex-col w-[50%] px-4 py-2 hover:bg-slate-100`}
+            >
               <motion.div className={`text-xs font-semibold`}>
                 CHECK-OUT
               </motion.div>
@@ -217,14 +191,102 @@ export default function BookingCard(props: Props) {
               </motion.div>
             </motion.div>
           </motion.div>
+
+          {/* Number of Guests */}
           <motion.div
-            className={`relative w-ful flex flex-col justify-between px-4 py-2 border-red-950 border-[1px] rounded-b-lg`}
+            onClick={() => {
+              setDateRangePicker(true);
+            }}
+            className={`relative w-ful flex flex-col justify-between px-4 py-2 border-red-950 border-[1px] rounded-b-lg cursor-pointer hover:bg-slate-100`}
           >
             <motion.div className={`text-xs font-semibold`}>GUESTS</motion.div>
             <motion.div className={`text-xl font-medium`}>
               {num_guests} guests
             </motion.div>
           </motion.div>
+
+          {/* Date Range Picker */}
+          {dateRangePicker && (
+            <motion.div
+              className={`relative w-full align-middle flex flex-col align-center p-2 rounded-lg bg-white z-20 bottom-0 mt-1 border-red-950 border-[1px] overflow-x-scroll`}
+              initial={{ opacity: 0.0 }}
+              transition={{ duration: 4.0, type: "spring", stiffness: 200 }}
+              whileInView={{ opacity: 1.0 }}
+            >
+              <Image
+                onClick={resetSearchTextHandler}
+                className={`absolute top-2 right-2  rounded-full p-1 border-[1px] cursor-pointer bg-[#fff] hover:bg-[#c4c2c2] z-40`}
+                src={`/close.png`}
+                alt="amenity-img"
+                height={27.5}
+                width={27.5}
+              />
+              <div className={`flex mx-auto`}>
+                <DateRangePicker
+                  ranges={[dateSelectionRange]}
+                  minDate={new Date()}
+                  rangeColors={["#cf8f24"]}
+                  onChange={dateRangeHandler}
+                  className={`relative w-full`}
+                />
+              </div>
+              <div className={`flex flex-row flex-between pt-2 border-b-2`}>
+                <h2 className={`text-xl font-semibold flex-grow`}>
+                  Number of Guests
+                </h2>
+                <div
+                  className={`flex items-center align-middle justify-center`}
+                >
+                  <div
+                    className={`p-[6px] bg-gray-300 rounded-full mr-3 cursor-pointer`}
+                    onClick={() => guestNumberHandler(-1)}
+                  >
+                    <Image
+                      alt="icon"
+                      src={`/minus-icon.png`}
+                      width={"10"}
+                      height={"10"}
+                    />
+                  </div>
+                  <UsersIcon className={`h-6`} />
+                  <input
+                    aria-label="Search"
+                    onChange={(e) => {}}
+                    type="number"
+                    value={num_guests}
+                    min={2}
+                    max={4}
+                    className={`w-8 text-lg ml-2 text-right outline-none text-[#cf8f24]`}
+                  />
+                  <div
+                    className={`p-[6px] bg-gray-300 rounded-full ml-3 cursor-pointer`}
+                    onClick={() => guestNumberHandler(1)}
+                  >
+                    <Image
+                      alt="icon"
+                      src={`/plus-icon.png`}
+                      width={"10"}
+                      height={"10"}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={`flex pt-2`}>
+                <button
+                  className={`flex-grow text-gray-500 hover:bg-slate-200 py-1 rounded-md`}
+                  onClick={resetSearchTextHandler}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={`flex-grow text-[#cf8f24] hover:bg-slate-200 py-1 rounded-md`}
+                  onClick={hotelDetailsHandler}
+                >
+                  Search
+                </button>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
 
         <motion.div className={`w-full rounded-lg px-1 mb-2`}>

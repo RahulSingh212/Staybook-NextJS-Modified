@@ -41,6 +41,22 @@ const bookingConfirmationRedirector = (
   );
 };
 
+const initializeRazorpay = (userBooking: BookingDetails) => {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+
+    document.body.appendChild(script);
+  });
+};
+
 export default function PaymentInformation(props: Props) {
   const router = useRouter();
   const [userFullName, setUserFullName] = React.useState<string>(
@@ -61,26 +77,31 @@ export default function PaymentInformation(props: Props) {
       return;
     } else if (!userEmailId.includes("@") || !userEmailId.includes(".")) {
     }
-    props.setLoadingModel(true);
-    props.userBooking.user_Name = userFullName;
-    props.userBooking.user_Phone_Number = userMobileNumber;
-    props.userBooking.user_Email_Id = userEmailId;
-    props.setUserBooking(props.userBooking);
-    const data = await hotelBookingHandler(props.userBooking);
 
-    if (data.booking_Id === "") {
-      props.setErrorMessage("Booking Failed! Please try again.");
-      props.setLoadingModel(false);
-      props.setErrorModel(true);
-    } 
-    else {
-      bookingConfirmationRedirector(
-        router,
-        data.booking_Id,
-        data.receipt_Id,
-        props.userBooking
-      );
-    }
+    const razorPayResponse = await initializeRazorpay(props.userBooking);
+    
+    
+    // props.setLoadingModel(true);
+    // props.userBooking.user_Name = userFullName;
+    // props.userBooking.user_Phone_Number = userMobileNumber;
+    // props.userBooking.user_Email_Id = userEmailId;
+    // props.setUserBooking(props.userBooking);
+    // const data = await hotelBookingHandler(props.userBooking);
+
+
+    // if (data.booking_Id === "") {
+    //   props.setErrorMessage("Booking Failed! Please try again.");
+    //   props.setLoadingModel(false);
+    //   props.setErrorModel(true);
+    // } 
+    // else {
+    //   bookingConfirmationRedirector(
+    //     router,
+    //     data.booking_Id,
+    //     data.receipt_Id,
+    //     props.userBooking
+    //   );
+    // }
   };
 
   return (

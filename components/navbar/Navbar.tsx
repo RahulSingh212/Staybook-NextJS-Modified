@@ -63,49 +63,13 @@ export default function Navbar(props: Props) {
             />
           </div>
         </Link>
-
+        
+        {/* Middle Section */}
         <div className={`relative stickey w-full items-center align-middle`}>
           <SearchBar />
         </div>
 
-        {/* <div className={`relative flex align-middle items-center space-x-3`}> */}
-        {/* <div
-            onClick={urlHandler.bind(null, "/hotel")}
-            className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
-          >
-            Hotels
-          </div>
-          <div
-            onClick={urlHandler.bind(null, "/packages")}
-            className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
-          >
-            Tour Packages
-          </div>
-          <div
-            onClick={urlHandler.bind(null, "/blogs")}
-            className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
-          >
-            Blogs
-          </div>
-          <div
-            onClick={urlHandler.bind(null, "/about")}
-            className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
-          >
-            About Us
-          </div>
-          <div
-            onClick={urlHandler.bind(null, "/contact")}
-            className={`hidden md:inline-block relative rounded-lg px-3 py-1 cursor-pointer text-gray-600 hover:text-white font-sans hover:bg-red-500`}
-          >
-            Contact Us
-          </div> */}
-        {/* </div> */}
-
-        {/* Middle Section */}
-        {/* <SearchBar /> */}
-
         {/* Right Section */}
-        {/* <Link href={"/login"}> */}
         <div>
           <div
             onClick={() => {
@@ -128,15 +92,7 @@ export default function Navbar(props: Props) {
             <NavDropDown dropDown={dropDown} setDropDown={setDropDown} />
           )}
         </div>
-        {/* </Link> */}
       </header>
-      {/* {searchBar && (
-        <div
-          className={`relative stickey w-full top-3 items-center align-middle`}
-        >
-          <SearchBar />
-        </div>
-      )} */}
     </React.Fragment>
   );
 }

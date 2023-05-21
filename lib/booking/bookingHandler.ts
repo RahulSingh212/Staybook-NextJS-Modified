@@ -115,7 +115,7 @@ const emailHandler = async (userBooking: BookingDetails) => {
       checkOut: userBooking.checkout_Time.toLocaleDateString(),
       roomNumbers: userBooking.total_Rooms_Count,
       rooms: userBooking.roomsList,
-      guests: userBooking.getTotalGuestsCount,
+      guests: userBooking.total_Guests_Count,
       hotelContact: "+918373929299",
       address: userBooking.hotel_Landmark,
       status: `Amount due: ₹${Math.floor(userBooking.total_Price-userBooking.amount_Paid)}, Pay now to save extra ₹${Math.min(

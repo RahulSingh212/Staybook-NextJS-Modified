@@ -76,6 +76,7 @@ export class BookingDetails {
     if (chk) this.roomsList[idx].room_Count += 1;
     else this.roomsList.push(roomInfo);
 
+    this.total_Guests_Count += roomInfo.num_Guests;
     this.total_Rooms_Count += 1;
     this.total_Room_Cost += roomInfo.plan_Price + roomInfo.num_Children * 1000;
     this.total_Room_Cost = Number(this.total_Room_Cost.toFixed(2));
@@ -94,6 +95,7 @@ export class BookingDetails {
   }
 
   removeRoom(roomInfo: RoomDetails, planIdx: number) {
+    this.total_Guests_Count -= roomInfo.num_Guests;
     this.total_Rooms_Count -= roomInfo.room_Count;
     this.total_Room_Cost -= (roomInfo.plan_Price * roomInfo.room_Count) + (roomInfo.num_Children * roomInfo.room_Count * 1000);
     this.total_Tax = this.total_Room_Cost * 0.12;
@@ -125,13 +127,5 @@ export class BookingDetails {
   }
   get getTotalPrice(): number {
     return this.total_Price;
-  }
-  get getTotalGuestsCount(): number {
-    let guests = 0;
-    for (let i = 0; i < this.roomsList.length; i++) {
-      guests += this.roomsList[i].num_Guests;
-    }
-
-    return guests;
   }
 }

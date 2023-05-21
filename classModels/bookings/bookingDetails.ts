@@ -16,6 +16,8 @@ export class BookingDetails {
   user_Phone_Number: string = "";
   user_Address: String = "";
   total_Rooms_Count: number = 0;
+  total_Guests_Count: number = 2;
+  total_Children_Count: number = 2;
   total_Room_Cost: number = 0;
   total_Tax: number = 0;
   total_Price: number = 0;
@@ -123,5 +125,13 @@ export class BookingDetails {
   }
   get getTotalPrice(): number {
     return this.total_Price;
+  }
+  get getTotalGuestsCount(): number {
+    let guests = 0;
+    for (let i = 0; i < this.roomsList.length; i++) {
+      guests += this.roomsList[i].num_Guests;
+    }
+
+    return guests;
   }
 }

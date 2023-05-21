@@ -112,7 +112,7 @@ export default function BookingInformation(props: Props) {
                 {"Check-In Date"}
               </motion.div>
               <motion.div className={`relative flex text-lg text-gray-500`}>
-                {props.userBooking.checkin_Time.toString()}
+                {/* {props.userBooking.checkin_Time.toString()} */}
               </motion.div>
             </motion.div>
             <motion.div
@@ -124,7 +124,7 @@ export default function BookingInformation(props: Props) {
                 {"Check-Out Date"}
               </motion.div>
               <motion.div className={`relative flex text-lg text-gray-500`}>
-                {props.userBooking.checkout_Time.toString()}
+                {/* {props.userBooking.checkout_Time.toString()} */}
               </motion.div>
             </motion.div>
             <motion.div
@@ -172,7 +172,7 @@ export default function BookingInformation(props: Props) {
                 {"Amount Paid"}
               </motion.div>
               <motion.div className={`relative flex text-lg text-gray-500`}>
-                {props.userBooking.amount_Paid.toFixed(2)}
+                {/* {props.userBooking.amount_Paid.toFixed(2)} */}
               </motion.div>
             </motion.div>
             <motion.div

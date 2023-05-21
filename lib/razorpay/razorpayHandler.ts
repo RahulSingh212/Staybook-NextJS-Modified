@@ -1,5 +1,4 @@
 import { BookingDetails } from "@/classModels/bookings/bookingDetails";
-import { bookingConfirmationRedirector } from "@/components/hotel/PaymentInfo/PaymentInformation";
 import crypto from "crypto";
 import { useRouter } from "next/router";
 import { hotelBookingHandler } from "../booking/bookingHandler";

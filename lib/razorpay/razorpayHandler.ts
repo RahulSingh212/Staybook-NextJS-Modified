@@ -2,6 +2,7 @@ import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import crypto from "crypto";
 import { useRouter } from "next/router";
 import { hotelBookingHandler } from "../booking/bookingHandler";
+declare var window: any
 
 export const paymentSignatureConfirmation = async (
   oId: string,
@@ -102,10 +103,21 @@ export const makePayment = async (
         const user_Phone = userBooking.user_Phone_Number;
         const booking_receipt = userBooking.receipt_Id;
 
-        const url = `/bookingInformation/${data.booking_Id}?booking_status=${encodeURIComponent(booking_status)}&hotel_Name=${encodeURIComponent(hotel_Name)}&user_Name=${encodeURIComponent(user_Name)}&user_Email=${encodeURIComponent(user_Email)}&user_Phone=${encodeURIComponent(user_Phone)}&booking_receipt=${encodeURIComponent(booking_receipt)}`;
+        const url = `/bookingInformation/${
+          data.booking_Id
+        }?booking_status=${encodeURIComponent(
+          booking_status
+        )}&hotel_Name=${encodeURIComponent(
+          hotel_Name
+        )}&user_Name=${encodeURIComponent(
+          user_Name
+        )}&user_Email=${encodeURIComponent(
+          user_Email
+        )}&user_Phone=${encodeURIComponent(
+          user_Phone
+        )}&booking_receipt=${encodeURIComponent(booking_receipt)}`;
         window.location.href = url;
-      } 
-      else {
+      } else {
         setErrorMessage("Booking Failed! Please try again.");
         setLoadingModel(false);
         setErrorModel(true);

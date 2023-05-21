@@ -14,7 +14,7 @@ export default function Document() {
             __html: `
               (function() {
                 var options = {
-                  key: '${process.env.RAZORPAY_API_SECRET_KEY}',
+                  key: '${process.env.NEXT_PUBLIC_RAZORPAY_SECRET}',
                   name: 'Rahul Singh',
                   description: 'YOUR_DESCRIPTION',
                   image: 'https://lh3.googleusercontent.com/a/AEdFTp65wOTrRfPJH4y-cXtcNYNw6kbbrjkhQAEpWljMyw=s96-c',

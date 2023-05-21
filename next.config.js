@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: "build",
   reactStrictMode: false,
   images: {
     domains: ["icons8.com", "cdn.sanity.io", "lh3.googleusercontent.com"],
-    // disableStaticImages: true,
-    // disableServerSideCache: true,
   },
   env: {
-    RAZORPAY_API_KEY: process.env.RAZORPAY_API_SECRET_KEY,
+    RAZORPAY_API_KEY: process.env.RAZORPAY_SECRET,
   },
   async rewrites() {
     return [
@@ -17,15 +16,6 @@ const nextConfig = {
       },
     ];
   },
-  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-  //   // Exclude the 'net' module from the server-side bundle
-  //   if (!isServer) {
-  //     config.node = {
-  //       net: 'empty',
-  //     };
-  //   }
-  //   return config;
-  // },
 };
 
 module.exports = nextConfig;

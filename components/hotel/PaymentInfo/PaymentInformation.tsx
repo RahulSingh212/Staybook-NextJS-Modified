@@ -6,7 +6,7 @@ import { BookingDetails } from "@/classModels/bookings/bookingDetails";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import { Textarea, theme } from "@nextui-org/react";
-import { hotelBookingHandler } from "@/lib/booking/bookingHandler";
+import { bookingConfirmationRedirector, hotelBookingHandler } from "@/lib/booking/bookingHandler";
 import { useRouter } from "next/router";
 import { makePayment } from "@/lib/razorpay/razorpayHandler";
 
@@ -21,29 +21,9 @@ type Props = {
   setLoadingModel: Function;
 };
 
-const bookingConfirmationRedirector = (
-  router: any,
-  booking_Id: string,
-  receipt_Id: string,
-  userBooking: BookingDetails
-) => {
-  router.replace(
-    {
-      pathname: `/bookingInformation/${booking_Id}/`,
-      query: {
-        booking_status: "Booking Successful",
-        hotel_Name: userBooking.hotel_Name,
-        user_Name: userBooking.user_Name,
-        user_Email: userBooking.user_Email_Id,
-        user_Phone: userBooking.user_Phone_Number,
-        booking_receipt: receipt_Id,
-      },
-    },
-  );
-};
-
 export default function PaymentInformation(props: Props) {
   const router = useRouter();
+  const [paymentOption, setPaymentOption] = React.useState("pay-now");
   const [userFullName, setUserFullName] = React.useState<string>(
     props.userBooking.user_Name
   );
@@ -61,33 +41,39 @@ export default function PaymentInformation(props: Props) {
     } else if (userMobileNumber.length < 8) {
       return;
     } else if (!userEmailId.includes("@") || !userEmailId.includes(".")) {
+      return;
     }
 
-    console.log("initialization");
-    const razorPayResponse = await makePayment(props.userBooking);
-    
-    
-    // props.setLoadingModel(true);
-    // props.userBooking.user_Name = userFullName;
-    // props.userBooking.user_Phone_Number = userMobileNumber;
-    // props.userBooking.user_Email_Id = userEmailId;
-    // props.setUserBooking(props.userBooking);
-    // const data = await hotelBookingHandler(props.userBooking);
+    props.userBooking.user_Name = userFullName;
+    props.userBooking.user_Phone_Number = userMobileNumber;
+    props.userBooking.user_Email_Id = userEmailId;
+    props.setUserBooking(props.userBooking);
 
+    if (paymentOption === "pay-now") {
+      const razorPayResponse = await makePayment(
+        props.userBooking,
+        props.setErrorMessage,
+        props.setErrorModel,
+        props.setLoadingModel
+      );
+    } else {
+      props.setLoadingModel(true);
+      props.userBooking.receipt_Id = shortid.generate();
+      const data = await hotelBookingHandler(props.userBooking);
 
-    // if (data.booking_Id === "") {
-    //   props.setErrorMessage("Booking Failed! Please try again.");
-    //   props.setLoadingModel(false);
-    //   props.setErrorModel(true);
-    // } 
-    // else {
-    //   bookingConfirmationRedirector(
-    //     router,
-    //     data.booking_Id,
-    //     data.receipt_Id,
-    //     props.userBooking
-    //   );
-    // }
+      if (data.booking_Id === "") {
+        props.setErrorMessage("Booking Failed! Please try again.");
+        props.setLoadingModel(false);
+        props.setErrorModel(true);
+      } else {
+        bookingConfirmationRedirector(
+          router,
+          data.booking_Id,
+          data.receipt_Id,
+          props.userBooking
+        );
+      }
+    }
   };
 
   return (
@@ -105,7 +91,10 @@ export default function PaymentInformation(props: Props) {
             <motion.div
               className={`relative flex align-middle justify-center items-center mb-5 w-full`}
             >
-              <h1 id={'bookinginformation'} className={`font-semibold text-3xl font-serif`}>
+              <h1
+                id={"bookinginformation"}
+                className={`font-semibold text-3xl font-serif`}
+              >
                 Booking Information
               </h1>
             </motion.div>
@@ -168,6 +157,25 @@ export default function PaymentInformation(props: Props) {
                       setUserEmailId(val.target.value);
                     }}
                   />
+                </motion.div>
+              </div>
+              <div>
+                <motion.div
+                  className={`relative flex text-left text-xl font-sans`}
+                >
+                  {`Select Payment Mode *`}
+                </motion.div>
+                <motion.div className={`relative flex my-2 w-full`}>
+                  <select
+                    className={`py-4 px-3 rounded-md border border-gray-400 hover:border-black text-lg w-full cursor-pointer`}
+                    value={paymentOption}
+                    onChange={(event) => {
+                      setPaymentOption(event.target.value);
+                    }}
+                  >
+                    <option value="pay-now">Pay Now</option>
+                    <option value="pay-at-hotel">Pay at Hotel</option>
+                  </select>
                 </motion.div>
               </div>
               <div>

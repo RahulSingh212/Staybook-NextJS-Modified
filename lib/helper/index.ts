@@ -7,7 +7,7 @@ export const GOOGLE_SIGNUP = "google-sign-up";
 export const GOOGLE_LOGIN = "google-log-in";
 export const USER_ACCESS_TOKEN = "user-access-token";
 export const USER_COLLECTION_NAME = "USER-PERSONAL-INFORMATION";
-export const COOKIE_EXPIRATOIN_TIME = 60 * 60;
+export const COOKIE_EXPIRATOIN_TIME = 30 * 24 * 60 * 60;
 export const GET_USER_TOKEN_OBJECT = "get-user-token-obj";
 export const USER_UPDATE_TYPE_NAME = "update-user-name";
 

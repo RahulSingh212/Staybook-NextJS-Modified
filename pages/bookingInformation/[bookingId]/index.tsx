@@ -172,7 +172,7 @@ export default function BookingInformation(props: Props) {
                 {"Amount Paid"}
               </motion.div>
               <motion.div className={`relative flex text-lg text-gray-500`}>
-                {props.userBooking.amount_Paid}
+                {props.userBooking.amount_Paid.toFixed(2)}
               </motion.div>
             </motion.div>
             <motion.div

@@ -183,7 +183,6 @@ const userHotelBookingListing = async (userBooking: any, receiptId:string) => {
 async function handler(req: any, res: any) {
   const receivedData = req.body;
   const { userBooking } = receivedData;
-  //   const bookingObj = JSON.parse(userBooking);
 
   try {
     const cookies = parse(req.headers.cookie || "");
@@ -199,7 +198,7 @@ async function handler(req: any, res: any) {
       userBooking.user_Email_Id = userData1.email;
     }
 
-    const receipt_Id = await shortid.generate();
+    const receipt_Id = userBooking.receipt_Id;
     const userDocRef = await userHotelBookingListing(userBooking, receipt_Id);
     const ownerDocRef = await ownerHotelBookingList(userBooking, userDocRef.id, receipt_Id);
 

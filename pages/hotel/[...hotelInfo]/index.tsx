@@ -84,18 +84,11 @@ export default function HotelInformation(props: Props) {
     props.hotelInfo.rooms,
   ]);
 
-  const [roomCount, setRoomCount] = React.useState<number>(
-    userBooking.total_Rooms_Count
-  );
-  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(
-    userBooking.total_Room_Cost
-  );
+  const [roomCount, setRoomCount] = React.useState<number>(userBooking.total_Rooms_Count);
+  const [totalRoomCost, setTotalRoomCost] = React.useState<number>(userBooking.total_Room_Cost);
   const [totalTax, setTotalTax] = React.useState<number>(userBooking.total_Tax);
-  const [totalPrice, setTotalPrice] = React.useState<number>(
-    userBooking.total_Price
-  );
-  const [selectedRoomsList, setSelectedRoomsList] =
-    React.useState<RoomDetails[]>();
+  const [totalPrice, setTotalPrice] = React.useState<number>(userBooking.total_Price);
+  const [selectedRoomsList, setSelectedRoomsList] = React.useState<RoomDetails[]>();
 
   const roomSelectHandler = async () => {
     if (userBooking.roomsList.length === 0) {
@@ -115,7 +108,7 @@ export default function HotelInformation(props: Props) {
     const data = await hotelBookingHandler(userBooking);
     setLoadingModel(false);
   };
-  
+
   return (
     <React.Fragment>
       <Head>

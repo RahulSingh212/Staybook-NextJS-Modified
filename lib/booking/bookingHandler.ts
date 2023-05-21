@@ -16,6 +16,25 @@ import {
 import { db } from "../firebase";
 import { RoomDetails } from "@/classModels/bookings/roomDetails";
 
+export const bookingConfirmationRedirector = (
+  router: any,
+  booking_Id: string,
+  receipt_Id: string,
+  userBooking: BookingDetails
+) => {
+  router.replace({
+    pathname: `/bookingInformation/${booking_Id}/`,
+    query: {
+      booking_status: "Booking Successful",
+      hotel_Name: userBooking.hotel_Name,
+      user_Name: userBooking.user_Name,
+      user_Email: userBooking.user_Email_Id,
+      user_Phone: userBooking.user_Phone_Number,
+      booking_receipt: receipt_Id,
+    },
+  });
+};
+
 export const getBookedHotelDetails = async (
   userEmailId: string,
   bookingId: string

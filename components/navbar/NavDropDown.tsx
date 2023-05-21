@@ -28,11 +28,17 @@ export default function NavDropDown(props: Props) {
             <ul>
               <Link href={`/hotel`}>
                 <li
-                  className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
+                  className={`relative flex align-middle items-center my-auto w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  <div className={`reltive flex space-x-1`}>
-                    
-                    <h3>Hotels</h3>
+                  <div className={`reltive flex`}>
+                    <Image
+                      src={`/nav-drop-down/hotels.png`}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                      className={`rounded-full mr-2 border-[1px] border-gray-400`}
+                    />
+                    <h3 className={`my-auto font-serif text-lg font-medium`}>Hotels</h3>
                   </div>
                 </li>
               </Link>
@@ -41,7 +47,16 @@ export default function NavDropDown(props: Props) {
                 <li
                   className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  Tour Packages
+                  <div className={`reltive flex`}>
+                    <Image
+                      src={`/nav-drop-down/packages.png`}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                      className={`rounded-full mr-2 border-[1px] border-gray-400`}
+                    />
+                    <h3 className={`my-auto font-serif text-lg font-medium`}>Tour Packages</h3>
+                  </div>
                 </li>
               </Link>
               <li className="relative w-full p-[1px] my-1 bg-gray-200"></li>
@@ -49,7 +64,16 @@ export default function NavDropDown(props: Props) {
                 <li
                   className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  Blogs
+                  <div className={`reltive flex`}>
+                    <Image
+                      src={`/nav-drop-down/blog.png`}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                      className={`rounded-full mr-2 border-[1px] border-gray-400`}
+                    />
+                    <h3 className={`my-auto font-serif text-lg font-medium`}>Blogs</h3>
+                  </div>
                 </li>
               </Link>
               <li className="relative w-full p-[1px] my-1 bg-gray-200"></li>
@@ -57,7 +81,16 @@ export default function NavDropDown(props: Props) {
                 <li
                   className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  About Us
+                  <div className={`reltive flex`}>
+                    <Image
+                      src={`/nav-drop-down/about.png`}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                      className={`rounded-full mr-2 border-[1px] border-gray-400`}
+                    />
+                    <h3 className={`my-auto font-serif text-lg font-medium`}>About Us</h3>
+                  </div>
                 </li>
               </Link>
               <li className="relative w-full p-[1px] my-1 bg-gray-200"></li>
@@ -65,7 +98,16 @@ export default function NavDropDown(props: Props) {
                 <li
                   className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  Contact Us
+                  <div className={`reltive flex`}>
+                    <Image
+                      src={`/nav-drop-down/contact-us.png`}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                      className={`rounded-full mr-2 border-[1px] border-gray-400`}
+                    />
+                    <h3 className={`my-auto font-serif text-lg font-medium`}>Contact Us</h3>
+                  </div>
                 </li>
               </Link>
               <li className="relative w-full p-[1px] my-1 bg-gray-300"></li>
@@ -73,7 +115,16 @@ export default function NavDropDown(props: Props) {
                 <li
                   className={`relative w-full text-left cursor-pointer hover:bg-slate-100 hover:shadow-sm px-2 py-1 rounded-md whitespace-no-wrap`}
                 >
-                  My Profile
+                  <div className={`reltive flex`}>
+                    <Image
+                      src={`/nav-drop-down/my-profile.png`}
+                      alt="icon"
+                      width={30}
+                      height={30}
+                      className={`rounded-full mr-2 border-[1px] border-gray-400`}
+                    />
+                    <h3 className={`my-auto font-serif text-lg font-medium`}>My Profile</h3>
+                  </div>
                 </li>
               </Link>
             </ul>

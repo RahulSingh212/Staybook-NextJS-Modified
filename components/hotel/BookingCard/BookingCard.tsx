@@ -248,7 +248,7 @@ export default function BookingCard(props: Props) {
                       height={"10"}
                     />
                   </div>
-                  <UsersIcon className={`h-6`} />
+                  <UsersIcon className={`h-5`} />
                   <input
                     aria-label="Search"
                     onChange={(e) => {}}

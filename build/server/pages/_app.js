@@ -113,7 +113,7 @@ function Footer() {
     ]);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: `${(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_6___default().footerBody)} ${(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_6___default().noprint)}`,
+            className: `${(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_6___default().footerBody)} ${(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_6___default().noprint)} mt-16`,
             children: [
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_4___default()), {
                     src: `/images/footerBg.svg`,
@@ -130,10 +130,11 @@ function Footer() {
                             alt: "StayBook",
                             layout: "fill",
                             objectFit: "contain",
-                            objectPosition: "center"
+                            objectPosition: "center",
+                            className: `rounded-full`
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            className: (_Footer_module_scss__WEBPACK_IMPORTED_MODULE_6___default().line)
+                            className: `${(_Footer_module_scss__WEBPACK_IMPORTED_MODULE_6___default().line)}`
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                             children: "2022 \xa9 StayBook, New Delhi. All rights reserved"
@@ -202,15 +203,15 @@ function Footer() {
                                     children: "Blogs"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_5___default()), {
-                                    href: "/aboutus",
+                                    href: "/about",
                                     children: "About Us"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_5___default()), {
-                                    href: "/contactUs",
+                                    href: "/contact",
                                     children: "Contact Us"
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_5___default()), {
-                                    href: "/FAQ",
+                                    href: "/faq",
                                     children: "FAQ"
                                 })
                             ]

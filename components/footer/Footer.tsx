@@ -64,6 +64,7 @@ export default function Footer() {
             layout="fill"
             objectFit="contain"
             objectPosition="center"
+            className={`rounded-full`}
           />
           <div className={classes.line}></div>
           <p>2022 © StayBook, New Delhi. All rights reserved</p>

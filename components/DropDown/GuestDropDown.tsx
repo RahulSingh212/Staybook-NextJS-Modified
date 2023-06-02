@@ -6,7 +6,6 @@ import Head from "next/head";
 import { extractJWTValues } from "@/lib/helper";
 import { useRouter } from "next/router";
 import { groq } from "next-sanity";
-import { sanityClient } from "@/sanity";
 import { Dropdown } from "@nextui-org/react";
 import { UsersIcon } from "@heroicons/react/solid";
 

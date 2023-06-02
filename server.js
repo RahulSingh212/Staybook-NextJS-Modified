@@ -2,16 +2,17 @@ const { createServer } = require("https");
 const { parse } = require("url");
 const next = require("next");
 const fs = require("fs");
-const HOSTNAME = 'localhost'
-const PORT = process.env.PORT;
-const dev = process.env.NODE_ENV !== 'production'
+
+const HOSTNAME = 'staybook.in'
+const PORT = 443;
+const dev =false
 const app = next({ dev, hostname: HOSTNAME, port: PORT }) //
 const handle = app.getRequestHandler();
 
 
 const httpsOptions = {
-    key: fs.readFileSync("./https_cert/localhost-key.pem"),
-    cert: fs.readFileSync("./https_cert/localhost.pem")
+    key: fs.readFileSync('/etc/letsencrypt/live/staybook.in/privkey.pem', 'utf8'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/staybook.in/fullchain.pem', 'utf8')
 };
 
 app.prepare().then(() => {
@@ -20,7 +21,6 @@ app.prepare().then(() => {
         handle(req, res, parsedUrl);
     }).listen(PORT, (err) => {
         if (err) throw err;
-        console.log("ready - started server on url: https://localhost:" + PORT);
     });
 });
 

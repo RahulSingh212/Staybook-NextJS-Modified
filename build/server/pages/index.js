@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -248,10 +249,628 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /***/ ((module) => {
 
 "use strict";
+=======
+"use strict";
+(() => {
+var exports = {};
+exports.id = 5405;
+exports.ids = [5405];
+exports.modules = {
+
+/***/ 8851:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ HotelCarousel)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5893);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5675);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _sanity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9329);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2245);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6197);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_sanity__WEBPACK_IMPORTED_MODULE_3__, framer_motion__WEBPACK_IMPORTED_MODULE_6__]);
+([_sanity__WEBPACK_IMPORTED_MODULE_3__, framer_motion__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+
+
+function HotelCarousel(props) {
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
+    const [hotelIdx, setHotelIdx] = react__WEBPACK_IMPORTED_MODULE_1___default().useState(0);
+    const bookHotelHandler = ()=>{
+        router.push({
+            pathname: `/hotel/google/list/${props.hotelsList[hotelIdx].id}/`,
+            query: {
+                checkin: String(moment__WEBPACK_IMPORTED_MODULE_5___default()(new Date()).format("DD-MM-YYYY")),
+                num_nights: String(1),
+                num_guests: String(2),
+                hotel_id: String(props.hotelsList[hotelIdx].id)
+            }
+        });
+    };
+    react__WEBPACK_IMPORTED_MODULE_1___default().useEffect(()=>{
+        const interval = setInterval(()=>{
+            const newIdx = (hotelIdx + Number(1)) % props.hotelsList.length;
+            setHotelIdx(newIdx);
+        }, 2000);
+        return ()=>clearInterval(interval);
+    }, [
+        hotelIdx,
+        props.hotelsList.length
+    ]);
+    const selectHotelCardHandler = (selectedIndex)=>{
+        setHotelIdx(selectedIndex);
+    };
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: `flex flex-col w-screen mb-16`,
+            children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_6__.motion.div, {
+                    onClick: bookHotelHandler,
+                    initial: {
+                        opacity: 0.0,
+                        y: -35
+                    },
+                    transition: {
+                        duration: 1.0,
+                        type: "spring",
+                        stiffness: 100
+                    },
+                    whileInView: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    className: `relative w-screen h-full md:h-[700px] lg:h-[500px] flex flex-col md:flex-row justify-center items-center px-5 pt-5 pb-8 cursor-pointer`,
+                    children: [
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: `relative flex flex-col items-center justify-center w-[80%] h-56 sm:w-[70%] sm:h-64 md:w-1/2 md:h-full`,
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    className: `relative z-20 w-[100%] h-[100%] md:w-[70%] md:h-[60%] lg:w-[75%] lg:h-[65%] mr-10 mb-10 md:mr-16 md:mb-16 lg:mr-28 lg:mb-24 rounded-lg`,
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                        src: (0,_sanity__WEBPACK_IMPORTED_MODULE_3__/* .urlFor */ .uH)(props.hotelsList[hotelIdx].image_Url[0]).url(),
+                                        alt: "icon",
+                                        layout: "fill",
+                                        // objectFit="contain"
+                                        objectPosition: "center",
+                                        className: `rounded-lg drop-shadow-xl`
+                                    })
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    className: `absolute z-10 w-[100%] h-[100%] md:w-[70%] md:h-[60%] lg:w-[75%] lg:h-[65%] ml-10 mt-10 md:ml-16 md:mt-16 lg:ml-28 lg:mt-24 rounded-lg`,
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                        src: (0,_sanity__WEBPACK_IMPORTED_MODULE_3__/* .urlFor */ .uH)(props.hotelsList[hotelIdx].image_Url[1]).url(),
+                                        alt: "icon",
+                                        layout: "fill",
+                                        // objectFit="contain"
+                                        objectPosition: "center",
+                                        className: `rounded-lg drop-shadow-xl`
+                                    })
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: `flex flex-col items-center justify-center w-[100%] md:w-[50%] h-[100%] mt-8`,
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    className: `py-5 px-2`,
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                                        className: `text-3xl sm:text-4xl text-center font-serif`,
+                                        children: props.hotelsList[hotelIdx].hotel_Name
+                                    })
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    className: `text-justify py-5 px-2 sm:px-5 font-light text-[#6d6d6d]`,
+                                    children: props.hotelsList[hotelIdx].description
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: `relative flex flex-row items-center justify-center align-middle mb-5`,
+                    children: props.hotelsList.map((hotel, index)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                            className: `flex flex-row items-center align-middle`,
+                            children: index === hotelIdx ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SelectedHotelRing, {
+                                hotel_Name: hotel.hotel_Name
+                            }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(HotelRing, {
+                                hotelIndex: index,
+                                setHotelIdx: setHotelIdx,
+                                hotel_Name: hotel.hotel_Name
+                            })
+                        }, hotel._id))
+                })
+            ]
+        })
+    });
+}
+const SelectedHotelRing = (props)=>{
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+            className: `items-center`,
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: `border-2 border-red-600 z-1 bg-red-600 rounded-full mx-1 sm:mx-3 md:mx-4 cursor-pointer`,
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: `p-1 z-2 rounded-full bg-white`,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        className: `items-center p-2 z-3 rounded-full bg-red-600`
+                    })
+                })
+            })
+        })
+    });
+};
+const HotelRing = (props)=>{
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+            className: `items-center p-2 z-3 mx-1 sm:mx-3 md:mx-4 rounded-full bg-red-600 cursor-pointer`,
+            onClick: (event)=>props.setHotelIdx(props.hotelIndex)
+        })
+    });
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 5393:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ HotelRegions)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5893);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _widgets_RegionCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6626);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_widgets_RegionCard__WEBPACK_IMPORTED_MODULE_2__]);
+_widgets_RegionCard__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+const boxVariant = {
+    visible: {
+        opacity: 1,
+        translateX: 0,
+        transition: {
+            duration: 1
+        }
+    },
+    hidden: {
+        opacity: 0,
+        translateX: "15"
+    }
+};
+function HotelRegions(props) {
+    const [hotelRegionIdx, setHotelRegionIdx] = react__WEBPACK_IMPORTED_MODULE_1___default().useState(0);
+    react__WEBPACK_IMPORTED_MODULE_1___default().useEffect(()=>{
+        const interval = setInterval(()=>{
+            const newIdx = (hotelRegionIdx + Number(1)) % props.hotelRegionsList.length;
+            setHotelRegionIdx(newIdx);
+        }, 5000);
+        return ()=>clearInterval(interval);
+    }, [
+        hotelRegionIdx,
+        props.hotelRegionsList.length
+    ]);
+    const selectHotelRegionCardHandler = (selectedIndex)=>{
+        setHotelRegionIdx(selectedIndex);
+    };
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: `relative flex flex-col justify-evenly items-center align-middle mx-w-full mb-16`,
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: `flex flex-col justify-center items-center align-middle pb-4`,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                        className: `text-5xl sm:text-6xl md:text-7xl text-center px-5 font-serif`,
+                        children: "Hotel Regions"
+                    })
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: `relative w-[90%] flex space-x-8 overflow-x-scroll my-2 scrollbar-hide no-scrollbar`,
+                    children: props.hotelRegionsList.map((hr)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_widgets_RegionCard__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, {
+                            hotelRegion: hr
+                        }, hr._id))
+                })
+            ]
+        })
+    });
+}
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 9451:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ SpeacialOffers)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5893);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6197);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5675);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_4__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([framer_motion__WEBPACK_IMPORTED_MODULE_2__]);
+framer_motion__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+
+
+function SpeacialOffers(props) {
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
+            className: `relative flex flex-col items-center justify-center align-middle w-screen h-screen mb-16`,
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
+                    className: `flex justify-center items-center align-middle pb-6`,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.h1, {
+                        initial: {
+                            opacity: 0.0,
+                            y: 30
+                        },
+                        transition: {
+                            duration: 2.0,
+                            type: "spring"
+                        },
+                        whileInView: {
+                            opacity: 1,
+                            y: 0
+                        },
+                        className: `text-5xl sm:text-6xl md:text-7xl text-center pb-5 font-serif`,
+                        children: "Special Offers"
+                    })
+                }),
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    className: `relative flex items-center justify-center align-middle w-[90%] h-[90%] rounded-full px-4`,
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_4___default()), {
+                            src: `/specialOffers-background.png`,
+                            alt: "icon",
+                            layout: "fill",
+                            // objectFit="contain"
+                            objectPosition: "center",
+                            className: `rounded-3xl drop-shadow-xl`
+                        }),
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                            className: `absolute flex flex-col items-center justify-evenly w-[90%] h-[70%] md:w-[80%] md:h-[60%] lg:w-[65%] lg:h-[45%] bg-slate-100 rounded-[50px] opacity-90`,
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.h2, {
+                                        initial: {
+                                            opacity: 0.0,
+                                            y: 30
+                                        },
+                                        transition: {
+                                            duration: 2.0,
+                                            type: "spring"
+                                        },
+                                        whileInView: {
+                                            opacity: 1,
+                                            y: 0
+                                        },
+                                        className: `text-4xl text-center`,
+                                        children: "Get Best Price GUARANTEED!"
+                                    })
+                                }),
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                    className: "flex flex-col align-middle items-center text-center px-4",
+                                    children: [
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.p, {
+                                            initial: {
+                                                opacity: 0.0,
+                                                y: 40
+                                            },
+                                            transition: {
+                                                duration: 3.0,
+                                                type: "spring"
+                                            },
+                                            whileInView: {
+                                                opacity: 1,
+                                                y: 0
+                                            },
+                                            className: `text-center text-[20px] text-[#6d6d6d]`,
+                                            children: "We can help you fit your stay and experience within your alloted budget."
+                                        }),
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                            className: `p-2`,
+                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
+                                                href: `/contact`,
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.p, {
+                                                    initial: {
+                                                        opacity: 0.0,
+                                                        y: 50
+                                                    },
+                                                    transition: {
+                                                        duration: 3.0,
+                                                        type: "spring"
+                                                    },
+                                                    whileInView: {
+                                                        opacity: 1,
+                                                        y: 0
+                                                    },
+                                                    className: `text-4xl text-center cursor-pointer text-red-500 hover:text-red-700`,
+                                                    children: "Contact Us"
+                                                })
+                                            })
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ]
+        })
+    });
+}
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 2907:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ ToursAndTravels)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5893);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6197);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5675);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_4__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([framer_motion__WEBPACK_IMPORTED_MODULE_2__]);
+framer_motion__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+
+
+function ToursAndTravels(props) {
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
+            initial: {
+                opacity: 0.0,
+                y: 35
+            },
+            transition: {
+                duration: 2.0,
+                type: "spring"
+            },
+            whileInView: {
+                opacity: 1,
+                y: 0
+            },
+            className: `relative flex flex-col w-screen top-0 items-center justify-center mb-16`,
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: `relative w-[90%] h-[400px] md:h-[450px] lg:h-[550px] rounded-b-full`,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_image__WEBPACK_IMPORTED_MODULE_4___default()), {
+                        src: "/background.jpg",
+                        alt: "tours and travels",
+                        layout: "fill",
+                        objectPosition: "center",
+                        className: `relative rounded-b-[180px] bg-red-500 h-fit`
+                    })
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
+                    initial: {
+                        opacity: 0.0,
+                        y: 30
+                    },
+                    transition: {
+                        duration: 2.0,
+                        type: "spring"
+                    },
+                    whileInView: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    className: `relative w-[90%] flex items-center justify-center align-middle text-center py-2 md:py-4`,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
+                        className: `text-5xl sm:text-6xl md:text-7xl text-center font-serif`,
+                        children: "Tours and Travels"
+                    })
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
+                    initial: {
+                        opacity: 0.0,
+                        y: 30
+                    },
+                    transition: {
+                        duration: 2.0,
+                        type: "spring"
+                    },
+                    whileInView: {
+                        opacity: 1,
+                        y: 0
+                    },
+                    className: `relative w-[90%] flex items-center justify-center align-middle text-center text-[#6d6d6d] text-2xl py-4`,
+                    children: "Staybook offers customised family trips tailored to the needs of any family, large or small, with youngsters or the elderly. It is a fantastic chance to spend quality time together in a fantastic location."
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
+                    href: `/packages`,
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(framer_motion__WEBPACK_IMPORTED_MODULE_2__.motion.div, {
+                        initial: {
+                            opacity: 0.0,
+                            y: 30
+                        },
+                        transition: {
+                            duration: 2.0,
+                            type: "spring"
+                        },
+                        whileInView: {
+                            opacity: 1,
+                            y: 0
+                        },
+                        className: `relative flex items-center justify-center align-middle text-center text-lg border-2 rounded-lg px-16 py-5 border-[#cf8f24] hover:bg-[#cf8f24] cursor-pointer`,
+                        children: "Find More"
+                    })
+                })
+            ]
+        })
+    });
+}
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 2603:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Home),
+/* harmony export */   "getStaticProps": () => (/* binding */ getStaticProps)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5893);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(968);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_sanity__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5091);
+/* harmony import */ var _sanity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9329);
+/* harmony import */ var _components_hotelsSlideView_HotelCarousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8851);
+/* harmony import */ var _components_regions_HotelRegions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5393);
+/* harmony import */ var _components_screens_home_ToursAndTravels__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2907);
+/* harmony import */ var _components_screens_home_SpecialOffers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9451);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([next_sanity__WEBPACK_IMPORTED_MODULE_3__, _sanity__WEBPACK_IMPORTED_MODULE_4__, _components_hotelsSlideView_HotelCarousel__WEBPACK_IMPORTED_MODULE_5__, _components_regions_HotelRegions__WEBPACK_IMPORTED_MODULE_6__, _components_screens_home_ToursAndTravels__WEBPACK_IMPORTED_MODULE_7__, _components_screens_home_SpecialOffers__WEBPACK_IMPORTED_MODULE_8__]);
+([next_sanity__WEBPACK_IMPORTED_MODULE_3__, _sanity__WEBPACK_IMPORTED_MODULE_4__, _components_hotelsSlideView_HotelCarousel__WEBPACK_IMPORTED_MODULE_5__, _components_regions_HotelRegions__WEBPACK_IMPORTED_MODULE_6__, _components_screens_home_ToursAndTravels__WEBPACK_IMPORTED_MODULE_7__, _components_screens_home_SpecialOffers__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+// import { Inter } from "next/font/google";
+// import styles from "@/styles/Home.module.css";
+
+
+
+
+
+
+function Home(props) {
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
+        children: [
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_2___default()), {
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
+                        children: "StayBook"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                        name: "description",
+                        content: "Generated by create next app"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                        name: "viewport",
+                        content: "width=device-width, initial-scale=1"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                        rel: "icon",
+                        href: "/images/favicon.png"
+                    })
+                ]
+            }),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
+                className: `mx-auto`,
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        id: "hotels",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_hotelsSlideView_HotelCarousel__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                            hotelsList: props.hotelsList
+                        })
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        id: "regions",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_regions_HotelRegions__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
+                            hotelRegionsList: props.hotelRegionsList
+                        })
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        id: "tnt",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_screens_home_ToursAndTravels__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {})
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                        id: "offers",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_screens_home_SpecialOffers__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {})
+                    })
+                ]
+            })
+        ]
+    });
+}
+const getStaticProps = async ()=>{
+    const hotelsListQuery = next_sanity__WEBPACK_IMPORTED_MODULE_3__.groq`
+    *[_type == "hotel"] | order(order asc) {
+      "hotel_Name":name,
+      _id,
+      id,
+      "hotel_Id":id,
+      description,
+      "image_Url":images[][0...2].asset->url,
+      "slug_Name": slug.current,
+    }
+  `;
+    const hotelRegionsListQuery = next_sanity__WEBPACK_IMPORTED_MODULE_3__.groq`
+    *[_type == "navoptions"]{
+      _id,
+      id,
+      name,
+      "slug_Name": slug.current,
+      "image_Url": image.asset->url
+    }
+  `;
+    const hotelsList = await _sanity__WEBPACK_IMPORTED_MODULE_4__/* .sanityClient.fetch */ .i3.fetch(hotelsListQuery);
+    const hotelRegionsList = await _sanity__WEBPACK_IMPORTED_MODULE_4__/* .sanityClient.fetch */ .i3.fetch(hotelRegionsListQuery);
+    return {
+        props: {
+            hotelsList,
+            hotelRegionsList
+        }
+    };
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 1791:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("@sanity/image-url");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "moment":
 /*!*************************!*\
   !*** external "moment" ***!
@@ -259,10 +878,16 @@ module.exports = require("@sanity/image-url");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 2245:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("moment");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./amp-context":
 /*!******************************************************!*\
   !*** external "next/dist/shared/lib/amp-context.js" ***!
@@ -270,10 +895,16 @@ module.exports = require("moment");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 3918:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/amp-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./amp-mode":
 /*!***************************************************!*\
   !*** external "next/dist/shared/lib/amp-mode.js" ***!
@@ -281,10 +912,16 @@ module.exports = require("next/dist/shared/lib/amp-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 5732:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/amp-mode.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/app-router-context":
 /*!*************************************************************!*\
   !*** external "next/dist/shared/lib/app-router-context.js" ***!
@@ -292,10 +929,16 @@ module.exports = require("next/dist/shared/lib/amp-mode.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 3280:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/head-manager-context":
 /*!***************************************************************!*\
   !*** external "next/dist/shared/lib/head-manager-context.js" ***!
@@ -303,10 +946,16 @@ module.exports = require("next/dist/shared/lib/app-router-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 2796:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/image-blur-svg":
 /*!*********************************************************!*\
   !*** external "next/dist/shared/lib/image-blur-svg.js" ***!
@@ -314,10 +963,16 @@ module.exports = require("next/dist/shared/lib/head-manager-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 4486:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/image-blur-svg.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/image-config-context":
 /*!***************************************************************!*\
   !*** external "next/dist/shared/lib/image-config-context.js" ***!
@@ -325,10 +980,16 @@ module.exports = require("next/dist/shared/lib/image-blur-svg.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 744:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/image-config-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/image-config":
 /*!*******************************************************!*\
   !*** external "next/dist/shared/lib/image-config.js" ***!
@@ -336,10 +997,16 @@ module.exports = require("next/dist/shared/lib/image-config-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 5843:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/image-config.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "next/dist/shared/lib/image-loader":
 /*!****************************************************!*\
   !*** external "next/dist/shared/lib/image-loader" ***!
@@ -347,10 +1014,16 @@ module.exports = require("next/dist/shared/lib/image-config.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 9552:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/image-loader");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router-context":
 /*!*********************************************************!*\
   !*** external "next/dist/shared/lib/router-context.js" ***!
@@ -358,10 +1031,16 @@ module.exports = require("next/dist/shared/lib/image-loader");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 4964:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router/utils/add-path-prefix":
 /*!***********************************************************************!*\
   !*** external "next/dist/shared/lib/router/utils/add-path-prefix.js" ***!
@@ -369,10 +1048,16 @@ module.exports = require("next/dist/shared/lib/router-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 1751:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router/utils/format-url":
 /*!******************************************************************!*\
   !*** external "next/dist/shared/lib/router/utils/format-url.js" ***!
@@ -380,10 +1065,16 @@ module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js")
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 3938:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router/utils/is-local-url":
 /*!********************************************************************!*\
   !*** external "next/dist/shared/lib/router/utils/is-local-url.js" ***!
@@ -391,10 +1082,16 @@ module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 1109:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router/utils/is-local-url.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router/utils/parse-path":
 /*!******************************************************************!*\
   !*** external "next/dist/shared/lib/router/utils/parse-path.js" ***!
@@ -402,10 +1099,16 @@ module.exports = require("next/dist/shared/lib/router/utils/is-local-url.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 8854:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router/utils/remove-trailing-slash":
 /*!*****************************************************************************!*\
   !*** external "next/dist/shared/lib/router/utils/remove-trailing-slash.js" ***!
@@ -413,10 +1116,16 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 3297:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/router/utils/resolve-href":
 /*!********************************************************************!*\
   !*** external "next/dist/shared/lib/router/utils/resolve-href.js" ***!
@@ -424,10 +1133,16 @@ module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slas
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 7782:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/router/utils/resolve-href.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./side-effect":
 /*!******************************************************!*\
   !*** external "next/dist/shared/lib/side-effect.js" ***!
@@ -435,10 +1150,16 @@ module.exports = require("next/dist/shared/lib/router/utils/resolve-href.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 2470:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/side-effect.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/utils":
 /*!************************************************!*\
   !*** external "next/dist/shared/lib/utils.js" ***!
@@ -446,10 +1167,16 @@ module.exports = require("next/dist/shared/lib/side-effect.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 9232:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/utils.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./utils/warn-once":
 /*!**********************************************************!*\
   !*** external "next/dist/shared/lib/utils/warn-once.js" ***!
@@ -457,10 +1184,16 @@ module.exports = require("next/dist/shared/lib/utils.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 618:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/utils/warn-once.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "next/head":
 /*!****************************!*\
   !*** external "next/head" ***!
@@ -468,10 +1201,16 @@ module.exports = require("next/dist/shared/lib/utils/warn-once.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 968:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/head");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "next/router":
 /*!******************************!*\
   !*** external "next/router" ***!
@@ -479,10 +1218,16 @@ module.exports = require("next/head");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 1853:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/router");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "react":
 /*!************************!*\
   !*** external "react" ***!
@@ -490,10 +1235,16 @@ module.exports = require("next/router");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 6689:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("react");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "framer-motion":
 /*!********************************!*\
   !*** external "framer-motion" ***!
@@ -501,10 +1252,16 @@ module.exports = require("react");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 6197:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = import("framer-motion");;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "next-sanity":
 /*!******************************!*\
   !*** external "next-sanity" ***!
@@ -536,6 +1293,13 @@ eval("\n\nexports._ = exports._interop_require_default = _interop_require_defaul
 "use strict";
 eval("\n\nfunction _getRequireWildcardCache(nodeInterop) {\n    if (typeof WeakMap !== \"function\") return null;\n\n    var cacheBabelInterop = new WeakMap();\n    var cacheNodeInterop = new WeakMap();\n\n    return (_getRequireWildcardCache = function(nodeInterop) {\n        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;\n    })(nodeInterop);\n}\nexports._ = exports._interop_require_wildcard = _interop_require_wildcard;\nfunction _interop_require_wildcard(obj, nodeInterop) {\n    if (!nodeInterop && obj && obj.__esModule) return obj;\n    if (obj === null || typeof obj !== \"object\" && typeof obj !== \"function\") return { default: obj };\n\n    var cache = _getRequireWildcardCache(nodeInterop);\n\n    if (cache && cache.has(obj)) return cache.get(obj);\n\n    var newObj = {};\n    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;\n\n    for (var key in obj) {\n        if (key !== \"default\" && Object.prototype.hasOwnProperty.call(obj, key)) {\n            var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;\n            if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);\n            else newObj[key] = obj[key];\n        }\n    }\n\n    newObj.default = obj;\n\n    if (cache) cache.set(obj, newObj);\n\n    return newObj;\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvbmV4dC9ub2RlX21vZHVsZXMvQHN3Yy9oZWxwZXJzL2Nqcy9faW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkLmNqcy5qcyIsIm1hcHBpbmdzIjoiQUFBYTs7QUFFYjtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBLFNBQVMsR0FBRyxpQ0FBaUM7QUFDN0M7QUFDQTtBQUNBLHVGQUF1Rjs7QUFFdkY7O0FBRUE7O0FBRUE7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTs7QUFFQTs7QUFFQTtBQUNBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vc3RheWJvb2stbW9kaWZpZWQvLi9ub2RlX21vZHVsZXMvbmV4dC9ub2RlX21vZHVsZXMvQHN3Yy9oZWxwZXJzL2Nqcy9faW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkLmNqcz9iZTE4Il0sInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuXG5mdW5jdGlvbiBfZ2V0UmVxdWlyZVdpbGRjYXJkQ2FjaGUobm9kZUludGVyb3ApIHtcbiAgICBpZiAodHlwZW9mIFdlYWtNYXAgIT09IFwiZnVuY3Rpb25cIikgcmV0dXJuIG51bGw7XG5cbiAgICB2YXIgY2FjaGVCYWJlbEludGVyb3AgPSBuZXcgV2Vha01hcCgpO1xuICAgIHZhciBjYWNoZU5vZGVJbnRlcm9wID0gbmV3IFdlYWtNYXAoKTtcblxuICAgIHJldHVybiAoX2dldFJlcXVpcmVXaWxkY2FyZENhY2hlID0gZnVuY3Rpb24obm9kZUludGVyb3ApIHtcbiAgICAgICAgcmV0dXJuIG5vZGVJbnRlcm9wID8gY2FjaGVOb2RlSW50ZXJvcCA6IGNhY2hlQmFiZWxJbnRlcm9wO1xuICAgIH0pKG5vZGVJbnRlcm9wKTtcbn1cbmV4cG9ydHMuXyA9IGV4cG9ydHMuX2ludGVyb3BfcmVxdWlyZV93aWxkY2FyZCA9IF9pbnRlcm9wX3JlcXVpcmVfd2lsZGNhcmQ7XG5mdW5jdGlvbiBfaW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkKG9iaiwgbm9kZUludGVyb3ApIHtcbiAgICBpZiAoIW5vZGVJbnRlcm9wICYmIG9iaiAmJiBvYmouX19lc01vZHVsZSkgcmV0dXJuIG9iajtcbiAgICBpZiAob2JqID09PSBudWxsIHx8IHR5cGVvZiBvYmogIT09IFwib2JqZWN0XCIgJiYgdHlwZW9mIG9iaiAhPT0gXCJmdW5jdGlvblwiKSByZXR1cm4geyBkZWZhdWx0OiBvYmogfTtcblxuICAgIHZhciBjYWNoZSA9IF9nZXRSZXF1aXJlV2lsZGNhcmRDYWNoZShub2RlSW50ZXJvcCk7XG5cbiAgICBpZiAoY2FjaGUgJiYgY2FjaGUuaGFzKG9iaikpIHJldHVybiBjYWNoZS5nZXQob2JqKTtcblxuICAgIHZhciBuZXdPYmogPSB7fTtcbiAgICB2YXIgaGFzUHJvcGVydHlEZXNjcmlwdG9yID0gT2JqZWN0LmRlZmluZVByb3BlcnR5ICYmIE9iamVjdC5nZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3I7XG5cbiAgICBmb3IgKHZhciBrZXkgaW4gb2JqKSB7XG4gICAgICAgIGlmIChrZXkgIT09IFwiZGVmYXVsdFwiICYmIE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChvYmosIGtleSkpIHtcbiAgICAgICAgICAgIHZhciBkZXNjID0gaGFzUHJvcGVydHlEZXNjcmlwdG9yID8gT2JqZWN0LmdldE93blByb3BlcnR5RGVzY3JpcHRvcihvYmosIGtleSkgOiBudWxsO1xuICAgICAgICAgICAgaWYgKGRlc2MgJiYgKGRlc2MuZ2V0IHx8IGRlc2Muc2V0KSkgT2JqZWN0LmRlZmluZVByb3BlcnR5KG5ld09iaiwga2V5LCBkZXNjKTtcbiAgICAgICAgICAgIGVsc2UgbmV3T2JqW2tleV0gPSBvYmpba2V5XTtcbiAgICAgICAgfVxuICAgIH1cblxuICAgIG5ld09iai5kZWZhdWx0ID0gb2JqO1xuXG4gICAgaWYgKGNhY2hlKSBjYWNoZS5zZXQob2JqLCBuZXdPYmopO1xuXG4gICAgcmV0dXJuIG5ld09iajtcbn1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/next/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs\n");
 
+=======
+/***/ 5091:
+/***/ ((module) => {
+
+module.exports = import("next-sanity");;
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ })
 
 };
@@ -545,7 +1309,11 @@ eval("\n\nfunction _getRequireWildcardCache(nodeInterop) {\n    if (typeof WeakM
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+<<<<<<< HEAD
 var __webpack_exports__ = (__webpack_exec__("./pages/index.tsx"));
+=======
+var __webpack_exports__ = __webpack_require__.X(0, [5893,1396,2636,5675,29,1664,6626], () => (__webpack_exec__(2603)));
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = __webpack_exports__;
 
 })();

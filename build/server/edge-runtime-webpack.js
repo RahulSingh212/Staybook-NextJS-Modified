@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -6,6 +7,8 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({});
@@ -18,7 +21,10 @@
 /******/ 		// Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
+<<<<<<< HEAD
 /******/ 			if (cachedModule.error !== undefined) throw cachedModule.error;
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
@@ -31,10 +37,14 @@
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
+<<<<<<< HEAD
 /******/ 			var execOptions = { id: moduleId, module: module, factory: __webpack_modules__[moduleId], require: __webpack_require__ };
 /******/ 			__webpack_require__.i.forEach(function(handler) { handler(execOptions); });
 /******/ 			module = execOptions.module;
 /******/ 			execOptions.factory.call(module.exports, module, module.exports, execOptions.require);
+=======
+/******/ 			__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 			threw = false;
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
@@ -47,12 +57,15 @@
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
+<<<<<<< HEAD
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = __webpack_module_cache__;
 /******/ 	
 /******/ 	// expose the module execution interceptor
 /******/ 	__webpack_require__.i = [];
 /******/ 	
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -86,6 +99,7 @@
 /******/ 		};
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -98,6 +112,8 @@
 /******/ 		};
 /******/ 	})();
 /******/ 	
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -110,6 +126,7 @@
 /******/ 		};
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
 /******/ 	/* webpack/runtime/get javascript update chunk filename */
 /******/ 	(() => {
 /******/ 		// This function allow to reference all chunks
@@ -129,6 +146,8 @@
 /******/ 		__webpack_require__.h = () => ("c11f81fdb64d5e2c")
 /******/ 	})();
 /******/ 	
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -146,6 +165,7 @@
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
 /******/ 	/* webpack/runtime/load script */
 /******/ 	(() => {
 /******/ 		var inProgress = {};
@@ -192,6 +212,8 @@
 /******/ 		};
 /******/ 	})();
 /******/ 	
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -203,6 +225,7 @@
 /******/ 		};
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
 /******/ 	/* webpack/runtime/hot module replacement */
 /******/ 	(() => {
 /******/ 		var currentModuleData = {};
@@ -602,6 +625,8 @@
 /******/ 		__webpack_require__.p = "/_next/";
 /******/ 	})();
 /******/ 	
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
@@ -609,8 +634,13 @@
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+<<<<<<< HEAD
 /******/ 		var installedChunks = __webpack_require__.hmrS_jsonp = __webpack_require__.hmrS_jsonp || {
 /******/ 			"edge-runtime-webpack": 0
+=======
+/******/ 		var installedChunks = {
+/******/ 			993: 0
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -619,6 +649,7 @@
 /******/ 		
 /******/ 		// no preloaded
 /******/ 		
+<<<<<<< HEAD
 /******/ 		var currentUpdatedModulesList;
 /******/ 		var waitingUpdateResolves = {};
 /******/ 		function loadUpdateChunk(chunkId, updatedModulesList) {
@@ -1111,6 +1142,11 @@
 /******/ 				return response.json();
 /******/ 			});
 /******/ 		};
+=======
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /******/ 		
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
 /******/ 		
@@ -1146,7 +1182,14 @@
 /******/ 	
 /************************************************************************/
 /******/ 	
+<<<<<<< HEAD
 /******/ 	// module cache are used so entry inlining is disabled
 /******/ 	
 /******/ })()
 ;
+=======
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=edge-runtime-webpack.js.map
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0

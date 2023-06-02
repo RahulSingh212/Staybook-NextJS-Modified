@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -37,60 +38,206 @@ eval("\n\"use client\";\nObject.defineProperty(exports, \"__esModule\", ({\n    
 /*!******************************************************!*\
   !*** external "next/dist/shared/lib/amp-context.js" ***!
   \******************************************************/
+=======
+(() => {
+var exports = {};
+exports.id = 4820;
+exports.ids = [4820];
+exports.modules = {
+
+/***/ 3499:
+/***/ ((module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+Object.defineProperty(exports, "default", ({
+    enumerable: true,
+    get: function() {
+        return Error;
+    }
+}));
+const _interop_require_default = __webpack_require__(5577);
+const _react = /*#__PURE__*/ _interop_require_default._(__webpack_require__(6689));
+const _head = /*#__PURE__*/ _interop_require_default._(__webpack_require__(2636));
+const statusCodes = {
+    400: "Bad Request",
+    404: "This page could not be found",
+    405: "Method Not Allowed",
+    500: "Internal Server Error"
+};
+function _getInitialProps(param) {
+    let { res , err  } = param;
+    const statusCode = res && res.statusCode ? res.statusCode : err ? err.statusCode : 404;
+    return {
+        statusCode
+    };
+}
+const styles = {
+    error: {
+        // https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css#L38-L52
+        fontFamily: 'system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',
+        height: "100vh",
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    desc: {
+        display: "inline-block",
+        textAlign: "left"
+    },
+    h1: {
+        display: "inline-block",
+        margin: "0 20px 0 0",
+        paddingRight: 23,
+        fontSize: 24,
+        fontWeight: 500,
+        verticalAlign: "top",
+        lineHeight: "49px"
+    },
+    h2: {
+        fontSize: 14,
+        fontWeight: 400,
+        lineHeight: "49px",
+        margin: 0
+    }
+};
+class Error extends _react.default.Component {
+    render() {
+        const { statusCode , withDarkMode =true  } = this.props;
+        const title = this.props.title || statusCodes[statusCode] || "An unexpected error has occurred";
+        return /*#__PURE__*/ _react.default.createElement("div", {
+            style: styles.error
+        }, /*#__PURE__*/ _react.default.createElement(_head.default, null, /*#__PURE__*/ _react.default.createElement("title", null, statusCode ? statusCode + ": " + title : "Application error: a client-side exception has occurred")), /*#__PURE__*/ _react.default.createElement("div", null, /*#__PURE__*/ _react.default.createElement("style", {
+            dangerouslySetInnerHTML: {
+                /* CSS minified from
+                body { margin: 0; color: #000; background: #fff; }
+                .next-error-h1 {
+                  border-right: 1px solid rgba(0, 0, 0, .3);
+                }
+
+                ${
+                  withDarkMode
+                    ? `@media (prefers-color-scheme: dark) {
+                  body { color: #fff; background: #000; }
+                  .next-error-h1 {
+                    border-right: 1px solid rgba(255, 255, 255, .3);
+                  }
+                }`
+                    : ''
+                }
+               */ __html: "body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}" + (withDarkMode ? "@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}" : "")
+            }
+        }), statusCode ? /*#__PURE__*/ _react.default.createElement("h1", {
+            className: "next-error-h1",
+            style: styles.h1
+        }, statusCode) : null, /*#__PURE__*/ _react.default.createElement("div", {
+            style: styles.desc
+        }, /*#__PURE__*/ _react.default.createElement("h2", {
+            style: styles.h2
+        }, this.props.title || statusCode ? title : /*#__PURE__*/ _react.default.createElement(_react.default.Fragment, null, "Application error: a client-side exception has occurred (see the browser console for more information)"), "."))));
+    }
+}
+(()=>{
+    Error.displayName = "ErrorPage";
+})();
+(()=>{
+    Error.getInitialProps = _getInitialProps;
+})();
+(()=>{
+    Error.origGetInitialProps = _getInitialProps;
+})();
+if ((typeof exports.default === "function" || typeof exports.default === "object" && exports.default !== null) && typeof exports.default.__esModule === "undefined") {
+    Object.defineProperty(exports.default, "__esModule", {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=_error.js.map
+
+
+/***/ }),
+
+/***/ 3918:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/amp-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./amp-mode":
 /*!***************************************************!*\
   !*** external "next/dist/shared/lib/amp-mode.js" ***!
   \***************************************************/
+=======
+/***/ 5732:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/amp-mode.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/head-manager-context":
 /*!***************************************************************!*\
   !*** external "next/dist/shared/lib/head-manager-context.js" ***!
   \***************************************************************/
+=======
+/***/ 2796:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./side-effect":
 /*!******************************************************!*\
   !*** external "next/dist/shared/lib/side-effect.js" ***!
   \******************************************************/
+=======
+/***/ 2470:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/side-effect.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./utils/warn-once":
 /*!**********************************************************!*\
   !*** external "next/dist/shared/lib/utils/warn-once.js" ***!
   \**********************************************************/
+=======
+/***/ 618:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/utils/warn-once.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "react":
 /*!************************!*\
   !*** external "react" ***!
   \************************/
+=======
+/***/ 6689:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("react");
 
+<<<<<<< HEAD
 /***/ }),
 
 /***/ "./node_modules/next/node_modules/@swc/helpers/cjs/_interop_require_default.cjs":
@@ -111,6 +258,8 @@ eval("\n\nexports._ = exports._interop_require_default = _interop_require_defaul
 
 eval("\n\nfunction _getRequireWildcardCache(nodeInterop) {\n    if (typeof WeakMap !== \"function\") return null;\n\n    var cacheBabelInterop = new WeakMap();\n    var cacheNodeInterop = new WeakMap();\n\n    return (_getRequireWildcardCache = function(nodeInterop) {\n        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;\n    })(nodeInterop);\n}\nexports._ = exports._interop_require_wildcard = _interop_require_wildcard;\nfunction _interop_require_wildcard(obj, nodeInterop) {\n    if (!nodeInterop && obj && obj.__esModule) return obj;\n    if (obj === null || typeof obj !== \"object\" && typeof obj !== \"function\") return { default: obj };\n\n    var cache = _getRequireWildcardCache(nodeInterop);\n\n    if (cache && cache.has(obj)) return cache.get(obj);\n\n    var newObj = {};\n    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;\n\n    for (var key in obj) {\n        if (key !== \"default\" && Object.prototype.hasOwnProperty.call(obj, key)) {\n            var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;\n            if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);\n            else newObj[key] = obj[key];\n        }\n    }\n\n    newObj.default = obj;\n\n    if (cache) cache.set(obj, newObj);\n\n    return newObj;\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvbmV4dC9ub2RlX21vZHVsZXMvQHN3Yy9oZWxwZXJzL2Nqcy9faW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkLmNqcy5qcyIsIm1hcHBpbmdzIjoiQUFBYTs7QUFFYjtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBLFNBQVMsR0FBRyxpQ0FBaUM7QUFDN0M7QUFDQTtBQUNBLHVGQUF1Rjs7QUFFdkY7O0FBRUE7O0FBRUE7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTs7QUFFQTs7QUFFQTtBQUNBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vc3RheWJvb2stbW9kaWZpZWQvLi9ub2RlX21vZHVsZXMvbmV4dC9ub2RlX21vZHVsZXMvQHN3Yy9oZWxwZXJzL2Nqcy9faW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkLmNqcz9iZTE4Il0sInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuXG5mdW5jdGlvbiBfZ2V0UmVxdWlyZVdpbGRjYXJkQ2FjaGUobm9kZUludGVyb3ApIHtcbiAgICBpZiAodHlwZW9mIFdlYWtNYXAgIT09IFwiZnVuY3Rpb25cIikgcmV0dXJuIG51bGw7XG5cbiAgICB2YXIgY2FjaGVCYWJlbEludGVyb3AgPSBuZXcgV2Vha01hcCgpO1xuICAgIHZhciBjYWNoZU5vZGVJbnRlcm9wID0gbmV3IFdlYWtNYXAoKTtcblxuICAgIHJldHVybiAoX2dldFJlcXVpcmVXaWxkY2FyZENhY2hlID0gZnVuY3Rpb24obm9kZUludGVyb3ApIHtcbiAgICAgICAgcmV0dXJuIG5vZGVJbnRlcm9wID8gY2FjaGVOb2RlSW50ZXJvcCA6IGNhY2hlQmFiZWxJbnRlcm9wO1xuICAgIH0pKG5vZGVJbnRlcm9wKTtcbn1cbmV4cG9ydHMuXyA9IGV4cG9ydHMuX2ludGVyb3BfcmVxdWlyZV93aWxkY2FyZCA9IF9pbnRlcm9wX3JlcXVpcmVfd2lsZGNhcmQ7XG5mdW5jdGlvbiBfaW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkKG9iaiwgbm9kZUludGVyb3ApIHtcbiAgICBpZiAoIW5vZGVJbnRlcm9wICYmIG9iaiAmJiBvYmouX19lc01vZHVsZSkgcmV0dXJuIG9iajtcbiAgICBpZiAob2JqID09PSBudWxsIHx8IHR5cGVvZiBvYmogIT09IFwib2JqZWN0XCIgJiYgdHlwZW9mIG9iaiAhPT0gXCJmdW5jdGlvblwiKSByZXR1cm4geyBkZWZhdWx0OiBvYmogfTtcblxuICAgIHZhciBjYWNoZSA9IF9nZXRSZXF1aXJlV2lsZGNhcmRDYWNoZShub2RlSW50ZXJvcCk7XG5cbiAgICBpZiAoY2FjaGUgJiYgY2FjaGUuaGFzKG9iaikpIHJldHVybiBjYWNoZS5nZXQob2JqKTtcblxuICAgIHZhciBuZXdPYmogPSB7fTtcbiAgICB2YXIgaGFzUHJvcGVydHlEZXNjcmlwdG9yID0gT2JqZWN0LmRlZmluZVByb3BlcnR5ICYmIE9iamVjdC5nZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3I7XG5cbiAgICBmb3IgKHZhciBrZXkgaW4gb2JqKSB7XG4gICAgICAgIGlmIChrZXkgIT09IFwiZGVmYXVsdFwiICYmIE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChvYmosIGtleSkpIHtcbiAgICAgICAgICAgIHZhciBkZXNjID0gaGFzUHJvcGVydHlEZXNjcmlwdG9yID8gT2JqZWN0LmdldE93blByb3BlcnR5RGVzY3JpcHRvcihvYmosIGtleSkgOiBudWxsO1xuICAgICAgICAgICAgaWYgKGRlc2MgJiYgKGRlc2MuZ2V0IHx8IGRlc2Muc2V0KSkgT2JqZWN0LmRlZmluZVByb3BlcnR5KG5ld09iaiwga2V5LCBkZXNjKTtcbiAgICAgICAgICAgIGVsc2UgbmV3T2JqW2tleV0gPSBvYmpba2V5XTtcbiAgICAgICAgfVxuICAgIH1cblxuICAgIG5ld09iai5kZWZhdWx0ID0gb2JqO1xuXG4gICAgaWYgKGNhY2hlKSBjYWNoZS5zZXQob2JqLCBuZXdPYmopO1xuXG4gICAgcmV0dXJuIG5ld09iajtcbn1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/next/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs\n");
 
+=======
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ })
 
 };
@@ -120,7 +269,11 @@ eval("\n\nfunction _getRequireWildcardCache(nodeInterop) {\n    if (typeof WeakM
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+<<<<<<< HEAD
 var __webpack_exports__ = (__webpack_exec__("./node_modules/next/dist/pages/_error.js"));
+=======
+var __webpack_exports__ = __webpack_require__.X(0, [1396,2636], () => (__webpack_exec__(3499)));
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = __webpack_exports__;
 
 })();

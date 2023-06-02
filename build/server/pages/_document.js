@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -138,10 +139,118 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /***/ ((module) => {
 
 "use strict";
+=======
+"use strict";
+(() => {
+var exports = {};
+exports.id = 660;
+exports.ids = [660];
+exports.modules = {
+
+/***/ 3162:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Document)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5893);
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6859);
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_script__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4298);
+/* harmony import */ var next_script__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_script__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function Document() {
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(next_document__WEBPACK_IMPORTED_MODULE_1__.Html, {
+        lang: "en",
+        children: [
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_document__WEBPACK_IMPORTED_MODULE_1__.Head, {}),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("body", {
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_document__WEBPACK_IMPORTED_MODULE_1__.Main, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_document__WEBPACK_IMPORTED_MODULE_1__.NextScript, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_2___default()), {
+                        src: "https://checkout.razorpay.com/v1/checkout.ts"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("script", {
+                        dangerouslySetInnerHTML: {
+                            __html: `
+              (function() {
+                var options = {
+                  key: '${"BzvQt2yLjo9SmwNAisWljZdx"}',
+                  name: 'Rahul Singh',
+                  description: 'YOUR_DESCRIPTION',
+                  image: 'https://lh3.googleusercontent.com/a/AEdFTp65wOTrRfPJH4y-cXtcNYNw6kbbrjkhQAEpWljMyw=s96-c',
+                  handler: function(response) {
+                    console.log(response);
+                  },
+                  prefill: {
+                    name: 'Rahul Singh',
+                    email: 'rahulsinghrs174326@gmail.com',
+                    contact: '7543041204',
+                  },
+                  notes: {
+                    address: 'New Delhi',
+                  },
+                  theme: {
+                    color: 'blue',
+                  },
+                };
+                if (typeof window !== 'undefined' && typeof window.Razorpay === 'undefined') {
+                  var script = document.createElement('script');
+                  script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+                  script.async = true;
+                  script.onload = function() {
+                    var Razorpay = new window.Razorpay(options);
+                    Razorpay.on('payment.failed', function(response) {
+                      console.log(response.error.code);
+                      console.log(response.error.description);
+                      console.log(response.error.source);
+                      console.log(response.error.step);
+                      console.log(response.error.reason);
+                      console.log(response.error.metadata.order_id);
+                      console.log(response.error.metadata.payment_id);
+                    });
+                    window.Razorpay = Razorpay;
+                  }
+                  document.body.appendChild(script);
+                } else if (typeof window !== 'undefined' && typeof window.Razorpay !== 'undefined') {
+                  var Razorpay = new window.Razorpay(options);
+                  Razorpay.on('payment.failed', function(response) {
+                    console.log(response.error.code);
+                    console.log(response.error.description);
+                    console.log(response.error.source);
+                    console.log(response.error.step);
+                    console.log(response.error.reason);
+                    console.log(response.error.metadata.order_id);
+                    console.log(response.error.metadata.payment_id);
+                  });
+                  window.Razorpay = Razorpay;
+                }
+              })();
+            `
+                        }
+                    })
+                ]
+            })
+        ]
+    });
+}
+
+
+/***/ }),
+
+/***/ 4140:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/server/get-page-files.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../server/htmlescape":
 /*!*************************************************!*\
   !*** external "next/dist/server/htmlescape.js" ***!
@@ -149,10 +258,16 @@ module.exports = require("next/dist/server/get-page-files.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 9716:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/server/htmlescape.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../server/utils":
 /*!********************************************!*\
   !*** external "next/dist/server/utils.js" ***!
@@ -160,10 +275,16 @@ module.exports = require("next/dist/server/htmlescape.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 6368:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/server/utils.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/constants":
 /*!****************************************************!*\
   !*** external "next/dist/shared/lib/constants.js" ***!
@@ -171,10 +292,16 @@ module.exports = require("next/dist/server/utils.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 6724:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/constants.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/head-manager-context":
 /*!***************************************************************!*\
   !*** external "next/dist/shared/lib/head-manager-context.js" ***!
@@ -182,10 +309,16 @@ module.exports = require("next/dist/shared/lib/constants.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 2796:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/html-context":
 /*!*******************************************************!*\
   !*** external "next/dist/shared/lib/html-context.js" ***!
@@ -193,10 +326,16 @@ module.exports = require("next/dist/shared/lib/head-manager-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 8743:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/html-context.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "../shared/lib/is-plain-object":
 /*!**********************************************************!*\
   !*** external "next/dist/shared/lib/is-plain-object.js" ***!
@@ -204,10 +343,16 @@ module.exports = require("next/dist/shared/lib/html-context.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 8524:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("next/dist/shared/lib/is-plain-object.js");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "react":
 /*!************************!*\
   !*** external "react" ***!
@@ -215,10 +360,16 @@ module.exports = require("next/dist/shared/lib/is-plain-object.js");
 /***/ ((module) => {
 
 "use strict";
+=======
+/***/ 6689:
+/***/ ((module) => {
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = require("react");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "react-dom":
 /*!****************************!*\
   !*** external "react-dom" ***!
@@ -250,6 +401,13 @@ eval("\n\nexports._ = exports._interop_require_default = _interop_require_defaul
 "use strict";
 eval("\n\nfunction _getRequireWildcardCache(nodeInterop) {\n    if (typeof WeakMap !== \"function\") return null;\n\n    var cacheBabelInterop = new WeakMap();\n    var cacheNodeInterop = new WeakMap();\n\n    return (_getRequireWildcardCache = function(nodeInterop) {\n        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;\n    })(nodeInterop);\n}\nexports._ = exports._interop_require_wildcard = _interop_require_wildcard;\nfunction _interop_require_wildcard(obj, nodeInterop) {\n    if (!nodeInterop && obj && obj.__esModule) return obj;\n    if (obj === null || typeof obj !== \"object\" && typeof obj !== \"function\") return { default: obj };\n\n    var cache = _getRequireWildcardCache(nodeInterop);\n\n    if (cache && cache.has(obj)) return cache.get(obj);\n\n    var newObj = {};\n    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;\n\n    for (var key in obj) {\n        if (key !== \"default\" && Object.prototype.hasOwnProperty.call(obj, key)) {\n            var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;\n            if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);\n            else newObj[key] = obj[key];\n        }\n    }\n\n    newObj.default = obj;\n\n    if (cache) cache.set(obj, newObj);\n\n    return newObj;\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvbmV4dC9ub2RlX21vZHVsZXMvQHN3Yy9oZWxwZXJzL2Nqcy9faW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkLmNqcy5qcyIsIm1hcHBpbmdzIjoiQUFBYTs7QUFFYjtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBLFNBQVMsR0FBRyxpQ0FBaUM7QUFDN0M7QUFDQTtBQUNBLHVGQUF1Rjs7QUFFdkY7O0FBRUE7O0FBRUE7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTs7QUFFQTs7QUFFQTtBQUNBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vc3RheWJvb2stbW9kaWZpZWQvLi9ub2RlX21vZHVsZXMvbmV4dC9ub2RlX21vZHVsZXMvQHN3Yy9oZWxwZXJzL2Nqcy9faW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkLmNqcz9iZTE4Il0sInNvdXJjZXNDb250ZW50IjpbIlwidXNlIHN0cmljdFwiO1xuXG5mdW5jdGlvbiBfZ2V0UmVxdWlyZVdpbGRjYXJkQ2FjaGUobm9kZUludGVyb3ApIHtcbiAgICBpZiAodHlwZW9mIFdlYWtNYXAgIT09IFwiZnVuY3Rpb25cIikgcmV0dXJuIG51bGw7XG5cbiAgICB2YXIgY2FjaGVCYWJlbEludGVyb3AgPSBuZXcgV2Vha01hcCgpO1xuICAgIHZhciBjYWNoZU5vZGVJbnRlcm9wID0gbmV3IFdlYWtNYXAoKTtcblxuICAgIHJldHVybiAoX2dldFJlcXVpcmVXaWxkY2FyZENhY2hlID0gZnVuY3Rpb24obm9kZUludGVyb3ApIHtcbiAgICAgICAgcmV0dXJuIG5vZGVJbnRlcm9wID8gY2FjaGVOb2RlSW50ZXJvcCA6IGNhY2hlQmFiZWxJbnRlcm9wO1xuICAgIH0pKG5vZGVJbnRlcm9wKTtcbn1cbmV4cG9ydHMuXyA9IGV4cG9ydHMuX2ludGVyb3BfcmVxdWlyZV93aWxkY2FyZCA9IF9pbnRlcm9wX3JlcXVpcmVfd2lsZGNhcmQ7XG5mdW5jdGlvbiBfaW50ZXJvcF9yZXF1aXJlX3dpbGRjYXJkKG9iaiwgbm9kZUludGVyb3ApIHtcbiAgICBpZiAoIW5vZGVJbnRlcm9wICYmIG9iaiAmJiBvYmouX19lc01vZHVsZSkgcmV0dXJuIG9iajtcbiAgICBpZiAob2JqID09PSBudWxsIHx8IHR5cGVvZiBvYmogIT09IFwib2JqZWN0XCIgJiYgdHlwZW9mIG9iaiAhPT0gXCJmdW5jdGlvblwiKSByZXR1cm4geyBkZWZhdWx0OiBvYmogfTtcblxuICAgIHZhciBjYWNoZSA9IF9nZXRSZXF1aXJlV2lsZGNhcmRDYWNoZShub2RlSW50ZXJvcCk7XG5cbiAgICBpZiAoY2FjaGUgJiYgY2FjaGUuaGFzKG9iaikpIHJldHVybiBjYWNoZS5nZXQob2JqKTtcblxuICAgIHZhciBuZXdPYmogPSB7fTtcbiAgICB2YXIgaGFzUHJvcGVydHlEZXNjcmlwdG9yID0gT2JqZWN0LmRlZmluZVByb3BlcnR5ICYmIE9iamVjdC5nZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3I7XG5cbiAgICBmb3IgKHZhciBrZXkgaW4gb2JqKSB7XG4gICAgICAgIGlmIChrZXkgIT09IFwiZGVmYXVsdFwiICYmIE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChvYmosIGtleSkpIHtcbiAgICAgICAgICAgIHZhciBkZXNjID0gaGFzUHJvcGVydHlEZXNjcmlwdG9yID8gT2JqZWN0LmdldE93blByb3BlcnR5RGVzY3JpcHRvcihvYmosIGtleSkgOiBudWxsO1xuICAgICAgICAgICAgaWYgKGRlc2MgJiYgKGRlc2MuZ2V0IHx8IGRlc2Muc2V0KSkgT2JqZWN0LmRlZmluZVByb3BlcnR5KG5ld09iaiwga2V5LCBkZXNjKTtcbiAgICAgICAgICAgIGVsc2UgbmV3T2JqW2tleV0gPSBvYmpba2V5XTtcbiAgICAgICAgfVxuICAgIH1cblxuICAgIG5ld09iai5kZWZhdWx0ID0gb2JqO1xuXG4gICAgaWYgKGNhY2hlKSBjYWNoZS5zZXQob2JqLCBuZXdPYmopO1xuXG4gICAgcmV0dXJuIG5ld09iajtcbn1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/next/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs\n");
 
+=======
+/***/ 6405:
+/***/ ((module) => {
+
+module.exports = require("react-dom");
+
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ })
 
 };
@@ -259,7 +417,11 @@ eval("\n\nfunction _getRequireWildcardCache(nodeInterop) {\n    if (typeof WeakM
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+<<<<<<< HEAD
 var __webpack_exports__ = (__webpack_exec__("./pages/_document.tsx"));
+=======
+var __webpack_exports__ = __webpack_require__.X(0, [5893,1396,29,1803], () => (__webpack_exec__(3162)));
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = __webpack_exports__;
 
 })();

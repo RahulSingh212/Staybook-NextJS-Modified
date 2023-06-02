@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -17,52 +18,78 @@ exports.modules = {
 /*!*************************!*\
   !*** external "cookie" ***!
   \*************************/
+=======
+(() => {
+var exports = {};
+exports.id = 899;
+exports.ids = [899];
+exports.modules = {
+
+/***/ 4802:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("cookie");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "jwt-decode":
 /*!*****************************!*\
   !*** external "jwt-decode" ***!
   \*****************************/
+=======
+/***/ 5567:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = require("jwt-decode");
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "firebase/app":
 /*!*******************************!*\
   !*** external "firebase/app" ***!
   \*******************************/
+=======
+/***/ 3745:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = import("firebase/app");;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "firebase/auth":
 /*!********************************!*\
   !*** external "firebase/auth" ***!
   \********************************/
+=======
+/***/ 401:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = import("firebase/auth");;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "firebase/firestore":
 /*!*************************************!*\
   !*** external "firebase/firestore" ***!
   \*************************************/
+=======
+/***/ 1492:
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 /***/ ((module) => {
 
 module.exports = import("firebase/firestore");;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "(api)/./lib/firebase/index.ts":
 /*!*******************************!*\
   !*** ./lib/firebase/index.ts ***!
@@ -90,6 +117,63 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _lib_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/lib/firebase */ \"(api)/./lib/firebase/index.ts\");\n/* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cookie */ \"cookie\");\n/* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cookie__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/lib/helper */ \"(api)/./lib/helper/index.ts\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/firestore */ \"firebase/firestore\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_lib_firebase__WEBPACK_IMPORTED_MODULE_0__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__]);\n([_lib_firebase__WEBPACK_IMPORTED_MODULE_0__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n\n\n\n\nasync function handler(req, res) {\n    const receivedData = req.body;\n    const { userBooking  } = receivedData;\n    try {\n        const cookies = (0,cookie__WEBPACK_IMPORTED_MODULE_1__.parse)(req.headers.cookie || \"\");\n        const userAccessToken = await cookies[_lib_helper__WEBPACK_IMPORTED_MODULE_2__.USER_ACCESS_TOKEN];\n        if (userAccessToken) {\n            const userObj = await (0,_lib_helper__WEBPACK_IMPORTED_MODULE_2__.extractJWTValues)(userAccessToken);\n            const userData = userObj;\n            const user_Id = userData.user_id;\n            const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(_lib_firebase__WEBPACK_IMPORTED_MODULE_0__.db, _lib_helper__WEBPACK_IMPORTED_MODULE_2__.USER_COLLECTION_NAME, user_Id);\n            const docSnap = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(docRef);\n            res.status(201).json({\n                userCredentials: docSnap.data(),\n                error: null,\n                message: \"User access token value generated!\"\n            });\n        } else {\n            res.status(201).json({\n                userCredentials: null,\n                error: null,\n                message: \"User access token does not exists!\"\n            });\n        }\n    } catch (error) {\n        res.status(422).json({\n            userCredentials: null,\n            error,\n            message: \"Error occoured\"\n        });\n    }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handler);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvdXNlclByb2ZpbGUvZmV0Y2hVc2VyRGV0YWlscy50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBMEM7QUFFQTtBQWFwQjtBQUMyQjtBQUVqRCxlQUFlTyxRQUFRQyxHQUFRLEVBQUVDLEdBQVEsRUFBRTtJQUN6QyxNQUFNQyxlQUFlRixJQUFJRyxJQUFJO0lBQzdCLE1BQU0sRUFBRUMsWUFBVyxFQUFFLEdBQUdGO0lBRXhCLElBQUk7UUFDRixNQUFNRyxVQUFVWiw2Q0FBS0EsQ0FBQ08sSUFBSU0sT0FBTyxDQUFDQyxNQUFNLElBQUk7UUFDNUMsTUFBTUMsa0JBQWtCLE1BQU1ILE9BQU8sQ0FBQ1gsMERBQWlCQSxDQUFDO1FBRXhELElBQUljLGlCQUFpQjtZQUNuQixNQUFNQyxVQUFVLE1BQU1kLDZEQUFnQkEsQ0FBQ2E7WUFDdkMsTUFBTUUsV0FBZ0NEO1lBQ3RDLE1BQU1FLFVBQVVELFNBQVNFLE9BQU87WUFFaEMsTUFBTUMsU0FBU2hCLHVEQUFHQSxDQUNoQkwsNkNBQUVBLEVBQ0ZJLDZEQUFvQkEsRUFDcEJlO1lBRUYsTUFBTUcsVUFBVSxNQUFNaEIsMERBQU1BLENBQUNlO1lBRTdCWixJQUFJYyxNQUFNLENBQUMsS0FBS0MsSUFBSSxDQUFDO2dCQUNuQkMsaUJBQWlCSCxRQUFRSSxJQUFJO2dCQUM3QkMsT0FBTyxJQUFJO2dCQUNYQyxTQUFTO1lBQ1g7UUFDRixPQUFPO1lBQ0xuQixJQUFJYyxNQUFNLENBQUMsS0FBS0MsSUFBSSxDQUFDO2dCQUNuQkMsaUJBQWlCLElBQUk7Z0JBQ3JCRSxPQUFPLElBQUk7Z0JBQ1hDLFNBQVM7WUFDWDtRQUNGLENBQUM7SUFDSCxFQUFFLE9BQU9ELE9BQU87UUFDZGxCLElBQUljLE1BQU0sQ0FBQyxLQUFLQyxJQUFJLENBQUM7WUFDbkJDLGlCQUFpQixJQUFJO1lBQ3JCRTtZQUNBQyxTQUFTO1FBQ1g7SUFDRjtBQUNGO0FBRUEsaUVBQWVyQixPQUFPQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vc3RheWJvb2stbW9kaWZpZWQvLi9wYWdlcy9hcGkvdXNlclByb2ZpbGUvZmV0Y2hVc2VyRGV0YWlscy50cz83ODcwIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGF1dGgsIGRiIH0gZnJvbSBcIkAvbGliL2ZpcmViYXNlXCI7XG5pbXBvcnQgY29va2llIGZyb20gXCJjb29raWVcIjsgLy8gc2VydmVyIHNpZGUgY29va2llIG9ubHkgaHR0cHMgYW5kIGF2YWlsYWJsZSBvbiB0aGUgc2VydmVyIHNpZGVcbmltcG9ydCB7IHNlcmlhbGl6ZSwgcGFyc2UgfSBmcm9tIFwiY29va2llXCI7XG5cbmltcG9ydCB7XG4gIEVNQUlMX1NJR05VUCxcbiAgRU1BSUxfTE9HSU4sXG4gIEdPT0dMRV9TSUdOVVAsXG4gIEdPT0dMRV9MT0dJTixcbiAgVVNFUl9BQ0NFU1NfVE9LRU4sXG4gIHVuaXhUb0RhdGUsXG4gIEdFVF9VU0VSX1RPS0VOX09CSkVDVCxcbiAgZXh0cmFjdEpXVFZhbHVlcyxcbiAgQ09PS0lFX0VYUElSQVRPSU5fVElNRSxcbiAgVVNFUl9DT0xMRUNUSU9OX05BTUUsXG59IGZyb20gXCJAL2xpYi9oZWxwZXJcIjtcbmltcG9ydCB7IGRvYywgZ2V0RG9jIH0gZnJvbSBcImZpcmViYXNlL2ZpcmVzdG9yZVwiO1xuXG5hc3luYyBmdW5jdGlvbiBoYW5kbGVyKHJlcTogYW55LCByZXM6IGFueSkge1xuICBjb25zdCByZWNlaXZlZERhdGEgPSByZXEuYm9keTtcbiAgY29uc3QgeyB1c2VyQm9va2luZyB9ID0gcmVjZWl2ZWREYXRhO1xuXG4gIHRyeSB7XG4gICAgY29uc3QgY29va2llcyA9IHBhcnNlKHJlcS5oZWFkZXJzLmNvb2tpZSB8fCBcIlwiKTtcbiAgICBjb25zdCB1c2VyQWNjZXNzVG9rZW4gPSBhd2FpdCBjb29raWVzW1VTRVJfQUNDRVNTX1RPS0VOXTtcblxuICAgIGlmICh1c2VyQWNjZXNzVG9rZW4pIHtcbiAgICAgIGNvbnN0IHVzZXJPYmogPSBhd2FpdCBleHRyYWN0SldUVmFsdWVzKHVzZXJBY2Nlc3NUb2tlbik7XG4gICAgICBjb25zdCB1c2VyRGF0YTogeyB1c2VyX2lkOiBzdHJpbmcgfSA9IHVzZXJPYmogYXMgeyB1c2VyX2lkOiBzdHJpbmcgfTtcbiAgICAgIGNvbnN0IHVzZXJfSWQgPSB1c2VyRGF0YS51c2VyX2lkO1xuXG4gICAgICBjb25zdCBkb2NSZWYgPSBkb2MoXG4gICAgICAgIGRiLFxuICAgICAgICBVU0VSX0NPTExFQ1RJT05fTkFNRSxcbiAgICAgICAgdXNlcl9JZFxuICAgICAgKTtcbiAgICAgIGNvbnN0IGRvY1NuYXAgPSBhd2FpdCBnZXREb2MoZG9jUmVmKTtcblxuICAgICAgcmVzLnN0YXR1cygyMDEpLmpzb24oe1xuICAgICAgICB1c2VyQ3JlZGVudGlhbHM6IGRvY1NuYXAuZGF0YSgpLFxuICAgICAgICBlcnJvcjogbnVsbCxcbiAgICAgICAgbWVzc2FnZTogXCJVc2VyIGFjY2VzcyB0b2tlbiB2YWx1ZSBnZW5lcmF0ZWQhXCIsXG4gICAgICB9KTtcbiAgICB9IGVsc2Uge1xuICAgICAgcmVzLnN0YXR1cygyMDEpLmpzb24oe1xuICAgICAgICB1c2VyQ3JlZGVudGlhbHM6IG51bGwsXG4gICAgICAgIGVycm9yOiBudWxsLFxuICAgICAgICBtZXNzYWdlOiBcIlVzZXIgYWNjZXNzIHRva2VuIGRvZXMgbm90IGV4aXN0cyFcIixcbiAgICAgIH0pO1xuICAgIH1cbiAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICByZXMuc3RhdHVzKDQyMikuanNvbih7XG4gICAgICB1c2VyQ3JlZGVudGlhbHM6IG51bGwsXG4gICAgICBlcnJvcixcbiAgICAgIG1lc3NhZ2U6IFwiRXJyb3Igb2Njb3VyZWRcIixcbiAgICB9KTtcbiAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBoYW5kbGVyO1xuIl0sIm5hbWVzIjpbImRiIiwicGFyc2UiLCJVU0VSX0FDQ0VTU19UT0tFTiIsImV4dHJhY3RKV1RWYWx1ZXMiLCJVU0VSX0NPTExFQ1RJT05fTkFNRSIsImRvYyIsImdldERvYyIsImhhbmRsZXIiLCJyZXEiLCJyZXMiLCJyZWNlaXZlZERhdGEiLCJib2R5IiwidXNlckJvb2tpbmciLCJjb29raWVzIiwiaGVhZGVycyIsImNvb2tpZSIsInVzZXJBY2Nlc3NUb2tlbiIsInVzZXJPYmoiLCJ1c2VyRGF0YSIsInVzZXJfSWQiLCJ1c2VyX2lkIiwiZG9jUmVmIiwiZG9jU25hcCIsInN0YXR1cyIsImpzb24iLCJ1c2VyQ3JlZGVudGlhbHMiLCJkYXRhIiwiZXJyb3IiLCJtZXNzYWdlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./pages/api/userProfile/fetchUserDetails.ts\n");
+=======
+/***/ 6128:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _lib_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2253);
+/* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4802);
+/* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cookie__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _lib_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7694);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1492);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_lib_firebase__WEBPACK_IMPORTED_MODULE_0__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__]);
+([_lib_firebase__WEBPACK_IMPORTED_MODULE_0__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+async function handler(req, res) {
+    const receivedData = req.body;
+    const { userBooking  } = receivedData;
+    try {
+        const cookies = (0,cookie__WEBPACK_IMPORTED_MODULE_1__.parse)(req.headers.cookie || "");
+        const userAccessToken = await cookies[_lib_helper__WEBPACK_IMPORTED_MODULE_2__/* .USER_ACCESS_TOKEN */ .HU];
+        if (userAccessToken) {
+            const userObj = await (0,_lib_helper__WEBPACK_IMPORTED_MODULE_2__/* .extractJWTValues */ .xb)(userAccessToken);
+            const userData = userObj;
+            const user_Id = userData.user_id;
+            const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(_lib_firebase__WEBPACK_IMPORTED_MODULE_0__.db, _lib_helper__WEBPACK_IMPORTED_MODULE_2__/* .USER_COLLECTION_NAME */ .YP, user_Id);
+            const docSnap = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(docRef);
+            res.status(201).json({
+                userCredentials: docSnap.data(),
+                error: null,
+                message: "User access token value generated!"
+            });
+        } else {
+            res.status(201).json({
+                userCredentials: null,
+                error: null,
+                message: "User access token does not exists!"
+            });
+        }
+    } catch (error) {
+        res.status(422).json({
+            userCredentials: null,
+            error,
+            message: "Error occoured"
+        });
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handler);
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 
 /***/ })
 
@@ -100,7 +184,11 @@ eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+<<<<<<< HEAD
 var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/userProfile/fetchUserDetails.ts"));
+=======
+var __webpack_exports__ = __webpack_require__.X(0, [1418], () => (__webpack_exec__(6128)));
+>>>>>>> 457ea5980aae4ccf7fcb5dbad33e7633f070ced0
 module.exports = __webpack_exports__;
 
 })();

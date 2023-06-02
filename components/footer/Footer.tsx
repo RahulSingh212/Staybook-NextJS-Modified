@@ -48,7 +48,7 @@ export default function Footer() {
 
   return (
     <React.Fragment>
-      <div className={`${classes.footerBody} ${classes.noprint}`}>
+      <div className={`${classes.footerBody} ${classes.noprint} mt-16`}>
         <Image
           src={`/images/footerBg.svg`}
           alt="StayBook"
@@ -66,7 +66,7 @@ export default function Footer() {
             objectPosition="center"
             className={`rounded-full`}
           />
-          <div className={classes.line}></div>
+          <div className={`${classes.line}`}></div>
           <p>2022 © StayBook, New Delhi. All rights reserved</p>
           <Link href="Tel: +91-8373929299">Ph. no: +91-8373929299</Link>
           <Link href="mailto: booking@staybook.in">booking@staybook.in</Link>
@@ -106,9 +106,9 @@ export default function Footer() {
             <h2>Interests:</h2>
             <Link href="/packages">Tours and Packages</Link>
             <Link href="/blogs">Blogs</Link>
-            <Link href="/aboutus">About Us</Link>
-            <Link href="/contactUs">Contact Us</Link>
-            <Link href="/FAQ">FAQ</Link>
+            <Link href="/about">About Us</Link>
+            <Link href="/contact">Contact Us</Link>
+            <Link href="/faq">FAQ</Link>
           </div>
 
           <div className={classes.heading}>

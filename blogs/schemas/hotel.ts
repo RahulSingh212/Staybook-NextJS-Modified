@@ -266,6 +266,30 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'faqs',
+      title: 'Frequently Asked Questions about Hotel',
+      type: 'array',
+      of: [
+        {
+          name: 'qna',
+          title: 'Question & Answer',
+          type: 'object',
+          fields: [
+            {
+              name: 'hotel_question',
+              title: 'Question',
+              type: 'string',
+            },
+            {
+              name: 'hotel_answer',
+              title: 'Answer',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: 'hotel_nearby_places',
       title: 'Hotel Nearby Places',
       type: 'array',

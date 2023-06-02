@@ -14,7 +14,7 @@ export default async function handler(req: any, res: any) {
 
     // Create an order -> generate the OrderID -> Send it to the Front-end
     const payment_capture = 1;
-    const amount = userBooking.total_Price.toFixed(2);
+    const amount = Math.round(userBooking.total_Price);
     // const amount = 1;
     const currency = "INR";
     const options = {

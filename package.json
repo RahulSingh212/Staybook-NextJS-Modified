@@ -53,6 +53,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-social-icons": "^5.15.0",
     "react-spring": "^9.7.1",
+    "sanity": "^3.11.1",
     "sass": "^1.60.0",
     "shortid": "^2.2.16",
     "tailwind-scrollbar-hide": "^1.1.7",
